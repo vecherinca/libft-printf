@@ -1,28 +1,27 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_toupper.c                                       :+:      :+:    :+:   */
+/*   ft_tolower.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: maria <maria@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/10/26 23:53:30 by maria             #+#    #+#             */
-/*   Updated: 2022/10/27 00:53:32 by maria            ###   ########.fr       */
+/*   Created: 2022/10/27 00:53:56 by maria             #+#    #+#             */
+/*   Updated: 2022/10/27 00:55:24 by maria            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <ctype.h>
 #include <stdio.h>
- int ft_toupper(int c)
+ int ft_tolower(int c)
  {
-    if (c >= 97 && c <= 122)
-        c -= 32;
+    if (c >= 65 && c <= 90)
+        c += 32;
     return(c);
  }
 int main(void)
 {
     unsigned char c;
     c = 'k';
-    printf("%d\n", toupper(c));
-    printf("%d", ft_toupper(c));
+    printf("%d\n", tolower(c));
+    printf("%d", ft_tolower(c));
 }
- 
