@@ -1,28 +1,39 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_tolower.c                                       :+:      :+:    :+:   */
+/*   ft_isalnum.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: maria <maria@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/10/27 00:53:56 by maria             #+#    #+#             */
-/*   Updated: 2022/10/27 18:29:09 by maria            ###   ########.fr       */
+/*   Created: 2022/10/27 18:34:54 by maria             #+#    #+#             */
+/*   Updated: 2022/10/27 18:36:55 by maria            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <ctype.h>
 #include <stdio.h>
-
- int ft_tolower(int c)
- {
-    if (c >= 65 && c <= 90)
-        c += 32;
-    return(c);
- }
-int main(void)
+#include <ctype.h>
+int ft_isalpha(int c)
 {
-    unsigned char c;
-    c = 'k';
-    printf("%d\n", tolower(c));
-    printf("%d", ft_tolower(c));
+    int i;
+    if ((c >= 65 && c<= 90) ||(c >= 97 && c<= 122))
+        return(1);
+    else
+        return(0);
+}
+
+int ft_isdigit(int c)
+{
+    int i;
+    if (c >= 48 && c <= 57)
+        return (1);
+    else
+        return (0);
+}
+
+int ft_isalnum(int c)
+{
+    if (ft_isalpha(c) == 1 || ft_isdigit == 1)
+        return(1);
+    else
+        return(0);
 }

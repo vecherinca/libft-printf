@@ -1,28 +1,40 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_tolower.c                                       :+:      :+:    :+:   */
+/*   ft_strdup.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: maria <maria@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/10/27 00:53:56 by maria             #+#    #+#             */
-/*   Updated: 2022/10/27 18:29:09 by maria            ###   ########.fr       */
+/*   Created: 2022/10/27 18:43:41 by maria             #+#    #+#             */
+/*   Updated: 2022/10/27 18:46:02 by maria            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <ctype.h>
-#include <stdio.h>
-
- int ft_tolower(int c)
- {
-    if (c >= 65 && c <= 90)
-        c += 32;
-    return(c);
- }
-int main(void)
+int ft_strlen(char *str)
 {
-    unsigned char c;
-    c = 'k';
-    printf("%d\n", tolower(c));
-    printf("%d", ft_tolower(c));
+	int i;
+	i = 0;
+
+	while (str[i])
+		i++;
+	return(i);	
+}
+char *ft_strdup(const char *src)
+{
+	int i;
+	char *output;
+	int len;
+	len = ft_strlen(src);
+
+	i = 0;
+	output = malloc(sizeof(char) * len + 1);
+	if (!output)
+		return(0);
+	while(src[i])
+	{
+		output[i] = src[i];
+		i++;
+	}
+	output[i] = '\0';
+	return(output);
 }
