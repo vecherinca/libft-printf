@@ -3,27 +3,27 @@
 /*                                                        :::      ::::::::   */
 /*   ft_strlcat.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: maria <maria@student.42.fr>                +#+  +:+       +#+        */
+/*   By: mklimina <mklimina@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/26 21:22:38 by maria             #+#    #+#             */
-/*   Updated: 2022/10/26 21:44:08 by maria            ###   ########.fr       */
+/*   Updated: 2022/11/08 17:53:11 by mklimina         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <stdio.h>
-int	ft_strlen(char *str)
+#include "libft.h"
+int	ft_strlen(const char *s)
 {
 	int	i;
 
 	i = 0;
-	while (str[i] != '\0')
+	while (s[i] != '\0')
 	{
 		i++;
 	}
 	return (i);
 }
 
-unsigned int	ft_strlcat(char * restrict dst, const char * restrict src, size_t dstsize)
+unsigned int	ft_strlcat(char * dst, const char *src, size_t dstsize)
 {
 	unsigned int				dest_len;
 	unsigned int				src_len;
