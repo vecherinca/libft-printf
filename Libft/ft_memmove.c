@@ -6,14 +6,12 @@
 /*   By: mklimina <mklimina@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/08 20:41:08 by mklimina          #+#    #+#             */
-/*   Updated: 2022/11/08 23:39:14 by mklimina         ###   ########.fr       */
+/*   Updated: 2022/11/10 19:18:46 by mklimina         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
-#include <stdio.h>
- #include <string.h>
- 
+
 int ft_strlen(const char *s)
 {
     int i;
@@ -31,8 +29,6 @@ void *ft_memmove(void *dest, const void *src, size_t n)
 	unsigned int len;
 	
 	i = 0;
-	len = ft_strlen(dest);
-	//cast the variables to check if they are okay 
 	source = (unsigned char*)src;
 	destinaton = (unsigned char *)dest;
 	if (destinaton < source)
@@ -44,33 +40,13 @@ void *ft_memmove(void *dest, const void *src, size_t n)
 		}
 	
 	}
-	if (destinaton > source) 
+	//why it's working tho?
+	else if (destinaton > source) 
 	{
-		while (i < len)
+		while (n-- > 0)
 		{
-			destinaton[len] = source[len];
-			len--;
+			destinaton[n] = source[n];
 		}
 	}
 	return(destinaton); 
 }
-/*int main()
-{
-	char dest[] = "Heh";
-	printf("address dest %p\n", dest);
-
-	char src[] = "OneTwo";
-	printf("address src %p\n", src);
-	
-	char dest_1[] = "Heh";
-	char src_1[] = "OneTwo";
-	
-	ft_memmove(dest, src, 4);
-	
-	printf("result of my function -- > %s\n", dest);
-	printf("%s\n", "*************************");
-	
-	memmove(dest_1, src_1, 4);
-	printf("result of real function-- > %s", dest_1);
-	
-}*/
