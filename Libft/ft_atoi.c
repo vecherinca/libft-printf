@@ -3,14 +3,14 @@
 /*                                                        :::      ::::::::   */
 /*   ft_atoi.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: maria <maria@student.42.fr>                +#+  +:+       +#+        */
+/*   By: mklimina <mklimina@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/10/26 15:58:11 by maria             #+#    #+#             */
-/*   Updated: 2022/10/26 21:17:29 by maria            ###   ########.fr       */
+/*   Created: 2022/11/07 14:10:59 by mklimina          #+#    #+#             */
+/*   Updated: 2022/11/11 19:53:21 by mklimina         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <stdio.h>
+#include "libft.h"
 int ft_atoi(const char *str)
 {
     int i;
@@ -29,7 +29,7 @@ int ft_atoi(const char *str)
         sign = -1 * sign; 
         i++;
     }
-    if (str[i] == '+')
+    else if (str[i] == '+')
     {
         i++;
     }
@@ -43,6 +43,6 @@ int ft_atoi(const char *str)
 
 /*int main(void)
 {
-    char t[] = " +1234";
+    char t[] = " +-";
     printf("%d", ft_atoi(t));
 }*/

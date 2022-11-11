@@ -6,22 +6,11 @@
 /*   By: mklimina <mklimina@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/26 21:22:38 by maria             #+#    #+#             */
-/*   Updated: 2022/11/08 17:53:11 by mklimina         ###   ########.fr       */
+/*   Updated: 2022/11/11 21:35:54 by mklimina         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
-int	ft_strlen(const char *s)
-{
-	int	i;
-
-	i = 0;
-	while (s[i] != '\0')
-	{
-		i++;
-	}
-	return (i);
-}
 
 unsigned int	ft_strlcat(char * dst, const char *src, size_t dstsize)
 {

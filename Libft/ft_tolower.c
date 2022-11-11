@@ -3,15 +3,14 @@
 /*                                                        :::      ::::::::   */
 /*   ft_tolower.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: maria <maria@student.42.fr>                +#+  +:+       +#+        */
+/*   By: mklimina <mklimina@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/27 00:53:56 by maria             #+#    #+#             */
-/*   Updated: 2022/10/27 18:29:09 by maria            ###   ########.fr       */
+/*   Updated: 2022/11/11 19:50:13 by mklimina         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <ctype.h>
-#include <stdio.h>
+#include "libft.h"
 
  int ft_tolower(int c)
  {
@@ -19,10 +18,10 @@
         c += 32;
     return(c);
  }
-int main(void)
-{
-    unsigned char c;
-    c = 'k';
-    printf("%d\n", tolower(c));
-    printf("%d", ft_tolower(c));
-}
+// int main(void)
+// {
+//     unsigned char c;
+//     c = 'k';
+//     printf("%d\n", tolower(c));
+//     printf("%d", ft_tolower(c));
+// }
