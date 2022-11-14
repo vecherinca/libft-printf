@@ -6,7 +6,7 @@
 /*   By: mklimina <mklimina@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/13 17:50:41 by mklimina          #+#    #+#             */
-/*   Updated: 2022/11/14 11:51:04 by mklimina         ###   ########.fr       */
+/*   Updated: 2022/11/14 11:53:59 by mklimina         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,8 +21,8 @@ char *ft_substr(char const *s, unsigned int start, size_t len)
         size_t j;
 
         j = 0;
-		if (!s)
-			return (0);
+		// if (!s)
+		// 	return (0);
 		if (start > lenstr)
 			return(ft_strdup(""));
 		if (len >= lenstr)
