@@ -1,75 +1,64 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_split.c                                         :+:      :+:    :+:   */
+/*   ft_split.c                                         :+:      :+:    :+:   */  
 /*                                                    +:+ +:+         +:+     */
 /*   By: mklimina <mklimina@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/13 19:55:31 by mklimina          #+#    #+#             */
-/*   Updated: 2022/11/14 19:15:02 by mklimina         ###   ########.fr       */
+/*   Updated: 2022/11/15 16:21:33 by mklimina         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-// working fine
-int ft_sep(char c, char sep)
+/*
+checking if char is separator or not
+*/
+int ischr(char c, char cc)
 {
-	if ((c == sep))
-		return (1);
+	if (c == cc)
+		return(1);
 	else
-		return (0);
+		return(0);
 }
+
+/*
+this function is working
+okay and counting the number of 
+words
+params: s,c
+*/
 int numb_words(char const *s, char c)
 {
-	int i;
-	int num_words;
+    int i;
+    int count;
+    i = 0;
+    count = 0;
+    while (s[i])
+    {
+        while (ischr(s[i], c))
+            i++;
+        if (!ischr(s[i], c))
+            count++;
+        while (!ischr(s[i], c) && s[i])
+            i++;
+    }
 
-	num_words = 0;
-	i = 0;
-	while (s[i] != '\0')
-	{
-		if (ft_sep(s[i], c) && (!ft_sep(s[i + 1], c))) // this might not be okay
-			num_words++;
-		i++;
-	}
-	return (num_words);
 }
-int lenword(char const *s, char c)
+int len_word(char const *s, char c)
 {
 	int i;
-
 	i = 0;
-	// can make a func here
 	while (s[i] != c)
 	{
 		i++;
 	}
-	return (i);
+	return(i);
 }
 void fill_tab(char **tab, char const *s, char c)
 {
-	int i;
-	int j;
-	int index;
-	int len;
-
-	i = 0;
-	j = 0;
-	len = 0;
-	index = 0;
-	while (s[i] != 0)
-	{
-		if (!(ft_sep(s[i], c)))
-		{
-			i++;
-			len++;
-		}
-		tab[index] = malloc(sizeof(char) * len + 1);
-		tab[index][len] = 0;
-		index++;
-		len = 0;
-	}
+	
 }
 
 char **ft_split(char const *s, char c)
@@ -77,7 +66,7 @@ char **ft_split(char const *s, char c)
 	char **tab;
 	int number_words;
 	// first malloc is done, now I need to do the len of word and 2-nd malloc it
-	number_words = numb_words(s);
+	number_words = numb_words(s,c);
 	tab = malloc(sizeof(char *) * (number_words + 1));
 	tab[number_words] = 0;
 	fill_tab(tab, s, c);
