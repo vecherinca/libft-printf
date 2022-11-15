@@ -6,7 +6,7 @@
 /*   By: mklimina <mklimina@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/13 19:55:31 by mklimina          #+#    #+#             */
-/*   Updated: 2022/11/15 19:59:25 by mklimina         ###   ########.fr       */
+/*   Updated: 2022/11/15 22:11:18 by mklimina         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,9 @@ int ischr(char c, char cc)
     else
         return (0);
 }
-
+// this function needs to be fixed lol 
+//it fails when the string starts with the sep
+// to fix it 
 int numb_words(char const *s, char c)
 {
     int i;
@@ -40,7 +42,7 @@ int numb_words(char const *s, char c)
     }
     return (count);
 }
-
+// fails when more than two cons seps and when the string starts with sep too 
 void create_tab(char **tab, char const *s, char c)
 {
     int i;
@@ -60,6 +62,8 @@ void create_tab(char **tab, char const *s, char c)
             len++;
         }
         tab[index] = malloc(sizeof(char) * len + 1);
+		if (!tab[index])
+			return(NULL);
         tab[index][len] = '\0';
         i++;
         index++;
