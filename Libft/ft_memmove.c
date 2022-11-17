@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_memmove.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mklimina <mklimina@student.42.fr>          +#+  +:+       +#+        */
+/*   By: maria <maria@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/08 20:41:08 by mklimina          #+#    #+#             */
-/*   Updated: 2022/11/10 19:18:46 by mklimina         ###   ########.fr       */
+/*   Updated: 2022/11/17 22:05:50 by maria            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,7 +26,6 @@ void *ft_memmove(void *dest, const void *src, size_t n)
 	unsigned int i;
 	unsigned char *source;
 	unsigned char *destinaton;
-	unsigned int len;
 	
 	i = 0;
 	source = (unsigned char*)src;

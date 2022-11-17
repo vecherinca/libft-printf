@@ -4,7 +4,7 @@ AR = ar
 ARFLAGS = crs
 
 CC = gcc
-CFLAG = -Wall -Wextra -Werror
+CFLAG = -Wall -Wextra -Werror 
 
 RM = rm
 RMFLAG = -f
