@@ -6,16 +6,14 @@
 /*   By: mklimina <mklimina@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/13 19:55:31 by mklimina          #+#    #+#             */
-/*   Updated: 2022/11/16 22:08:39 by mklimina         ###   ########.fr       */
+/*   Updated: 2022/11/17 16:50:50 by mklimina         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
-
 /*
-checking if char is separator or not
+fix the free thing please
 */
-// don't forget to change strlen ok?
 int ischr(char c, char cc)
 {
 	if (c == cc)
@@ -24,9 +22,6 @@ int ischr(char c, char cc)
 		return (0);
 }
 
-// this function needs to be fixed lol
-// it fails when the string starts with the sep
-// to fix it
 int numb_words(char const *s, char c)
 {
 	int i;
@@ -44,7 +39,7 @@ int numb_words(char const *s, char c)
 	}
 	return (count);
 }
-// fails when more than two cons seps and when the string starts with sep too
+
 void create_tab(char **tab, char const *s, char c)
 {
 	int i;
