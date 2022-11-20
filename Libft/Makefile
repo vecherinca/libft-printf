@@ -4,7 +4,7 @@ AR = ar
 ARFLAGS = crs
 
 CC = gcc
-CFLAG = -Wall -Wextra -Werror 
+CFLAG = -Wall -Wextra -Werror
 
 RM = rm
 RMFLAG = -f
@@ -52,9 +52,14 @@ INCLUDES = ./libft.h
 BONUS = \
 		./ft_lstnew.c	\
 		./ft_lstadd_front.c	\
-		 ./ft_lstsize.c	\
-		 ./ft_lstlast.c	\
-		 ./ft_lstadd_back.c \
+		./ft_lstsize.c	\
+		./ft_lstlast.c	\
+		./ft_lstadd_back.c	\
+		./ft_lstdelone.c	\
+		./ft_lstclear.c	\
+		./ft_lstiter.c	\
+
+
 
 SRCS = \
 	$(SRC_PART1)    \
