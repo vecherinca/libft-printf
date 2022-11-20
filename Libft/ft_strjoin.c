@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_strjoin.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mklimina <mklimina@student.42.fr>          +#+  +:+       +#+        */
+/*   By: maria <maria@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/11 00:47:56 by mklimina          #+#    #+#             */
-/*   Updated: 2022/11/11 23:26:06 by mklimina         ###   ########.fr       */
+/*   Updated: 2022/11/17 22:54:13 by maria            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,9 +40,3 @@ char *ft_strjoin(char const *s1, char const *s2)
     }
 	return(output);
 }
-// int main()
-// {
-//     char s1[] = "I love Turells chips";
-//     char s2[] = "very much";
-//     printf("result ----> %s\n", ft_strjoin(s1, s2));
-// }

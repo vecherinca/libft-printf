@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_strrchr.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mklimina <mklimina@student.42.fr>          +#+  +:+       +#+        */
+/*   By: maria <maria@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/11 18:27:43 by mklimina          #+#    #+#             */
-/*   Updated: 2022/11/11 21:15:14 by mklimina         ###   ########.fr       */
+/*   Updated: 2022/11/17 22:08:49 by maria            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,9 +28,3 @@ char *ft_strrchr(const char *s, int c)
 	}
 	return (0);
 }
-
-// int main()
-// {
-// 	char s[] = "tripouille";
-// 	printf("this thing should print a full string ---> %s\n",ft_strrchr(s, 't'));
-// }
