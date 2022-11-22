@@ -6,7 +6,7 @@
 /*   By: mklimina <mklimina@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/13 19:55:31 by mklimina          #+#    #+#             */
-/*   Updated: 2022/11/17 16:50:50 by mklimina         ###   ########.fr       */
+/*   Updated: 2022/11/22 19:16:01 by mklimina         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,7 +49,7 @@ void create_tab(char **tab, char const *s, char c)
 	i = 0;
 	index = 0;
 	len = 0;
-	while (i < ft_strlen(s) - 1)
+	while (i < ft_strlen(s))
 	{
 		while (ischr(s[i], c) && s[i] && s[i] != '\0')
 			i++;
@@ -77,7 +77,7 @@ void fill_tab(char **tab, char const *s, char c)
 	i = 0;
 	index = 0;
 	j = 0;
-	while (i < ft_strlen(s) - 1)
+	while (i < ft_strlen(s))
 	{
 		while (ischr(s[i], c) && s[i] && s[i] != '\0')
 			i++;
@@ -104,16 +104,8 @@ char **ft_split(char const *s, char c)
 	tab = malloc(sizeof(char *) * (number_words + 1));
 	if (!tab)
 		return (0);
-	tab[number_words] = 0;
 	create_tab(tab, s, c);
 	fill_tab(tab, s, c);
+	tab[number_words] = 0;
 	return (tab);
 }
-
-// int main()
-// {
-//     // char test[] = "----I-love-Turells-chips";
-//     // char c;
-//     // c = 45;
-//     ft_split("  tripouille  42  ", ' ');
-// }
