@@ -6,18 +6,21 @@
 /*   By: mklimina <mklimina@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/19 20:03:27 by mklimina          #+#    #+#             */
-/*   Updated: 2022/11/19 20:46:32 by mklimina         ###   ########.fr       */
+/*   Updated: 2022/11/22 21:58:17 by mklimina         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
-int ft_lstsize(t_list *lst)
+
+int	ft_lstsize(t_list *lst)
 {
-	int count;
+	int	count;
+
 	count = 0;
-	while (lst != NULL){
+	while (lst != NULL)
+	{
 		count++;
 		lst = lst->next;
 	}
-	return(count);	
+	return (count);
 }

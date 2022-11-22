@@ -6,15 +6,16 @@
 /*   By: mklimina <mklimina@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/08 18:13:01 by mklimina          #+#    #+#             */
-/*   Updated: 2022/11/08 18:25:25 by mklimina         ###   ########.fr       */
+/*   Updated: 2022/11/22 21:24:33 by mklimina         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-void ft_bzero(void *s, size_t n)
+void	ft_bzero(void *s, size_t n)
 {
-	unsigned int i;
+	unsigned int	i;
+
 	i = 0;
 	while (i < n)
 	{

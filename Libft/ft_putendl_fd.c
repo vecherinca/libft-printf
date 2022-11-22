@@ -6,14 +6,15 @@
 /*   By: mklimina <mklimina@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/13 18:36:17 by mklimina          #+#    #+#             */
-/*   Updated: 2022/11/13 18:39:06 by mklimina         ###   ########.fr       */
+/*   Updated: 2022/11/22 22:03:54 by mklimina         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
-void ft_putendl_fd(char *s, int fd)
+
+void	ft_putendl_fd(char *s, int fd)
 {
-	int i;
+	int	i;
 
 	i = 0;
 	while (s[i] != '\0')

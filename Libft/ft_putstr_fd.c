@@ -6,12 +6,13 @@
 /*   By: mklimina <mklimina@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/13 18:23:03 by mklimina          #+#    #+#             */
-/*   Updated: 2022/11/13 18:28:08 by mklimina         ###   ########.fr       */
+/*   Updated: 2022/11/22 22:04:23 by mklimina         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
-void ft_putstr_fd(char *s, int fd)
+
+void	ft_putstr_fd(char *s, int fd)
 {
 	int	i;
 

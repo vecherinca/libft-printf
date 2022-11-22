@@ -6,21 +6,21 @@
 /*   By: mklimina <mklimina@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/13 18:27:27 by mklimina          #+#    #+#             */
-/*   Updated: 2022/11/13 18:32:18 by mklimina         ###   ########.fr       */
+/*   Updated: 2022/11/22 22:04:09 by mklimina         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-void print(int nb, int fd)
+void	print(int nb, int fd)
 {
-	int number;
+	int	number;
 
 	number = 48 + nb;
 	write(fd, &number, 1);
 }
 
-void ft_putnbr_fd(int n, int fd)
+void	ft_putnbr_fd(int n, int fd)
 {
 	if (n == -2147483648)
 	{

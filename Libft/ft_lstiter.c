@@ -6,13 +6,13 @@
 /*   By: mklimina <mklimina@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/20 20:29:55 by mklimina          #+#    #+#             */
-/*   Updated: 2022/11/20 20:49:15 by mklimina         ###   ########.fr       */
+/*   Updated: 2022/11/22 21:52:28 by mklimina         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-void ft_lstiter(t_list *lst, void (*f)(void *))
+void	ft_lstiter(t_list *lst, void (*f)(void *))
 {
 	if (!lst)
 		return ;

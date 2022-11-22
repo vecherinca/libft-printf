@@ -6,15 +6,16 @@
 /*   By: mklimina <mklimina@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/27 18:39:57 by maria             #+#    #+#             */
-/*   Updated: 2022/11/11 20:23:57 by mklimina         ###   ########.fr       */
+/*   Updated: 2022/11/22 21:30:04 by mklimina         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
- int ft_isprint(int c)
- {  
-    if (c>= 32 && c < 127)
-        return(1);
-    else
-        return(0);  
- }
+
+int	ft_isprint(int c)
+{
+	if (c >= 32 && c < 127)
+		return (1);
+	else
+		return (0);
+}

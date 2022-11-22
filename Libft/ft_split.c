@@ -6,16 +6,13 @@
 /*   By: mklimina <mklimina@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/13 19:55:31 by mklimina          #+#    #+#             */
-/*   Updated: 2022/11/22 21:09:48 by mklimina         ###   ########.fr       */
+/*   Updated: 2022/11/22 22:06:11 by mklimina         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
-/*
-fix the free thing please
-*/
-#include <stdio.h>
-int ischr(char c, char cc)
+
+int	ischr(char c, char cc)
 {
 	if (c == cc)
 		return (1);
@@ -23,10 +20,11 @@ int ischr(char c, char cc)
 		return (0);
 }
 
-int numb_words(char const *s, char c)
+int	numb_words(char const *s, char c)
 {
-	int i;
-	int count;
+	int	i;
+	int	count;
+
 	i = 0;
 	count = 0;
 	while (s[i])
@@ -41,10 +39,10 @@ int numb_words(char const *s, char c)
 	return (count);
 }
 
-void create_tab(char **tab, char const *s, char c)
+void	create_tab(char **tab, char const *s, char c)
 {
-	size_t index;
-	size_t len;
+	size_t	index;
+	size_t	len;
 
 	index = 0;
 	len = 0;
@@ -55,7 +53,7 @@ void create_tab(char **tab, char const *s, char c)
 		while (*s != c && *s != '\0')
 		{
 			++len;
-			++s;	
+			++s;
 		}
 		if (len > 0)
 		{
@@ -69,15 +67,15 @@ void create_tab(char **tab, char const *s, char c)
 	}
 }
 
-void fill_tab(char **tab, char const *s, char c)
+void	fill_tab(char **tab, char const *s, char c)
 {
-	size_t j;
-	size_t index;
+	size_t	j;
+	size_t	index;
 
 	index = 0;
 	j = 0;
 	while (*s != '\0')
-	{ 
+	{
 		while (*s == c && *s != '\0')
 			++s;
 		while (*s != c && *s != '\0')
@@ -91,16 +89,14 @@ void fill_tab(char **tab, char const *s, char c)
 	}
 }
 
-
-char **ft_split(char const *s, char c)
+char	**ft_split(char const *s, char c)
 {
-	char **tab;
-	size_t number_words;
-	// first malloc is done, now I need to do the len of word and 2-nd malloc it
+	char	**tab;
+	size_t	number_words;
 
 	number_words = numb_words(s, c);
 	if (number_words == 0)
-		return(ft_calloc(1, sizeof(char *)));
+		return (ft_calloc(1, sizeof(char *)));
 	tab = malloc(sizeof(char *) * (number_words + 1));
 	if (!tab)
 		return (NULL);
@@ -109,23 +105,3 @@ char **ft_split(char const *s, char c)
 	fill_tab(tab, s, c);
 	return (tab);
 }
-/*
-int	main(int ac, char **av)
-{
-	size_t	i;
-	char	**strs;
-	
-	if (ac > 2)
-	{
-		i = 0;
-		strs = ft_split(av[1], av[2][0]);
-		while (strs[i] != NULL)
-		{
-			printf("%s\n", strs[i]);
-			free(strs[i]);
-			++i;
-		}
-		free(strs);
-	}
-}
-*/
