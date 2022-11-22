@@ -6,7 +6,7 @@
 /*   By: mklimina <mklimina@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/13 19:55:31 by mklimina          #+#    #+#             */
-/*   Updated: 2022/11/22 19:16:01 by mklimina         ###   ########.fr       */
+/*   Updated: 2022/11/22 21:09:48 by mklimina         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,6 +14,7 @@
 /*
 fix the free thing please
 */
+#include <stdio.h>
 int ischr(char c, char cc)
 {
 	if (c == cc)
@@ -42,27 +43,27 @@ int numb_words(char const *s, char c)
 
 void create_tab(char **tab, char const *s, char c)
 {
-	int i;
-	int index;
-	int len;
+	size_t index;
+	size_t len;
 
-	i = 0;
 	index = 0;
 	len = 0;
-	while (i < ft_strlen(s))
+	while (*s != '\0')
 	{
-		while (ischr(s[i], c) && s[i] && s[i] != '\0')
-			i++;
-		while (!(ischr(s[i], c)) && s[i])
+		while (*s == c && *s != '\0')
+			s++;
+		while (*s != c && *s != '\0')
 		{
-			len++;
-			i++;
+			++len;
+			++s;	
 		}
-		tab[index] = malloc(sizeof(char) * len + 1);
-		if (!tab[index])
-			return ;
-		tab[index][len] = '\0';
-		i++;
+		if (len > 0)
+		{
+			tab[index] = malloc(sizeof(char) * len + 1);
+			if (!tab[index])
+				return ;
+			tab[index][len] = '\0';
+		}
 		index++;
 		len = 0;
 	}
@@ -70,42 +71,61 @@ void create_tab(char **tab, char const *s, char c)
 
 void fill_tab(char **tab, char const *s, char c)
 {
-	int i;
-	int j;
-	int index;
+	size_t j;
+	size_t index;
 
-	i = 0;
 	index = 0;
 	j = 0;
-	while (i < ft_strlen(s))
-	{
-		while (ischr(s[i], c) && s[i] && s[i] != '\0')
-			i++;
-		while (!(ischr(s[i], c)) && s[i])
+	while (*s != '\0')
+	{ 
+		while (*s == c && *s != '\0')
+			++s;
+		while (*s != c && *s != '\0')
 		{
-			tab[index][j] = s[i];
+			tab[index][j] = *s;
 			j++;
-			i++;
+			++s;
 		}
 		index++;
-		i++;
 		j = 0;
 	}
 }
 
+
 char **ft_split(char const *s, char c)
 {
 	char **tab;
-	int number_words;
+	size_t number_words;
 	// first malloc is done, now I need to do the len of word and 2-nd malloc it
+
 	number_words = numb_words(s, c);
 	if (number_words == 0)
 		return(ft_calloc(1, sizeof(char *)));
 	tab = malloc(sizeof(char *) * (number_words + 1));
 	if (!tab)
-		return (0);
+		return (NULL);
+	tab[number_words] = NULL;
 	create_tab(tab, s, c);
 	fill_tab(tab, s, c);
-	tab[number_words] = 0;
 	return (tab);
 }
+/*
+int	main(int ac, char **av)
+{
+	size_t	i;
+	char	**strs;
+	
+	if (ac > 2)
+	{
+		i = 0;
+		strs = ft_split(av[1], av[2][0]);
+		while (strs[i] != NULL)
+		{
+			printf("%s\n", strs[i]);
+			free(strs[i]);
+			++i;
+		}
+		free(strs);
+	}
+}
+*/
