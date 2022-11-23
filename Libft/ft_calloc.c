@@ -6,7 +6,7 @@
 /*   By: mklimina <mklimina@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/10 23:17:31 by mklimina          #+#    #+#             */
-/*   Updated: 2022/11/22 21:26:24 by mklimina         ###   ########.fr       */
+/*   Updated: 2022/11/23 22:05:48 by mklimina         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,7 @@ void	*ft_calloc(size_t nmemb, size_t size)
 
 	if (nmemb == 0 || size == 0)
 		return (NULL);
-	if (nmemb > 65535 || size > 65535)
+	if (nmemb * size < size)
 		return (0);
 	output = (void *)malloc(size * nmemb);
 	if (!output)
