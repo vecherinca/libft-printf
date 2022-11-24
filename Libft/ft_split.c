@@ -6,18 +6,20 @@
 /*   By: mklimina <mklimina@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/13 19:55:31 by mklimina          #+#    #+#             */
-/*   Updated: 2022/11/22 22:06:11 by mklimina         ###   ########.fr       */
+/*   Updated: 2022/11/24 21:21:50 by mklimina         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-int	ischr(char c, char cc)
+void	free_tab(char **tab, int index)
 {
-	if (c == cc)
-		return (1);
-	else
-		return (0);
+	while (index >= 0)
+	{
+		free(tab[index]);
+		index--;
+	}
+	free(tab);
 }
 
 int	numb_words(char const *s, char c)
@@ -29,11 +31,11 @@ int	numb_words(char const *s, char c)
 	count = 0;
 	while (s[i])
 	{
-		while (ischr(s[i], c))
+		while ((s[i] == c))
 			i++;
-		if (!ischr(s[i], c) && s[i] != '\0')
+		if ((s[i] != c) && s[i] != '\0')
 			count++;
-		while (!ischr(s[i], c) && s[i])
+		while ((s[i] != c) && s[i])
 			i++;
 	}
 	return (count);
@@ -59,7 +61,7 @@ void	create_tab(char **tab, char const *s, char c)
 		{
 			tab[index] = malloc(sizeof(char) * len + 1);
 			if (!tab[index])
-				return ;
+				return (free_tab(tab, index));
 			tab[index][len] = '\0';
 		}
 		index++;
