@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_strtrim.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mklimina <mklimina@student.42.fr>          +#+  +:+       +#+        */
+/*   By: maria <maria@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/13 19:55:54 by mklimina          #+#    #+#             */
-/*   Updated: 2022/11/22 22:30:39 by mklimina         ###   ########.fr       */
+/*   Updated: 2022/11/24 23:33:01 by maria            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -84,6 +84,8 @@ char	*ft_strtrim(char const *s1, char const *set)
 	int		finallen;
 	char	*output;
 
+	if(!s1)
+		return(NULL);
 	i = 0;
 	if (isfullcharset(s1, set) == ft_strlen(s1))
 		return (ft_strdup(""));
@@ -91,6 +93,8 @@ char	*ft_strtrim(char const *s1, char const *set)
 	len_end = second_position(s1, set);
 	finallen = len_end - len_start + 1;
 	output = malloc(sizeof(char) * (finallen));
+	if(!output)
+		return(NULL);
 	output[finallen - 1] = '\0';
 	while (i < finallen - 1)
 	{

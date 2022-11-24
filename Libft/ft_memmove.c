@@ -3,21 +3,21 @@
 /*                                                        :::      ::::::::   */
 /*   ft_memmove.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mklimina <mklimina@student.42.fr>          +#+  +:+       +#+        */
+/*   By: maria <maria@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/08 20:41:08 by mklimina          #+#    #+#             */
-/*   Updated: 2022/11/22 22:02:49 by mklimina         ###   ########.fr       */
+/*   Updated: 2022/11/24 23:37:03 by maria            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
-
+#include <stdio.h>
 void	*ft_memmove(void *dest, const void *src, size_t n)
 {
 	unsigned int	i;
 	unsigned char	*source;
 	unsigned char	*destinaton;
-
+	
 	i = 0;
 	source = (unsigned char *)src;
 	destinaton = (unsigned char *)dest;
@@ -31,8 +31,9 @@ void	*ft_memmove(void *dest, const void *src, size_t n)
 	}
 	else if (destinaton > source)
 	{
-		while (n-- > 0)
+		while (n > 0)
 		{
+			n--;
 			destinaton[n] = source[n];
 		}
 	}

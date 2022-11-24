@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_split.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mklimina <mklimina@student.42.fr>          +#+  +:+       +#+        */
+/*   By: maria <maria@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/13 19:55:31 by mklimina          #+#    #+#             */
-/*   Updated: 2022/11/24 21:21:50 by mklimina         ###   ########.fr       */
+/*   Updated: 2022/11/24 23:28:15 by maria            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -96,6 +96,8 @@ char	**ft_split(char const *s, char c)
 	char	**tab;
 	size_t	number_words;
 
+	if(!s)
+		return(0);
 	number_words = numb_words(s, c);
 	if (number_words == 0)
 		return (ft_calloc(1, sizeof(char *)));
