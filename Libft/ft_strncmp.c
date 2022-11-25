@@ -6,12 +6,15 @@
 /*   By: mklimina <mklimina@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/26 21:24:34 by maria             #+#    #+#             */
-/*   Updated: 2022/11/22 22:12:42 by mklimina         ###   ########.fr       */
+/*   Updated: 2022/11/25 20:54:36 by mklimina         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
-
+/*
+Compares up to n characters of the C string 
+str1 to those of the C string str2.
+*/
 int	ft_strncmp(const char *s1, const char *s2, size_t n)
 {
 	size_t	i;

@@ -60,20 +60,26 @@ SRC = \
 
 OBJ = $(SRC:.c=.o)
 
-BONUS_OBJ = $(BONUS_OBJ:.c=.o)
+BONUS_OBJ = $(BONUS:.c=.o)
+AR = ar -rc
 
-$(NAME): $(OBJ)
-	ar rc $(NAME) $(OBJ)
-	ranlib $(NAME)
+all : ${NAME}
 
-all: $(NAME)
+${NAME} : ${OBJ}
+	${AR} ${NAME} ${OBJ}
+
+.o: .c
+	${CC} -c ${CFLAGS} $< -o $@
+
+bonus: ${BONUS}
+	${AR} $(NAME) $(BONUS_OBJ)
 
 clean: 
-	rm -f $(OBJ)
-
+	rm -f $(OBJ) $(BONUS_OBJ)
+	
 fclean: clean
 	rm -f $(NAME)
 
-re: fclean all
+re: fclean ${NAME}
 
-.PHONY: all clean fclean re all 
+.PHONY: all clean fclean re all bonus

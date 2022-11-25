@@ -6,12 +6,16 @@
 /*   By: mklimina <mklimina@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/26 21:18:26 by maria             #+#    #+#             */
-/*   Updated: 2022/11/22 22:10:11 by mklimina         ###   ########.fr       */
+/*   Updated: 2022/11/25 20:51:22 by mklimina         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
-
+/*
+The strlen() function calculates the
+length of the string pointed to by s,
+excluding the terminating null byte ('\0').
+*/
 int	ft_strlen(const char *s)
 {
 	int	i;

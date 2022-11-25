@@ -6,12 +6,21 @@
 /*   By: mklimina <mklimina@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/21 14:51:27 by mklimina          #+#    #+#             */
-/*   Updated: 2022/11/23 19:49:56 by mklimina         ###   ########.fr       */
+/*   Updated: 2022/11/25 18:35:34 by mklimina         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
-
+/*Iterates the list ’lst’ and applies the function
+’f’ on the content of each node. Creates a new
+list resulting of the successive applications of
+the function ’f’.
+How it works:
+1)We create two t_list objects.
+2)Assigning to a new node the modified content.
+3)If something is wrong with the assignment we clear the list we going to return.
+4)If everything is ok, adding the nodes from the end. 
+*/
 t_list	*ft_lstmap(t_list *lst, void *(*f)(void *), void (*del)(void *))
 {
 	t_list	*output;

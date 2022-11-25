@@ -6,12 +6,16 @@
 /*   By: mklimina <mklimina@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/11 00:41:18 by mklimina          #+#    #+#             */
-/*   Updated: 2022/11/22 21:39:12 by mklimina         ###   ########.fr       */
+/*   Updated: 2022/11/25 17:41:13 by mklimina         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
-
+/*
+Allocates (with malloc(3)) and returns a string
+representing the integer received as an argument.
+In other words, turns integer into string.
+*/
 int	count_nmb(int n)
 {
 	int	i;

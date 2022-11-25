@@ -6,12 +6,15 @@
 /*   By: mklimina <mklimina@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/27 18:43:41 by maria             #+#    #+#             */
-/*   Updated: 2022/11/22 22:08:10 by mklimina         ###   ########.fr       */
+/*   Updated: 2022/11/25 20:34:09 by mklimina         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
-
+/*
+The function strdup() is used to duplicate a string.
+It returns a pointer to null-terminated byte string.
+*/
 char	*ft_strdup(const char *src)
 {
 	int		i;

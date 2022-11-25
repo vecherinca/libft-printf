@@ -3,15 +3,19 @@
 /*                                                        :::      ::::::::   */
 /*   ft_strtrim.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: maria <maria@student.42.fr>                +#+  +:+       +#+        */
+/*   By: mklimina <mklimina@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/13 19:55:54 by mklimina          #+#    #+#             */
-/*   Updated: 2022/11/24 23:33:01 by maria            ###   ########.fr       */
+/*   Updated: 2022/11/25 21:26:05 by mklimina         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
-
+/*
+Allocates (with malloc(3)) and returns a copy of
+’s1’ with the characters specified in ’set’ removed
+from the beginning and the end of the string.
+*/
 int	ischarset(char c, char const *set)
 {
 	int	i;
@@ -84,8 +88,8 @@ char	*ft_strtrim(char const *s1, char const *set)
 	int		finallen;
 	char	*output;
 
-	if(!s1)
-		return(NULL);
+	if (!s1)
+		return (NULL);
 	i = 0;
 	if (isfullcharset(s1, set) == ft_strlen(s1))
 		return (ft_strdup(""));
@@ -93,8 +97,8 @@ char	*ft_strtrim(char const *s1, char const *set)
 	len_end = second_position(s1, set);
 	finallen = len_end - len_start + 1;
 	output = malloc(sizeof(char) * (finallen));
-	if(!output)
-		return(NULL);
+	if (!output)
+		return (NULL);
 	output[finallen - 1] = '\0';
 	while (i < finallen - 1)
 	{

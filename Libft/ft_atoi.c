@@ -6,12 +6,17 @@
 /*   By: mklimina <mklimina@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/07 14:10:59 by mklimina          #+#    #+#             */
-/*   Updated: 2022/11/22 21:23:56 by mklimina         ###   ########.fr       */
+/*   Updated: 2022/11/25 17:11:35 by mklimina         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
+/*
+The C library
+function int atoi(const char *str) converts 
+the string argument str to an integer (type int).
+*/
 int	ft_atoi(const char *str)
 {
 	int	i;

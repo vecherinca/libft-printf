@@ -6,18 +6,15 @@
 /*   By: mklimina <mklimina@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/27 18:34:04 by maria             #+#    #+#             */
-/*   Updated: 2022/11/22 22:15:18 by mklimina         ###   ########.fr       */
+/*   Updated: 2022/11/25 21:22:09 by mklimina         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
-#include <string.h>
-#include <stdio.h>
-//14 C does
-//not have an implicit conversion from const-qualified pointer types 
-//to non-const-qualified ones, so you should add an explicit one, i.e. a cast. 
-//Then the warning will go away:
-//so 
+/*
+Returns a pointer to the first occurrence of str2 in str1, 
+or a null pointer if str2 is not part of str1.
+*/
 char	*ft_strnstr(const char *big, const char *little, size_t len)
 {
 	unsigned int	i;

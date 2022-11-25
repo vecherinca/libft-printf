@@ -6,12 +6,14 @@
 /*   By: mklimina <mklimina@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/19 20:03:27 by mklimina          #+#    #+#             */
-/*   Updated: 2022/11/22 21:58:17 by mklimina         ###   ########.fr       */
+/*   Updated: 2022/11/25 18:40:34 by mklimina         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
-
+/*
+This function counts the number of nodes in a list.
+*/
 int	ft_lstsize(t_list *lst)
 {
 	int	count;
