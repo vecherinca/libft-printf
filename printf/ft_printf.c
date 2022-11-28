@@ -6,7 +6,7 @@
 /*   By: mklimina <mklimina@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/26 21:04:01 by mklimina          #+#    #+#             */
-/*   Updated: 2022/11/28 22:45:50 by mklimina         ###   ########.fr       */
+/*   Updated: 2022/11/28 23:02:29 by mklimina         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,12 +36,12 @@ int pourcentage(char c, va_list args)
 		return(ft_putchar_fd(p));
 	}
 	if (c == 'd' || c == 'i')
-	{
 		return(ft_putnbr_fd(va_arg(args, int)));
-	}
 	if (c == 's')
 	{
 		s = va_arg(args, char *);
+		if (!s)
+			return(ft_putstr_fd("(null)"));
 		return (ft_putstr_fd(s));
 	}
 	return(0);
@@ -78,7 +78,7 @@ int main()
 	printf("****************** \n");
 	ft_printf("Hello here are my chars ----> %c, %c ehehhehehhe\n", 104, 105);
 	// ft_printf("\n");
-	ft_printf("And this is a string -----> %s\n", "Onetwoii");
+	ft_printf("And this is a string -----> %s\n");
 	ft_printf("And this is a decimal hehe -----> %d, %c, %d\n", 128858, 124, 66);
 	// ft_printf("\n");
 	// // ft_printf("And this is an integer somehow it's the same as decimal-----> %i\n", 12345054);
