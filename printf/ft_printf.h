@@ -3,8 +3,10 @@
 
 # include <stdlib.h>
 # include <unistd.h>
-# include <stdlib.h>
+# include <stdio.h>
 #include <stdarg.h>
 int		ft_printf(const char *string, ...);
-void	ft_putnbr_fd(int n, int fd);
+int		ft_putnbr_fd(int n);
+int		ft_putstr_fd(char *s);
+int		ft_putchar_fd(char c);
 #endif
