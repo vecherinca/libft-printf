@@ -6,7 +6,7 @@
 /*   By: mklimina <mklimina@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/26 21:04:01 by mklimina          #+#    #+#             */
-/*   Updated: 2022/11/28 23:02:29 by mklimina         ###   ########.fr       */
+/*   Updated: 2022/11/29 18:44:37 by mklimina         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,14 +20,13 @@ int rightletter(char b)
 {
 	if (b == 'c' || b == 's')
 		return(1);
-	if (b == 'd' || b == 'i')
+	if (b == 'd' || b == 'i'|| b == 'u')
 		return(1);
 	return (0);
 }
 
 int pourcentage(char c, va_list args)
 {
-	//int p;
 	char *s;
 	int p;
 	if (c == 'c')
@@ -36,12 +35,26 @@ int pourcentage(char c, va_list args)
 		return(ft_putchar_fd(p));
 	}
 	if (c == 'd' || c == 'i')
-		return(ft_putnbr_fd(va_arg(args, int)));
+	{
+		s = ft_itoa(va_arg(args, int));
+		p = ft_putstr_fd(s);
+		free(s);
+		return(p);
+		//change if to a separate function
+			
+	}
+	if (c == 'u')
+	{
+		s = ft_itoa_unsign(va_arg(args, unsigned int));
+		p = ft_putstr_unsign(s);
+		free(s);
+		return(p);
+	}
 	if (c == 's')
 	{
 		s = va_arg(args, char *);
-		if (!s)
-			return(ft_putstr_fd("(null)"));
+		if (s == NULL)
+			return(ft_putstr_fd("(null)")); // ne rabotaet ili rabotaer hzzz
 		return (ft_putstr_fd(s));
 	}
 	return(0);
@@ -69,19 +82,13 @@ int ft_printf(const char *string, ...)
 		i++;
 	}
 	va_end(args);
-	printf("size ----> %d\n", count);
+	//printf("size of my printf ----> %d\n", count);
 	return (count);
 }
-int main()
-{
-	// // char c = 65;
-	printf("****************** \n");
-	ft_printf("Hello here are my chars ----> %c, %c ehehhehehhe\n", 104, 105);
-	// ft_printf("\n");
-	ft_printf("And this is a string -----> %s\n");
-	ft_printf("And this is a decimal hehe -----> %d, %c, %d\n", 128858, 124, 66);
-	// ft_printf("\n");
-	// // ft_printf("And this is an integer somehow it's the same as decimal-----> %i\n", 12345054);
-	// // ft_printf("\n");
-	printf("****************** \n");
-}
+// int main()
+// {
+
+// 	printf("******************");
+// 	ft_printf(" %d ", -1);
+// 	//printf("size of a printf that is ok --->  %d", printf(" %d ", -1));
+// }

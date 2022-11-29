@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_putstr_fd.c                                     :+:      :+:    :+:   */
+/*   ft_putstr_unsign.c                                 :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: mklimina <mklimina@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/13 18:23:03 by mklimina          #+#    #+#             */
-/*   Updated: 2022/11/29 18:01:54 by mklimina         ###   ########.fr       */
+/*   Updated: 2022/11/29 18:45:58 by mklimina         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,10 +15,10 @@
 Outputs the string ’s’ to the given file
 descriptor.
 */
-int	ft_putstr_fd(char *s)
+unsigned 	int	ft_putstr_unsign(char *s)
 {
-	int	i;
-	int count;
+	unsigned int	i;
+	unsigned int count;
 	count = 0;
 	if (!s)
 		return(0);
