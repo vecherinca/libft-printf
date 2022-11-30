@@ -6,7 +6,7 @@
 /*   By: mklimina <mklimina@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/26 21:04:01 by mklimina          #+#    #+#             */
-/*   Updated: 2022/11/29 18:44:37 by mklimina         ###   ########.fr       */
+/*   Updated: 2022/11/30 23:28:25 by mklimina         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,6 +21,8 @@ int rightletter(char b)
 	if (b == 'c' || b == 's')
 		return(1);
 	if (b == 'd' || b == 'i'|| b == 'u')
+		return(1);
+	if (b == 'x' || b == 'X')
 		return(1);
 	return (0);
 }
@@ -46,9 +48,10 @@ int pourcentage(char c, va_list args)
 	if (c == 'u')
 	{
 		s = ft_itoa_unsign(va_arg(args, unsigned int));
-		p = ft_putstr_unsign(s);
+		p = ft_putstr_fd(s);
 		free(s);
 		return(p);
+		//change it to a sepfunction;
 	}
 	if (c == 's')
 	{
@@ -56,6 +59,10 @@ int pourcentage(char c, va_list args)
 		if (s == NULL)
 			return(ft_putstr_fd("(null)")); // ne rabotaet ili rabotaer hzzz
 		return (ft_putstr_fd(s));
+	}
+	if (c == 'x')
+	{
+		return(count_hex(va_arg(args, unsigned long long)));
 	}
 	return(0);
 		
@@ -85,10 +92,10 @@ int ft_printf(const char *string, ...)
 	//printf("size of my printf ----> %d\n", count);
 	return (count);
 }
-// int main()
-// {
+int main()
+{
 
-// 	printf("******************");
-// 	ft_printf(" %d ", -1);
-// 	//printf("size of a printf that is ok --->  %d", printf(" %d ", -1));
-// }
+	ft_printf("size %d\n", ft_printf("%x",-2147483647 - 1));
+	printf("ok %d\n", printf("%x",-2147483647 - 1));
+	//printf("size of a printf that is ok --->  %d", printf(" %d ", -1));
+}

@@ -9,10 +9,8 @@ SRC_1 =  \
 	./ft_putchar_fd.c \
 	./ft_putstr_fd.c \
 	./ft_itoa.c \
-	./ft_putstr_unsign.c \
-	./ft_putstr_unsign.c \
 	./ft_itoa_unsign.c \
-	#./ft_putnbr_fd.c \
+	./count_hex.c \
 
 
 SRC = \
