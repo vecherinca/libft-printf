@@ -9,9 +9,3 @@ My notes so far.
 | ----------- | ----------- |
 | Libft       |112/125|
 | ft_printf   | en cours..       |
-
-## Libft
-### Functions that might be tricky: 
-```ft_calloc```- when it comes to calloc it is important to not forget two important conditions:
-- one
-- two
