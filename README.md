@@ -11,3 +11,5 @@ My notes so far.
 | ft_printf   | en cours..       |
 
 ## Libft
+
+```ft_calloc```
