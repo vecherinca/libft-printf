@@ -11,5 +11,7 @@ My notes so far.
 | ft_printf   | en cours..       |
 
 ## Libft
-
-```ft_calloc```
+### Functions that might be tricky: 
+```ft_calloc```- when it comes to calloc it is important to not forget two important conditions:
+- one
+- two
