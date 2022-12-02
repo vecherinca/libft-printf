@@ -6,12 +6,12 @@
 /*   By: mklimina <mklimina@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/30 20:29:39 by mklimina          #+#    #+#             */
-/*   Updated: 2022/11/30 23:22:29 by mklimina         ###   ########.fr       */
+/*   Updated: 2022/12/02 21:14:34 by mklimina         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf.h"
-void	ft_putnbr_base(unsigned long long nbr, char *base) 
+void	ft_putnbr_base(unsigned long nbr, char *base) 
 {
 	int	base_len;
 	int	rem;
@@ -28,7 +28,7 @@ void	ft_putnbr_base(unsigned long long nbr, char *base)
 	}
 }
 
-int count_hex(unsigned long long nbr)
+int count_hex(unsigned long nbr, char c)
 {
     int count;
     count = 0;
@@ -37,7 +37,15 @@ int count_hex(unsigned long long nbr)
 		write(1,"0",1);
 		return(1);
 	}
-	ft_putnbr_base((unsigned long long)nbr, "0123456789abcdef");
+	if (c == 'x')
+		ft_putnbr_base((unsigned long)nbr, "0123456789abcdef");
+	else if (c == 'X')
+		ft_putnbr_base((unsigned long)nbr, "0123456789ABCDEF");
+	else if (c == 'p')
+	{	write(1, "0x", 2);
+		ft_putnbr_base((unsigned long)nbr, "0123456789abcdef");
+		count = 2;
+	}
     while (nbr != 0)
     {
         nbr = nbr / 16;
