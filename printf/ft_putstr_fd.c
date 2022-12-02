@@ -6,7 +6,7 @@
 /*   By: mklimina <mklimina@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/13 18:23:03 by mklimina          #+#    #+#             */
-/*   Updated: 2022/11/29 18:01:54 by mklimina         ###   ########.fr       */
+/*   Updated: 2022/12/03 00:18:25 by mklimina         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,10 +18,11 @@ descriptor.
 int	ft_putstr_fd(char *s)
 {
 	int	i;
-	int count;
+	int	count;
+
 	count = 0;
 	if (!s)
-		return(0);
+		return (0);
 	i = 0;
 	while (s[i] != '\0')
 	{
@@ -29,5 +30,5 @@ int	ft_putstr_fd(char *s)
 		i++;
 		count++;
 	}
-	return(count);
+	return (count);
 }

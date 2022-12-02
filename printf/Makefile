@@ -11,6 +11,8 @@ SRC_1 =  \
 	./ft_itoa.c \
 	./ft_itoa_unsign.c \
 	./count_hex.c \
+	./count_hex_p.c \
+	./ft_fornums.c \
 
 
 SRC = \

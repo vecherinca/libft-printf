@@ -6,7 +6,7 @@
 /*   By: mklimina <mklimina@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/11 00:41:18 by mklimina          #+#    #+#             */
-/*   Updated: 2022/11/29 18:47:25 by mklimina         ###   ########.fr       */
+/*   Updated: 2022/12/02 23:19:42 by mklimina         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,9 +31,9 @@ int	count_nmb_unsign(unsigned int n)
 
 char	*ft_itoa_unsign(unsigned int n)
 {
-	char		*output;
+	char					*output;
 	unsigned int			i;
-	unsigned long int	num;
+	unsigned long int		num;
 
 	num = (long)n;
 	i = count_nmb_unsign(num) - 1;

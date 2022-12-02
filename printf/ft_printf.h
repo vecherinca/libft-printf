@@ -11,6 +11,7 @@ int			ft_putstr_fd(char *s);
 int			ft_putchar_fd(char c);
 char		*ft_itoa(int n);
 char		*ft_itoa_unsign(unsigned int n);
-int count_hex(unsigned long long nbr);
-
+int			count_hex(unsigned long nbr, char c);
+int			count_hex_p(unsigned long nbr, char c);
+int			ft_fornums(char c, int num);
 #endif
