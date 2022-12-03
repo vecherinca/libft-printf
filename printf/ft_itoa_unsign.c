@@ -6,16 +6,12 @@
 /*   By: mklimina <mklimina@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/11 00:41:18 by mklimina          #+#    #+#             */
-/*   Updated: 2022/12/02 23:19:42 by mklimina         ###   ########.fr       */
+/*   Updated: 2022/12/03 17:37:08 by mklimina         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf.h"
-/*
-Allocates (with malloc(3)) and returns a string
-representing the integer received as an argument.
-In other words, turns integer into string.
-*/
+
 int	count_nmb_unsign(unsigned int n)
 {
 	unsigned int	i;

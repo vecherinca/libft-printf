@@ -6,7 +6,7 @@
 /*   By: mklimina <mklimina@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/26 21:04:01 by mklimina          #+#    #+#             */
-/*   Updated: 2022/12/03 00:19:35 by mklimina         ###   ########.fr       */
+/*   Updated: 2022/12/03 17:41:42 by mklimina         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,8 +25,6 @@ int	rightletter(char b)
 
 int	pourcentage(char c, va_list *args)
 {
-	char	*s;
-
 	if (c == 'c')
 		return (ft_putchar_fd(va_arg(*args, int)));
 	if (c == 'd' || c == 'i')
@@ -34,12 +32,7 @@ int	pourcentage(char c, va_list *args)
 	if (c == 'u')
 		return (ft_fornums('u', va_arg(*args, int)));
 	if (c == 's')
-	{
-		s = va_arg(*args, char *);
-		if (s == NULL)
-			return (ft_putstr_fd("(null)"));
-		return (ft_putstr_fd(s));
-	}
+		return (ft_putstr_fd(va_arg(*args, char *)));
 	if (c == 'x')
 		return (count_hex(va_arg(*args, unsigned int), 'x'));
 	if (c == 'X')
@@ -67,13 +60,13 @@ int	ft_printf(const char *string, ...)
 		if (string[i] == '%' && rightletter(string[i + 1]) && string[i] != '\0')
 		{
 			count += pourcentage(string[i + 1], &args);
-			i += 2;
-		}
-		else if (string[i] != '%')
-		{
-			count += write(1, &string[i], 1);
 			i++;
 		}
+		else if (string[i] != '%')
+			count += write(1, &string[i], 1);
+		else
+			i++;
+		i++;
 	}
 	va_end(args);
 	return (count);
