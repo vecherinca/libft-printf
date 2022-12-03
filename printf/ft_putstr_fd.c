@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_putstr_fd.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mklimina <mklimina@student.42.fr>          +#+  +:+       +#+        */
+/*   By: maria <maria@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/13 18:23:03 by mklimina          #+#    #+#             */
-/*   Updated: 2022/12/03 00:18:25 by mklimina         ###   ########.fr       */
+/*   Updated: 2022/12/03 02:23:03 by maria            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,8 @@ int	ft_putstr_fd(char *s)
 {
 	int	i;
 	int	count;
-
+	if (s == NULL)
+		return (ft_putstr_fd("(null)"));
 	count = 0;
 	if (!s)
 		return (0);

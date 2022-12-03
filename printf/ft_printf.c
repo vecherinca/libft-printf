@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_printf.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mklimina <mklimina@student.42.fr>          +#+  +:+       +#+        */
+/*   By: maria <maria@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/26 21:04:01 by mklimina          #+#    #+#             */
-/*   Updated: 2022/12/03 00:19:35 by mklimina         ###   ########.fr       */
+/*   Updated: 2022/12/03 02:23:56 by maria            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,8 +25,6 @@ int	rightletter(char b)
 
 int	pourcentage(char c, va_list *args)
 {
-	char	*s;
-
 	if (c == 'c')
 		return (ft_putchar_fd(va_arg(*args, int)));
 	if (c == 'd' || c == 'i')
@@ -34,12 +32,7 @@ int	pourcentage(char c, va_list *args)
 	if (c == 'u')
 		return (ft_fornums('u', va_arg(*args, int)));
 	if (c == 's')
-	{
-		s = va_arg(*args, char *);
-		if (s == NULL)
-			return (ft_putstr_fd("(null)"));
-		return (ft_putstr_fd(s));
-	}
+		return (ft_putstr_fd(va_arg(*args, char *)));
 	if (c == 'x')
 		return (count_hex(va_arg(*args, unsigned int), 'x'));
 	if (c == 'X')
