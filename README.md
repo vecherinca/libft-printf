@@ -8,4 +8,4 @@ My notes so far.
 |Project      | Note |
 | ----------- | ----------- |
 | Libft       |112/125|
-| ft_printf   | en cours..       |
+| ft_printf   | 125/125     |
