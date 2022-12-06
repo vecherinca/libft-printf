@@ -6,7 +6,7 @@
 /*   By: mklimina <mklimina@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/04 17:50:09 by mklimina          #+#    #+#             */
-/*   Updated: 2022/12/04 17:55:52 by mklimina         ###   ########.fr       */
+/*   Updated: 2022/12/06 22:01:25 by mklimina         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,6 +17,8 @@
 # include <unistd.h>
 # include <stdio.h>
 
-char *get_next_line(int fd);
-
+char	*get_next_line(int fd);
+int		ft_strlen(const char *s);
+size_t	ft_strlcpy(char *dst, const char *src, size_t size);
+char	*ft_strjoin(char const *s1, char const *s2);
 #endif
