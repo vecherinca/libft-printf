@@ -6,7 +6,7 @@
 /*   By: mklimina <mklimina@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/04 17:49:56 by mklimina          #+#    #+#             */
-/*   Updated: 2022/12/08 18:52:36 by mklimina         ###   ########.fr       */
+/*   Updated: 2022/12/08 20:17:05 by mklimina         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,8 +15,6 @@
 #include <stdio.h>
 #include <sys/stat.h>
 #define BUFFER_SIZE 15
-
-
 
 int check_the_line(char *buffer)
 {
@@ -36,7 +34,6 @@ char *get_the_line(char *stash)
 	int i;
 	char *line;
 	i = 0;
-	//we need to find the size of this shit
 	while (stash[i] != '\n' && stash[i] != '\0')
 		i++;
 	line = malloc(sizeof(char) * i + 1);
@@ -52,7 +49,6 @@ char *get_the_line(char *stash)
 
 void *fill_the_stash(char *buffer, char *stash)
 {
-	// here we need to manage the stash one more time
 	char *line;
 	if (!check_the_line(stash))
 		{
@@ -63,17 +59,37 @@ void *fill_the_stash(char *buffer, char *stash)
 	return (line);
 }
 
+char *clear_the_stash(char *stash)
+{
+	int i;
+	int j;
+	char *temp;
+	i = 0;
+	j = 0;
+	while (stash[i] != '\n' && stash[i] != '\0')
+		i++;
+	temp = malloc(sizeof(char) * (ft_strlen(stash) - i + 1));
+	temp[ft_strlen(stash) - i + 1] = '\0'; //this doesn't look good lol
+	i++;
+	while(stash[i] != '\0')
+	{
+		temp[j] = stash[i];
+		i++;
+		j++;
+	}
+	return(temp);
+}
+
 char	*get_next_line(int fd)
 {
-	int		bytes;
-	char *line;
+	int			bytes;
+	char		*line;
 	static char	buffer[BUFFER_SIZE];
 	char		*stash;
 	
 	//bytes = read(fd, buffer, BUFFER_SIZE);
 	//stash = malloc(BUFFER + 1 * sizeof(char));
 	printf("*****************************\n");
-	ft_strlcpy(stash, buffer, ft_strlen(buffer)+1);
 	bytes = bytes; 
 	buffer[0] = 0;
 	while (!check_the_line(buffer))
@@ -82,9 +98,9 @@ char	*get_next_line(int fd)
 		stash = fill_the_stash(buffer, stash);		
 	}
 	line = get_the_line(stash);
-	printf("size of the line ---> %d\n", ft_strlen(line));
+	stash = clear_the_stash(stash);
 	printf("final line heehehe: %s\n", line);
-	return (stash);
+	return (line);
 }
 
 
@@ -93,6 +109,8 @@ int	main(void)
 	int	fd;
 
 	fd = open("file.txt", O_RDONLY);
+	
+	get_next_line(fd);
 	get_next_line(fd);
 	get_next_line(fd);
 	//get_next_line(fd);
