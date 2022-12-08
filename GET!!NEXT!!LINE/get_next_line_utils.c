@@ -6,7 +6,7 @@
 /*   By: mklimina <mklimina@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/04 17:56:33 by mklimina          #+#    #+#             */
-/*   Updated: 2022/12/06 21:28:01 by mklimina         ###   ########.fr       */
+/*   Updated: 2022/12/08 21:14:35 by mklimina         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,15 +49,18 @@ void	*ft_calloc(size_t nmemb, size_t size)
 	return (output);
 }
 
-char	*ft_strjoin(char const *s1, char const *s2)
+char	*ft_strjoin(char *s1, char *s2)
 {
 	int		i;
 	int		j;
 	int		len;
 	char	*output;
 
-	if (!s1 || !s2)
+	// return 2malloc
+	if (!s2)
 		return (NULL);
+	if (!s1)
+		return (s2);
 	i = 0;
 	j = 0;
 	len = ft_strlen(s1) + ft_strlen(s2) + 1;

@@ -6,7 +6,7 @@
 /*   By: mklimina <mklimina@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/04 17:49:56 by mklimina          #+#    #+#             */
-/*   Updated: 2022/12/08 20:17:05 by mklimina         ###   ########.fr       */
+/*   Updated: 2022/12/08 21:21:11 by mklimina         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,6 +50,8 @@ char *get_the_line(char *stash)
 void *fill_the_stash(char *buffer, char *stash)
 {
 	char *line;
+
+	line = NULL;
 	if (!check_the_line(stash))
 		{
 			line = ft_strjoin(stash, buffer);
@@ -86,12 +88,12 @@ char	*get_next_line(int fd)
 	char		*line;
 	static char	buffer[BUFFER_SIZE];
 	char		*stash;
-	
-	//bytes = read(fd, buffer, BUFFER_SIZE);
-	//stash = malloc(BUFFER + 1 * sizeof(char));
-	printf("*****************************\n");
-	bytes = bytes; 
+
+	if (fd < 0 || BUFFER_SIZE <= 0 || read(fd, NULL, 0) == -1)
+		return(NULL);	
+	// I need to fix this 
 	buffer[0] = 0;
+	bytes = 0;
 	while (!check_the_line(buffer))
 	{
 		bytes = read(fd, buffer, BUFFER_SIZE);
@@ -99,7 +101,7 @@ char	*get_next_line(int fd)
 	}
 	line = get_the_line(stash);
 	stash = clear_the_stash(stash);
-	printf("final line heehehe: %s\n", line);
+	//printf("final line heehehe: %s\n", line);
 	return (line);
 }
 
@@ -107,13 +109,13 @@ char	*get_next_line(int fd)
 int	main(void)
 {
 	int	fd;
-
+	int i;
+	i = 0;
 	fd = open("file.txt", O_RDONLY);
-	
-	get_next_line(fd);
-	get_next_line(fd);
-	get_next_line(fd);
-	//get_next_line(fd);
-	//get_next_line(fd);
+	while (i < 12)
+	{
+		printf("line number %d -----> %s\n", i, get_next_line(fd));
+		i++;
+	}
 	return (0);
 }
