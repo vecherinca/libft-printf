@@ -6,7 +6,7 @@
 /*   By: mklimina <mklimina@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/04 17:50:09 by mklimina          #+#    #+#             */
-/*   Updated: 2022/12/06 22:01:25 by mklimina         ###   ########.fr       */
+/*   Updated: 2022/12/08 17:43:44 by mklimina         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,4 +21,5 @@ char	*get_next_line(int fd);
 int		ft_strlen(const char *s);
 size_t	ft_strlcpy(char *dst, const char *src, size_t size);
 char	*ft_strjoin(char const *s1, char const *s2);
+void	ft_bzero(void *s, size_t n);
 #endif

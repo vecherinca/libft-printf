@@ -6,7 +6,7 @@
 /*   By: mklimina <mklimina@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/04 17:49:56 by mklimina          #+#    #+#             */
-/*   Updated: 2022/12/07 19:30:44 by mklimina         ###   ########.fr       */
+/*   Updated: 2022/12/08 18:52:36 by mklimina         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,9 +20,6 @@
 
 int check_the_line(char *buffer)
 {
-	//this function checks if 
-	//we have a \n \0 in a string 
-	
 	int i;
 
 	i = 0;
@@ -34,6 +31,24 @@ int check_the_line(char *buffer)
 	}
 	return(0);
 }
+char *get_the_line(char *stash)
+{
+	int i;
+	char *line;
+	i = 0;
+	//we need to find the size of this shit
+	while (stash[i] != '\n' && stash[i] != '\0')
+		i++;
+	line = malloc(sizeof(char) * i + 1);
+	line[i] = '\0';
+	i = 0;
+	while(stash[i] != '\n' && stash[i] != '\0')
+	{
+		line[i] = stash[i];
+		i++;
+	}
+	return(line);
+}
 
 void *fill_the_stash(char *buffer, char *stash)
 {
@@ -43,39 +58,32 @@ void *fill_the_stash(char *buffer, char *stash)
 		{
 			line = ft_strjoin(stash, buffer);
 			stash = line;
-			//printf("this is the updated stash ------> %s\n", stash);
 			return(stash);
 		}
-	// return(line);
-	return (stash);
+	return (line);
 }
 
 char	*get_next_line(int fd)
 {
 	int		bytes;
-	// int		i;
+	char *line;
 	static char	buffer[BUFFER_SIZE];
 	char		*stash;
 	
-	stash = malloc(ft_strlen(buffer) * sizeof(char) + 1);
-	bytes = read(fd, buffer, BUFFER_SIZE);
-	stash[BUFFER_SIZE+1] = '\0';
-	//printf("this is your buffer ----> %s\n", buffer);
+	//bytes = read(fd, buffer, BUFFER_SIZE);
+	//stash = malloc(BUFFER + 1 * sizeof(char));
 	printf("*****************************\n");
 	ft_strlcpy(stash, buffer, ft_strlen(buffer)+1);
-	// at this point stash et buffer are the same
-	//printf("this is your stash ----> %s\n", stash);
-	bytes = bytes;
-
+	bytes = bytes; 
+	buffer[0] = 0;
 	while (!check_the_line(buffer))
 	{
-		//now the buffer is filled till the '\n'
 		bytes = read(fd, buffer, BUFFER_SIZE);
-		stash = fill_the_stash(buffer, stash);	
-		//here u parse the thing to your stash
-	
+		stash = fill_the_stash(buffer, stash);		
 	}
-	printf("this is the final stash ------> %s\n", stash);
+	line = get_the_line(stash);
+	printf("size of the line ---> %d\n", ft_strlen(line));
+	printf("final line heehehe: %s\n", line);
 	return (stash);
 }
 
@@ -85,11 +93,7 @@ int	main(void)
 	int	fd;
 
 	fd = open("file.txt", O_RDONLY);
-	// if(!fd)
-	// 	printf("Masha your file is shit");
-	// else
-	// 	printf("file descriptor -- > %d\n Masha your file is ok\n", fd);
-	// get_next_line(fd);
+	get_next_line(fd);
 	get_next_line(fd);
 	//get_next_line(fd);
 	//get_next_line(fd);
