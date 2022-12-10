@@ -6,7 +6,7 @@
 /*   By: mklimina <mklimina@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/04 17:56:33 by mklimina          #+#    #+#             */
-/*   Updated: 2022/12/10 21:38:38 by mklimina         ###   ########.fr       */
+/*   Updated: 2022/12/10 22:51:43 by mklimina         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -77,6 +77,7 @@ char	*ft_strjoin(char const *s1, char const *s2)
 	}
 	return (output);
 }
+
 char	*ft_strdup(const char *src)
 {
 	int		i;
