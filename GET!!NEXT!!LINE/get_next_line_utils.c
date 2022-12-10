@@ -6,7 +6,7 @@
 /*   By: mklimina <mklimina@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/04 17:56:33 by mklimina          #+#    #+#             */
-/*   Updated: 2022/12/08 21:14:35 by mklimina         ###   ########.fr       */
+/*   Updated: 2022/12/10 21:38:38 by mklimina         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,18 +49,15 @@ void	*ft_calloc(size_t nmemb, size_t size)
 	return (output);
 }
 
-char	*ft_strjoin(char *s1, char *s2)
+char	*ft_strjoin(char const *s1, char const *s2)
 {
 	int		i;
 	int		j;
 	int		len;
 	char	*output;
 
-	// return 2malloc
-	if (!s2)
+	if (!s1 || !s2)
 		return (NULL);
-	if (!s1)
-		return (s2);
 	i = 0;
 	j = 0;
 	len = ft_strlen(s1) + ft_strlen(s2) + 1;
@@ -80,21 +77,22 @@ char	*ft_strjoin(char *s1, char *s2)
 	}
 	return (output);
 }
-
-size_t	ft_strlcpy(char *dst, const char *src, size_t size)
+char	*ft_strdup(const char *src)
 {
-	unsigned int	i;
-	unsigned int	len;
+	int		i;
+	char	*output;
+	int		len;
 
+	len = ft_strlen(src);
 	i = 0;
-	if (size == 0)
-		return (ft_strlen(src));
-	while (src[i] != '\0' && i < size - 1)
+	output = malloc(sizeof(char) * len + 1);
+	if (!output)
+		return (0);
+	while (src[i])
 	{
-		dst[i] = src[i];
+		output[i] = src[i];
 		i++;
 	}
-	dst[i] = '\0';
-	len = ft_strlen(src);
-	return (len);
+	output[i] = '\0';
+	return (output);
 }

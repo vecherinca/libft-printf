@@ -6,7 +6,7 @@
 /*   By: mklimina <mklimina@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/04 17:49:56 by mklimina          #+#    #+#             */
-/*   Updated: 2022/12/08 21:21:11 by mklimina         ###   ########.fr       */
+/*   Updated: 2022/12/10 22:05:39 by mklimina         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,6 +16,11 @@
 #include <sys/stat.h>
 #define BUFFER_SIZE 15
 
+#include "get_next_line.h"
+#include <fcntl.h>
+#include <stdio.h>
+#include <sys/stat.h>
+
 int check_the_line(char *buffer)
 {
 	int i;
@@ -23,23 +28,45 @@ int check_the_line(char *buffer)
 	i = 0;
 	while (buffer[i])
 	{
-		if (buffer[i] == '\0' || buffer[i] == '\n')
+		if (buffer[i] == '\n')
 			return (1);
 		i++;
 	}
 	return(0);
 }
+
+char	*clean_stash(char *stash, char *buffer)
+{
+	int		i;
+	int		j;
+
+
+	i = 0;
+	j = 0;
+	while (stash[i]!='\n' && stash[i] != '\0')
+		i++;
+	ft_bzero(buffer, BUFFER_SIZE);
+	while (stash[i+1]!= '\0' && stash[i+1]!= '\n')
+	{
+		buffer[j] = stash[i+1];
+		i++;
+		j++;
+	}
+	return(0);
+}
+
 char *get_the_line(char *stash)
 {
-	int i;
 	char *line;
+	int i;
+
 	i = 0;
-	while (stash[i] != '\n' && stash[i] != '\0')
+	line = NULL;
+	while (stash[i]!='\n' && stash[i] != '\0')
 		i++;
-	line = malloc(sizeof(char) * i + 1);
-	line[i] = '\0';
+	line = ft_calloc(sizeof(char), i+1);
 	i = 0;
-	while(stash[i] != '\n' && stash[i] != '\0')
+	while (stash[i]!='\n' && stash[i] != '\0')
 	{
 		line[i] = stash[i];
 		i++;
@@ -47,62 +74,48 @@ char *get_the_line(char *stash)
 	return(line);
 }
 
-void *fill_the_stash(char *buffer, char *stash)
+char *init_stash(char *stash, char *buffer, int fd)
 {
-	char *line;
-
-	line = NULL;
-	if (!check_the_line(stash))
-		{
-			line = ft_strjoin(stash, buffer);
-			stash = line;
-			return(stash);
-		}
-	return (line);
-}
-
-char *clear_the_stash(char *stash)
-{
-	int i;
-	int j;
-	char *temp;
-	i = 0;
-	j = 0;
-	while (stash[i] != '\n' && stash[i] != '\0')
-		i++;
-	temp = malloc(sizeof(char) * (ft_strlen(stash) - i + 1));
-	temp[ft_strlen(stash) - i + 1] = '\0'; //this doesn't look good lol
-	i++;
-	while(stash[i] != '\0')
-	{
-		temp[j] = stash[i];
-		i++;
-		j++;
-	}
-	return(temp);
+	int bytes;
+	if (buffer[0] == '\0')
+		bytes = read(fd, buffer, BUFFER_SIZE);	
+	stash = malloc(sizeof(char) * bytes + 1);
+	stash[bytes] = '\0';		
+	stash = ft_strjoin("", buffer);
+	return(stash);
 }
 
 char	*get_next_line(int fd)
 {
-	int			bytes;
-	char		*line;
-	static char	buffer[BUFFER_SIZE];
-	char		*stash;
 
-	if (fd < 0 || BUFFER_SIZE <= 0 || read(fd, NULL, 0) == -1)
-		return(NULL);	
-	// I need to fix this 
-	buffer[0] = 0;
-	bytes = 0;
-	while (!check_the_line(buffer))
+	static char buffer[BUFFER_SIZE];
+	char		*stash;
+	char		*line;
+	int			bytes; 
+	
+	bytes = 1;
+	if (fd < 0 || BUFFER_SIZE <= 0)
+		return(NULL);
+	stash = NULL;
+	stash = init_stash(stash, buffer, fd);
+	// printf("this is our stash after init---- > %s\n", stash);
+	
+	while (bytes != 0 && check_the_line(buffer)!=1)
 	{
-		bytes = read(fd, buffer, BUFFER_SIZE);
-		stash = fill_the_stash(buffer, stash);		
+		bytes = read(fd,buffer,BUFFER_SIZE);
+		if (bytes == 0 && check_the_line(buffer) == 0)
+			break;
+		line = ft_strdup(stash);
+		free(stash);
+		stash = malloc(sizeof(char) * bytes + ft_strlen(line) + 1);
+		stash = ft_strjoin(line, buffer);
+		free(line);
 	}
 	line = get_the_line(stash);
-	stash = clear_the_stash(stash);
-	//printf("final line heehehe: %s\n", line);
-	return (line);
+	clean_stash(stash, buffer);
+	// printf("this is our final line heheheh---- > %s\n", line);
+	// printf("this is buffer heheheh---- > %s\n", buffer);
+	return(line);
 }
 
 
@@ -114,8 +127,8 @@ int	main(void)
 	fd = open("file.txt", O_RDONLY);
 	while (i < 12)
 	{
-		printf("line number %d -----> %s\n", i, get_next_line(fd));
+		printf("this is the line number %d -- > %s\n", i, get_next_line(fd));
 		i++;
 	}
-	return (0);
+
 }
