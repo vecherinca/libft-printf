@@ -6,12 +6,13 @@
 /*   By: mklimina <mklimina@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/04 17:50:09 by mklimina          #+#    #+#             */
-/*   Updated: 2022/12/11 01:34:13 by mklimina         ###   ########.fr       */
+/*   Updated: 2022/12/11 19:10:57 by mklimina         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef GET_NEXT_LINE_H
 # define GET_NEXT_LINE_H
+// # define BUFFER_SIZE 42
 
 # include <stdlib.h>
 # include <unistd.h>
