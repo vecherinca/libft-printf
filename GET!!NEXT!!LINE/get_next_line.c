@@ -6,7 +6,7 @@
 /*   By: mklimina <mklimina@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/04 17:49:56 by mklimina          #+#    #+#             */
-/*   Updated: 2022/12/11 00:48:16 by mklimina         ###   ########.fr       */
+/*   Updated: 2022/12/11 01:30:51 by mklimina         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,9 +41,11 @@ char	*clean_stash(char *stash, char *buffer)
 	while (stash[i]!='\n' && stash[i] != '\0')
 		i++;
 	ft_bzero(buffer, BUFFER_SIZE);
-	while (stash[i+1]!= '\0')
+	if (stash[i] != '\0')
+		i++;
+	while (stash[i]!= '\0')
 	{
-		buffer[j] = stash[i+1];
+		buffer[j] = stash[i];
 		i++;
 		j++;
 	}
@@ -59,21 +61,24 @@ char *get_the_line(char *stash)
 	line = NULL;
 	while (stash[i]!='\n' && stash[i] != '\0')
 		i++;
-	line = ft_calloc(sizeof(char), i+1);
+	line = ft_calloc(sizeof(char), i + 2);
 	i = 0;
 	while (stash[i]!='\n' && stash[i] != '\0')
 	{
 		line[i] = stash[i];
 		i++;
 	}
-	// if (i == 0)
-	// 	return(NULL);
+	if (i == 0)
+		return(NULL);
+	line[i] = '\n';
 	return(line);
 }
 
 char *init_stash(char *stash, char *buffer, int fd)
 {
 	int bytes;
+	
+	bytes = 0;
 	if (buffer[0] == '\0')
 		bytes = read(fd, buffer, BUFFER_SIZE);	
 	stash = malloc(sizeof(char) * bytes + 1);
@@ -95,7 +100,7 @@ char	*get_next_line(int fd)
 	bytes = 1;
 	if (fd < 0 || BUFFER_SIZE <= 0)
 		return(NULL);
-	stash = NULL;
+	stash = "";
 	stash = init_stash(stash, buffer, fd);
 	// printf("this is our stash after init---- > %s\n", stash);
 	
@@ -113,20 +118,29 @@ char	*get_next_line(int fd)
 	}
 	line = get_the_line(stash);
 	clean_stash(stash, buffer);
-	return(line);
+	return(free(stash), line);
 }
 
 
 int	main(void)
 {
 	int	fd;
-	int i;
-	i = 0;
 	fd = open("file.txt", O_RDONLY);
-	while (i < 12)
-	{
-		printf("this is the line number %d -- > %s\n", i, get_next_line(fd));
-		i++;
-	}
+	char *str;
+	
+	str = get_next_line(fd);
+	printf("%s",str);
+	free(str);
+	
+	str = get_next_line(fd);
+	printf("%s",str);
+	free(str);
 
+	str = get_next_line(fd);
+	printf("%s",str);
+	free(str);
+
+	str = get_next_line(fd);
+	printf("%s",str);
+	free(str);
 }
