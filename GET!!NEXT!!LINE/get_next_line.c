@@ -6,7 +6,7 @@
 /*   By: mklimina <mklimina@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/04 17:49:56 by mklimina          #+#    #+#             */
-/*   Updated: 2022/12/12 20:43:39 by mklimina         ###   ########.fr       */
+/*   Updated: 2022/12/12 22:11:04 by mklimina         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,11 +14,11 @@
 #include <fcntl.h>
 #include <stdio.h>
 #include <sys/stat.h>
-// # define BUFFER_SIZE 10000000
+// # define BUFFER_SIZE 100
 
-int check_the_line(char *buffer)
+int	check_the_line(char *buffer)
 {
-	int i;
+	int	i;
 
 	i = 0;
 	while (buffer[i])
@@ -27,91 +27,88 @@ int check_the_line(char *buffer)
 			return (1);
 		i++;
 	}
-	return(0);
+	return (0);
 }
 
 char	*clean_stash(char *stash, char *buffer)
 {
-	int		i;
-	int		j;
-
+	int	i;
+	int	j;
 
 	i = 0;
 	j = 0;
-	while (stash[i]!='\n' && stash[i] != '\0')
+	while (stash[i] != '\n' && stash[i] != '\0')
 		i++;
 	ft_bzero(buffer, BUFFER_SIZE);
 	if (stash[i] != '\0')
 		i++;
-	while (stash[i]!= '\0')
+	while (stash[i] != '\0')
 	{
 		buffer[j] = stash[i];
 		i++;
 		j++;
 	}
-	return(0);
+	return (0);
 }
 
-char *get_the_line(char *stash)
+char	*get_the_line(char *stash)
 {
-	char *line;
-	int i;
+	char	*line;
+	int		i;
 
 	i = 0;
 	line = NULL;
 	if (*stash == '\n')
 		i++;
-	while (stash[i]!='\n' && stash[i] != '\0')
+	while (stash[i] != '\n' && stash[i] != '\0')
 		i++;
-	if(i == 0)
-		return(NULL);
+	if (i == 0)
+		return (NULL);
 	line = ft_calloc(sizeof(char), i + 2);
-	if(!line)
-		return(NULL);
+	if (!line)
+		return (NULL);
 	i = 0;
-	while (stash[i]!='\n' && stash[i] != '\0')
+	while (stash[i] != '\n' && stash[i] != '\0')
 	{
 		line[i] = stash[i];
 		i++;
 	}
-	if (stash[i]!= '\0')
+	if (stash[i] != '\0')
 		line[i] = '\n';
-	return(line);
+	return (line);
 }
 
-char *init_stash(char *stash, char *buffer, int fd)
+char	*init_stash(char *stash, char *buffer, int fd)
 {
-	int bytes;
-	
+	int	bytes;
+
 	bytes = 0;
 	if (buffer[0] == '\0')
 		bytes = read(fd, buffer, BUFFER_SIZE);
 	stash = NULL;
-	bytes = bytes;	
+	bytes = bytes;
 	stash = ft_strjoin("", buffer);
-	return(stash);
+	return (stash);
 }
 
 char	*get_next_line(int fd)
 {
-	static char buffer[BUFFER_SIZE];
+	static char	buffer[BUFFER_SIZE];
 	char		*stash;
 	char		*line;
-	int			bytes; 
-	
+	int			bytes;
+
 	if (fd < 0 || BUFFER_SIZE <= 0)
-		return(NULL);
+		return (NULL);
 	bytes = 1;
 	stash = "";
 	stash = init_stash(stash, buffer, fd);
-	if(stash == NULL)
-		return(NULL);
-	while ((bytes != 0 && check_the_line(buffer)!=1) || bytes == -1)
+	while ((bytes != 0 && check_the_line(buffer) != 1) || bytes == -1)
 	{
 		ft_bzero(buffer, BUFFER_SIZE);
-		bytes = read(fd, buffer,BUFFER_SIZE);
+		bytes = read(fd, buffer, BUFFER_SIZE);
 		if ((bytes == 0 && check_the_line(buffer) == 0) || (bytes == -1))
-			break;
+			break ;
 		line = ft_strdup(stash);
 		free(stash);
 		stash = ft_strjoin(line, buffer);
@@ -119,39 +116,5 @@ char	*get_next_line(int fd)
 	}
 	line = get_the_line(stash);
 	clean_stash(stash, buffer);
-	return(free(stash), line);
+	return (free(stash), line);
 }
-
-// int	main(void)
-// {
-// 	int	fd;
-// 	fd = open("41_with_nl", O_RDONLY);
-// 	char *str;
-	
-// 	str = get_next_line(fd);
-// 	printf("1%s",str);
-// 	free(str);
-	
-// 	str = get_next_line(fd);
-// 	printf("2%s",str);
-// 	free(str);
-	
-// 	str = get_next_line(fd);
-// 	printf("3%s",str);
-// 	free(str);
-// }
-
-
-// int main(void)
-// {
-// 	int i;
-// 	int fd;
-// 	fd = open("file.txt", O_RDONLY);
-// 	i = 0;
-
-// 	while (i < 12)
-// 	{
-// 		printf("line num %d ---- > %s", i, get_next_line(fd));
-// 		i++;
-// 	}
-// }
