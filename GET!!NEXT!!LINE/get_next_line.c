@@ -6,7 +6,7 @@
 /*   By: mklimina <mklimina@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/04 17:49:56 by mklimina          #+#    #+#             */
-/*   Updated: 2022/12/12 18:37:51 by mklimina         ###   ########.fr       */
+/*   Updated: 2022/12/12 20:43:39 by mklimina         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,6 +14,7 @@
 #include <fcntl.h>
 #include <stdio.h>
 #include <sys/stat.h>
+// # define BUFFER_SIZE 10000000
 
 int check_the_line(char *buffer)
 {
@@ -116,8 +117,6 @@ char	*get_next_line(int fd)
 		stash = ft_strjoin(line, buffer);
 		free(line);
 	}
-	// if(*stash == '\n')
-	// 	return(stash);
 	line = get_the_line(stash);
 	clean_stash(stash, buffer);
 	return(free(stash), line);
@@ -126,7 +125,7 @@ char	*get_next_line(int fd)
 // int	main(void)
 // {
 // 	int	fd;
-// 	fd = open("nl", O_RDONLY);
+// 	fd = open("41_with_nl", O_RDONLY);
 // 	char *str;
 	
 // 	str = get_next_line(fd);
@@ -137,22 +136,12 @@ char	*get_next_line(int fd)
 // 	printf("2%s",str);
 // 	free(str);
 	
-	// str = get_next_line(fd);
-	// printf("3%s",str);
-	// free(str);
-
-	// str = get_next_line(fd);
-	// printf("4%s",str);
-	// free(str);
-
-	// str = get_next_line(fd);
-	// printf("5%s",str);
-	// free(str);
-
-	// str = get_next_line(fd);
-	// printf("6%s",str);
+// 	str = get_next_line(fd);
+// 	printf("3%s",str);
 // 	free(str);
 // }
+
+
 // int main(void)
 // {
 // 	int i;
