@@ -6,7 +6,7 @@
 /*   By: mklimina <mklimina@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/04 17:49:56 by mklimina          #+#    #+#             */
-/*   Updated: 2022/12/11 19:12:23 by mklimina         ###   ########.fr       */
+/*   Updated: 2022/12/12 18:37:51 by mklimina         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,6 +58,8 @@ char *get_the_line(char *stash)
 
 	i = 0;
 	line = NULL;
+	if (*stash == '\n')
+		i++;
 	while (stash[i]!='\n' && stash[i] != '\0')
 		i++;
 	if(i == 0)
@@ -114,8 +116,8 @@ char	*get_next_line(int fd)
 		stash = ft_strjoin(line, buffer);
 		free(line);
 	}
-	if(*stash == '\n')
-		return(stash);
+	// if(*stash == '\n')
+	// 	return(stash);
 	line = get_the_line(stash);
 	clean_stash(stash, buffer);
 	return(free(stash), line);
@@ -128,27 +130,27 @@ char	*get_next_line(int fd)
 // 	char *str;
 	
 // 	str = get_next_line(fd);
-// 	printf("%s",str);
+// 	printf("1%s",str);
 // 	free(str);
 	
 // 	str = get_next_line(fd);
-// 	printf("%s",str);
+// 	printf("2%s",str);
 // 	free(str);
 	
-// 	str = get_next_line(fd);
-// 	printf("%s",str);
-// 	free(str);
+	// str = get_next_line(fd);
+	// printf("3%s",str);
+	// free(str);
 
-// 	str = get_next_line(fd);
-// 	printf("%s",str);
-// 	free(str);
+	// str = get_next_line(fd);
+	// printf("4%s",str);
+	// free(str);
 
-// 	str = get_next_line(fd);
-// 	printf("%s",str);
-// 	free(str);
+	// str = get_next_line(fd);
+	// printf("5%s",str);
+	// free(str);
 
-// 	str = get_next_line(fd);
-// 	printf("%s",str);
+	// str = get_next_line(fd);
+	// printf("6%s",str);
 // 	free(str);
 // }
 // int main(void)
