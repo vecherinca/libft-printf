@@ -1,20 +1,19 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   get_next_line.c                                    :+:      :+:    :+:   */
+/*   get_next_line_bonus.c                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: mklimina <mklimina@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/04 17:49:56 by mklimina          #+#    #+#             */
-/*   Updated: 2022/12/13 16:59:28 by mklimina         ###   ########.fr       */
+/*   Updated: 2022/12/13 17:45:35 by mklimina         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "get_next_line.h"
+#include "get_next_line_bonus.h"
 #include <fcntl.h>
 #include <stdio.h>
 #include <sys/stat.h>
-// # define BUFFER_SIZE 100
 
 int	check_the_line(char *buffer)
 {
@@ -93,7 +92,7 @@ char	*init_stash(char *stash, char *buffer, int fd)
 
 char	*get_next_line(int fd)
 {
-	static char	buffer[BUFFER_SIZE];
+	static char	buffer[1024][BUFFER_SIZE];
 	char		*stash;
 	char		*line;
 	int			bytes;
@@ -102,19 +101,19 @@ char	*get_next_line(int fd)
 		return (NULL);
 	bytes = 1;
 	stash = "";
-	stash = init_stash(stash, buffer, fd);
-	while ((bytes != 0 && check_the_line(buffer) != 1) || bytes == -1)
+	stash = init_stash(stash, buffer[fd], fd);
+	while ((bytes != 0 && check_the_line(buffer[fd]) != 1) || bytes == -1)
 	{
-		ft_bzero(buffer, BUFFER_SIZE);
-		bytes = read(fd, buffer, BUFFER_SIZE);
-		if ((bytes == 0 && check_the_line(buffer) == 0) || (bytes == -1))
+		ft_bzero(buffer[fd], BUFFER_SIZE);
+		bytes = read(fd, buffer[fd], BUFFER_SIZE);
+		if ((bytes == 0 && check_the_line(buffer[fd]) == 0) || (bytes == -1))
 			break ;
 		line = ft_strdup(stash);
 		free(stash);
-		stash = ft_strjoin(line, buffer);
+		stash = ft_strjoin(line, buffer[fd]);
 		free(line);
 	}
 	line = get_the_line(stash);
-	clean_stash(stash, buffer);
+	clean_stash(stash, buffer[fd]);
 	return (free(stash), line);
 }
