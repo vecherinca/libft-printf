@@ -12,4 +12,6 @@ char *get_next_line(int fd);
 
 ## how it works in my case :
 Important thing to mention, that I use the calloc function that is why the gnltester is showing the timeout problem. I will see later if the moulinette accepts it or not.I have 5 five functions: get_next_line, init_stash, get_the_line, clean_stash and check_the_line. 
-- The first thing to do is to decide which variable you are gonna make static.(The benefit of a static variable is that when you repeat the function for the second/third.. time the content of it does not change). In my case I chose to w
+- The first thing to do is to decide which variable you are gonna make static.(The benefit of a static variable is that when you repeat the function for the second/third.. time the content of it does not change). In my case I chose to work with static buffer because it seemed right. 
+- First think I do is initialize the stash. The idea is that our stash == the content of a buffer. If it's our first appel of a function we also initialise buffer because we need something to read from. 
+- 
