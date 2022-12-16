@@ -9,4 +9,4 @@ My notes so far.
 | ----------- | ----------- |
 | Libft       |112/125|
 | ft_printf   | 100/125     |
-|get_next_line| en cours.. |
+|get_next_line| 112/125 |
