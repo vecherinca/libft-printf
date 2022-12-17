@@ -23,4 +23,6 @@ Important thing to mention, that I use the calloc function that is why the gnlte
 **Now when we repeat the function the stash will be reinitialized to the current buffer(and it's static so everything is saved hehe) and we can start again the same process I explained above.** 
 
 ## important notes:
-Feel free to use this tuto as your starting point. This prototype should be optimized for the love of god. Being team calloc with this certain function is as bad as being team Mister Big - yes, you can close your eyes and pretend you don't see a conditional jump and you can tolerate the it being v
+- Feel free to use this tuto as your starting point. This prototype should be optimized for the love of god. Being team calloc with this certain function is as bad as being team Mister Big - yes, you can close your eyes and pretend you don't see a conditional jump and you can tolerate it being very slow, but like it can't last forever. That is why please use the malloc for this one. Don't repeat my mistakes.  
+- Befriend the valgrind and don't forget to free everything that nedeed to be freed and **PROTECT YOUR MALLOCS**. Double check all the functions where u used malloc. Protect them too if needed. 
+- 
