@@ -24,5 +24,7 @@ Important thing to mention, that I use the calloc function that is why the gnlte
 
 ## important notes:
 - Feel free to use this tuto as your starting point. This prototype should be optimized for the love of god. Being team calloc with this certain function is as bad as being team Mister Big - yes, you can close your eyes and pretend you don't see a conditional jump and you can tolerate it being very slow, but like it can't last forever. That is why please use the malloc for this one. Don't repeat my mistakes.  
-- Befriend the valgrind and don't forget to free everything that nedeed to be freed and **PROTECT YOUR MALLOCS**. Double check all the functions where u used malloc. Protect them too if needed. 
-- 
+- Befriend the valgrind and don't forget to free everything that nedeed to be freed and **PROTECT YOUR MALLOCS**. Double check all the functions where you used malloc. Protect them too if needed. 
+- If you don't know where to start, do it with this video: https://youtu.be/-Mt2FdJjVno. I watched it 4 times and it really helped me. 
+- It's okay to re-write GNL several times. The function is not a very easy one.  
+Good luck! 
