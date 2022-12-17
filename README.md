@@ -3,7 +3,7 @@ This is the repository that containts two first 42 projects - Libft and ft_print
 
 I'll do my best to include some useful insights that helped me while coding. 
 
-My notes so far. 
+My notes so far. I am not doing great with the bonus part tbh. 
 
 |Project      | Note |
 | ----------- | ----------- |
