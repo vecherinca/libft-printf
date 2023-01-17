@@ -1,22 +1,37 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   push_swap.c                                        :+:      :+:    :+:   */
+/*   test.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: mklimina <mklimina@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/01/16 23:33:36 by mklimina          #+#    #+#             */
-/*   Updated: 2023/01/17 19:46:34 by mklimina         ###   ########.fr       */
+/*   Created: 2023/01/17 00:50:18 by mklimina          #+#    #+#             */
+/*   Updated: 2023/01/17 19:43:46 by mklimina         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
+/*
+so what we are gonna do here
+is that we need to revise how to deal with linked lists
+the beginning
+*/
 
-#include "push_swap.h"
-
+//this is our linked list node
 #include<stdlib.h>
 #include<stdio.h>
 
 //can we define it as a list a???
+
+typedef struct a_list
+{
+	int			content;
+	struct a_list	*next;
+}a_list;
+typedef struct b_list
+{
+	int			content;
+	struct a_list	*next;
+}b_list;
 
 int	ft_atoi(const char *str)
 {
@@ -46,15 +61,13 @@ int	ft_atoi(const char *str)
 	return (result * sign);
 }
 
-void push_swap()
-{
-	
-}
+//now we need to do it a boucle
 int main(int argc, char **argv)
 {
 	a_list *head;
 	a_list *tail;
 	int i = 1;
+	// int x[] = {0,1,2,3,4,5,6,7,8,9,10};
 	
 	head = NULL;
 	tail = NULL;
@@ -78,14 +91,11 @@ int main(int argc, char **argv)
 			tail = temp;
 		}
 		i++;
-	}
-	printf("pile A lol\n");	
-	printf("******\n");
+	}	
 	while(head != NULL)
 	{
-		printf("%d\n", head-> content);
+		printf(" %d ", head-> content);
         head = head->next;
 	}
 	
 }
-
