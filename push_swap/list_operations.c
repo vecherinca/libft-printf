@@ -1,41 +1,25 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   utils.c                                            :+:      :+:    :+:   */
+/*   list_operations.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: mklimina <mklimina@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/01/17 18:11:19 by mklimina          #+#    #+#             */
-/*   Updated: 2023/01/18 21:03:54 by mklimina         ###   ########.fr       */
+/*   Created: 2023/01/18 21:21:53 by mklimina          #+#    #+#             */
+/*   Updated: 2023/01/18 21:22:59 by mklimina         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
-
-int	ft_atoi(const char *str)
+int	ft_lstsize(a_list *lst)
 {
-	int	i;
-	int	sign;
-	int	result;
+	int	count;
 
-	i = 0;
-	sign = 1;
-	result = 0;
-	while (str[i] == 32 || (str[i] >= 9 && str[i] <= 13))
-		i++;
-	if (str[i] == '-')
+	count = 0;
+	while (lst != NULL)
 	{
-		sign = -1 * sign;
-		i++;
+		count++;
+		lst = lst->next;
 	}
-	else if (str[i] == '+')
-	{
-		i++;
-	}
-	while (str[i] >= '0' && str[i] <= '9')
-	{
-		result = result * 10 + str[i] - '0';
-		i++;
-	}
-	return (result * sign);
+	return (count);
 }
