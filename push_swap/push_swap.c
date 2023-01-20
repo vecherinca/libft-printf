@@ -6,7 +6,7 @@
 /*   By: mklimina <mklimina@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/16 23:33:36 by mklimina          #+#    #+#             */
-/*   Updated: 2023/01/20 02:04:07 by mklimina         ###   ########.fr       */
+/*   Updated: 2023/01/20 16:14:16 by mklimina         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,25 +58,32 @@ void print_the_list(head_a *head)
 }
 int main(int argc, char **argv)
 {
+
 	head_a *a; 
 	head_a *b;
 
 	b = define_list_b();
 	a = define_list_a(argc, argv);
-	printf("pile A\n");	
+ 
+	printf("%spile A\n", KRED);	
 	printf("******\n");
 	print_the_list(a);
 	printf("_____________________________________\n");
-	printf("pile B\n");	
+	printf("%spile B\n", KBLU);	
 	printf("******\n");
 	print_the_list(b);
-	//like is it okay that my pile is like == 0
 	sa(a);
 	printf("\n");
 	printf("_____________________________________\n");
-	printf("pile A apres\n");	
+	printf("%spile A apres\n", KRED);	
 	printf("******\n");
 	print_the_list(a);
+
+	pb(a,b);
 	
+	printf("_____________________________________\n");
+	printf("%spile B\n", KBLU);	
+	printf("******\n");
+	print_the_list(b);
 }
 

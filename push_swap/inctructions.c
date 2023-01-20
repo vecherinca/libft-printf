@@ -6,7 +6,7 @@
 /*   By: mklimina <mklimina@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/18 21:10:20 by mklimina          #+#    #+#             */
-/*   Updated: 2023/01/20 01:57:49 by mklimina         ###   ########.fr       */
+/*   Updated: 2023/01/20 18:27:39 by mklimina         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,53 +41,58 @@ sb (swap b): Swap the first 2 elements at the top of stack b.
 Do nothing if there is only one or no elements.
 */
 
-// void sb(a_list *head)
-// {
-// 	int count;
-// 	a_list *temp;
-// 	int swap;
-// 	temp  = head -> next;
-// 	count = ft_lstsize(head);
-// 	if (count > 1)
-// 	{
-// 		swap = head-> content;
-// 		head -> content = temp -> content;
-// 		temp -> content = swap;
-// 		// printf("the value of a head updated----> %d\n", head -> content);
-// 		// printf("the value of a temp t.e second element ----> %d\n", temp -> content);
-// 		write(1, "sb", 2);
-// 	}
-// }
+void sb(head_a *head)
+{
+	int count;
+	a_list *temp;
+	a_list *start;
+	int swap;
+	start = head -> first;
+	temp  = start -> next;
+	count = ft_lstsize(start);
+	if (count > 1)
+	{
+		swap = start-> content;
+		start -> content = temp -> content;
+		temp -> content = swap;
+		write(1, "sb", 2);
+	}
+}
 
-// /*
-// ss : sa and sb at the same time.
-// */
-// void ss(a_list *head_a, a_list *head_b)
-// {
-	
-// 	// sa(head_a);
-// 	// sb(head_b);
-// 	// write(1, "ss", 2);
-	
-// }
+/*
+ss : sa and sb at the same time.
+check if the count > 1 is nedeed here 
+*/
+void ss(head_a *heada, head_a *headb)
+{
+	sa(heada);
+	sb(headb);
+	write(1, "ss", 2);
+}
 
 /*
 pb (push b): Take the first element
 at the top of a and put it at the top of b.
 Do nothing if a is empty.
 */
-void pb(a_list *head_a, a_list *head_b)
+void pb(head_a *heada, head_a *headb)
 {
-	int swap;
-	a_list *temp;
-	temp = head_a;
-	swap = head_a -> content;
-	head_a = head_a -> next;
-	//printf(" swap --- > %d\n", swap);
-	//printf("pile a ---- >%d\n",head_a -> content);
-	head_b -> content = swap;
-	//printf("pile b ---- >  %d",head_b -> content);
-	free(temp);
+	(void)headb;
+	a_list *starta;
+	//a_list *startb;
+	starta = heada -> first; // this is our first element
+	
+	heada -> first = starta -> next; //here we are pointing to the next 
+	
+	printf("_____________________________________\n");
+	printf("content of pile b %d\n", heada -> first-> content); 
+	headb -> first = starta; // here we assigned something to something lol 
+	start 
+	printf("_____________________________________\n");
+	printf("content of pile b %d\n", heada -> first-> content); 
+	//startb = headb -> first;
+	
+	
 	
 }
 /*pa (push a): Take the first element
