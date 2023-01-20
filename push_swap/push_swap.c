@@ -6,7 +6,7 @@
 /*   By: mklimina <mklimina@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/16 23:33:36 by mklimina          #+#    #+#             */
-/*   Updated: 2023/01/18 23:04:29 by mklimina         ###   ########.fr       */
+/*   Updated: 2023/01/20 02:04:07 by mklimina         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,66 +16,67 @@
 #include<stdlib.h>
 #include<stdio.h>
 
-a_list *define_list_a(int argc, char **argv)
+
+head_a *define_list_a(int argc, char **argv)
 {
 	a_list *head;
-	a_list *tail;
-	int i = 1;
+	head_a *point;
 	
+	int i = 1;
 	head = NULL;
-	tail = NULL;
+	point = malloc(sizeof(head_a));
 
 	while (i < argc)
 	{
 		a_list *temp = malloc(sizeof(a_list));
 		temp -> content = ft_atoi(argv[i]);
-		temp -> next = NULL;
-		if (tail == NULL)
-		{
-			head = temp;
-			tail = temp;
-		}
-		else 
-		{
-			tail -> next = temp;
-			tail = temp;
-		}
+		ft_lstadd_back(&head, temp);
 		i++;
 	}
-	return (head);
+	point -> first = head;
+	return (point);
 }
-a_list *define_list_b()
+head_a *define_list_b()
 {
-	a_list *head;
-	head = NULL;
-	return(head);
+	head_a *point;
+	point = malloc(sizeof(a_list));
+	a_list *head  = malloc(sizeof(a_list));
+	point -> first = head;
+	return(point);
 }
 
+void print_the_list(head_a *head)
+{
+	a_list *start;
+	start = head -> first;
+	while(start != NULL)
+	{	
+
+		printf("%d\n", start -> content);
+        start = start -> next;
+	}
+}
 int main(int argc, char **argv)
 {
-	a_list *a;
-	a_list *b;
-	
+	head_a *a; 
+	head_a *b;
+
 	b = define_list_b();
 	a = define_list_a(argc, argv);
-	
 	printf("pile A\n");	
 	printf("******\n");
-	// while(a != NULL)
-	// {
-	// 	printf("%d\n", a -> content);
-    //     a = a -> next;
-	// }
-	printf("-----------------------------\n");
+	print_the_list(a);
+	printf("_____________________________________\n");
 	printf("pile B\n");	
 	printf("******\n");
-	while(b != NULL)
-	{
-		printf("%d\n", b -> content);
-        b = b -> next;
-	}
-
-	printf("the size of an **A** --->");
+	print_the_list(b);
+	//like is it okay that my pile is like == 0
 	sa(a);
+	printf("\n");
+	printf("_____________________________________\n");
+	printf("pile A apres\n");	
+	printf("******\n");
+	print_the_list(a);
+	
 }
 
