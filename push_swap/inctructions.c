@@ -6,7 +6,7 @@
 /*   By: mklimina <mklimina@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/18 21:10:20 by mklimina          #+#    #+#             */
-/*   Updated: 2023/01/20 18:27:39 by mklimina         ###   ########.fr       */
+/*   Updated: 2023/01/20 22:06:27 by mklimina         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -77,22 +77,12 @@ Do nothing if a is empty.
 */
 void pb(head_a *heada, head_a *headb)
 {
-	(void)headb;
 	a_list *starta;
-	//a_list *startb;
 	starta = heada -> first; // this is our first element
-	
 	heada -> first = starta -> next; //here we are pointing to the next 
-	
-	printf("_____________________________________\n");
-	printf("content of pile b %d\n", heada -> first-> content); 
 	headb -> first = starta; // here we assigned something to something lol 
-	start 
-	printf("_____________________________________\n");
-	printf("content of pile b %d\n", heada -> first-> content); 
-	//startb = headb -> first;
-	
-	
+	starta -> next = NULL;
+	write(1, "pb", 2);
 	
 }
 /*pa (push a): Take the first element

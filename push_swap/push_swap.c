@@ -6,7 +6,7 @@
 /*   By: mklimina <mklimina@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/16 23:33:36 by mklimina          #+#    #+#             */
-/*   Updated: 2023/01/20 16:14:16 by mklimina         ###   ########.fr       */
+/*   Updated: 2023/01/20 22:02:01 by mklimina         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -82,8 +82,12 @@ int main(int argc, char **argv)
 	pb(a,b);
 	
 	printf("_____________________________________\n");
-	printf("%spile B\n", KBLU);	
+	printf("%spile B UPD\n", KBLU);	
 	printf("******\n");
 	print_the_list(b);
+	printf("_____________________________________\n");
+	printf("%spile A UPD\n", KRED);	
+	printf("******\n");
+	print_the_list(a);
 }
 
