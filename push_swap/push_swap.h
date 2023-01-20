@@ -31,6 +31,7 @@ void	ft_lstadd_back(a_list **lst, a_list *new);
 void	sa(head_a *head);
 void	sb(head_a *head);
 void pb(head_a *heada, head_a *headb);
+void pa(head_a *heada, head_a *headb);
 // void	ss(head_a *head_a, head_a *head_b);
 // void	pb(head_a *head_a, head_a *head_b);
 #endif

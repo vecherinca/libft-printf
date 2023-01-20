@@ -6,7 +6,7 @@
 /*   By: mklimina <mklimina@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/16 23:33:36 by mklimina          #+#    #+#             */
-/*   Updated: 2023/01/20 22:02:01 by mklimina         ###   ########.fr       */
+/*   Updated: 2023/01/20 22:50:11 by mklimina         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,7 +40,7 @@ head_a *define_list_b()
 {
 	head_a *point;
 	point = malloc(sizeof(a_list));
-	a_list *head  = malloc(sizeof(a_list));
+	a_list *head  = NULL;
 	point -> first = head;
 	return(point);
 }
@@ -72,15 +72,11 @@ int main(int argc, char **argv)
 	printf("%spile B\n", KBLU);	
 	printf("******\n");
 	print_the_list(b);
-	sa(a);
-	printf("\n");
 	printf("_____________________________________\n");
-	printf("%spile A apres\n", KRED);	
-	printf("******\n");
-	print_the_list(a);
-
+	printf("%s***********************************************\n", KGRN);
+	printf("%s***********************************************\n", KGRN);
 	pb(a,b);
-	
+	pb(a,b);
 	printf("_____________________________________\n");
 	printf("%spile B UPD\n", KBLU);	
 	printf("******\n");
@@ -89,5 +85,13 @@ int main(int argc, char **argv)
 	printf("%spile A UPD\n", KRED);	
 	printf("******\n");
 	print_the_list(a);
+		
+	printf("%s***********************************************\n", KGRN);
+	printf("%s***********************************************\n", KGRN);
+	sb(b);
+	printf("%spile B UPD\n", KBLU);	
+	printf("******\n");
+	print_the_list(b);
+	printf("_____________________________________\n");
 }
 
