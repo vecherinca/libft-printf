@@ -34,6 +34,7 @@ void	sa(head_a *head);
 void	sb(head_a *head);
 void	pb(head_a *heada, head_a *headb);
 void	pa(head_a *heada, head_a *headb);
+void	rra(head_a *heada);
 void	ra(head_a *heada);
-void	rb(head_a *headb);
+void	rrb(head_a *headb);
 #endif
