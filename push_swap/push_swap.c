@@ -6,7 +6,7 @@
 /*   By: mklimina <mklimina@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/16 23:33:36 by mklimina          #+#    #+#             */
-/*   Updated: 2023/01/20 22:50:11 by mklimina         ###   ########.fr       */
+/*   Updated: 2023/01/21 22:22:37 by mklimina         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -65,33 +65,35 @@ int main(int argc, char **argv)
 	b = define_list_b();
 	a = define_list_a(argc, argv);
  
-	printf("%spile A\n", KRED);	
-	printf("******\n");
-	print_the_list(a);
-	printf("_____________________________________\n");
+	// printf("%spile A\n", KRED);	
+	// printf("******\n");
+	// print_the_list(a);
+	// printf("_____________________________________\n");
+	// printf("%spile B\n", KBLU);	
+	// printf("******\n");
+	// print_the_list(b);
+	// printf("_____________________________________\n");
+	// printf("%s***********************************************\n", KGRN);
+	// printf("%s***********************************************\n", KGRN);
+
+	pb(a, b);
+	pb(a, b);
+	pb(a, b);
+	pb(a, b);
+	
+	// printf("%spile A\n", KRED);	
+	// printf("******\n");
+	// print_the_list(a);
+
 	printf("%spile B\n", KBLU);	
 	printf("******\n");
 	print_the_list(b);
-	printf("_____________________________________\n");
-	printf("%s***********************************************\n", KGRN);
-	printf("%s***********************************************\n", KGRN);
-	pb(a,b);
-	pb(a,b);
-	printf("_____________________________________\n");
-	printf("%spile B UPD\n", KBLU);	
+
+	rb(b);
+	rb(b);
+	printf("%spile B\n", KBLU);	
 	printf("******\n");
 	print_the_list(b);
-	printf("_____________________________________\n");
-	printf("%spile A UPD\n", KRED);	
-	printf("******\n");
-	print_the_list(a);
-		
-	printf("%s***********************************************\n", KGRN);
-	printf("%s***********************************************\n", KGRN);
-	sb(b);
-	printf("%spile B UPD\n", KBLU);	
-	printf("******\n");
-	print_the_list(b);
-	printf("_____________________________________\n");
+
 }
 

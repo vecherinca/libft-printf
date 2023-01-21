@@ -28,10 +28,12 @@ int		ft_atoi(const char *str);
 int		ft_lstsize(a_list *lst);
 void	ft_lstdelone(a_list *lst, void (del)(int));
 void	ft_lstadd_back(a_list **lst, a_list *new);
+a_list	*ft_lstlast(a_list *lst);
+a_list	*findsecondlastnode(a_list *head);
 void	sa(head_a *head);
 void	sb(head_a *head);
-void pb(head_a *heada, head_a *headb);
-void pa(head_a *heada, head_a *headb);
-// void	ss(head_a *head_a, head_a *head_b);
-// void	pb(head_a *head_a, head_a *head_b);
+void	pb(head_a *heada, head_a *headb);
+void	pa(head_a *heada, head_a *headb);
+void	ra(head_a *heada);
+void	rb(head_a *headb);
 #endif
