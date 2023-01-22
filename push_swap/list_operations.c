@@ -6,7 +6,7 @@
 /*   By: mklimina <mklimina@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/18 21:21:53 by mklimina          #+#    #+#             */
-/*   Updated: 2023/01/21 21:51:32 by mklimina         ###   ########.fr       */
+/*   Updated: 2023/01/22 18:35:47 by mklimina         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -69,4 +69,27 @@ a_list *findsecondlastnode(a_list *head)
 		temp = temp->next;
 	}
 	return(0);
+}
+
+int check_doubl(head_a *heada)
+{
+	a_list *start;
+	a_list *temp;
+	int count;
+	count = 0;
+	start = heada -> first;
+	while (start -> next != NULL)
+	{
+		temp = start -> next;
+		while (temp != NULL)
+		{
+			if (start->content == temp -> content) {
+                count++;
+				return(0);
+			}
+			temp = temp -> next;
+		}
+		start = start -> next;
+	}
+	return(1);
 }

@@ -6,7 +6,7 @@
 /*   By: mklimina <mklimina@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/16 23:33:36 by mklimina          #+#    #+#             */
-/*   Updated: 2023/01/21 23:22:23 by mklimina         ###   ########.fr       */
+/*   Updated: 2023/01/22 18:39:32 by mklimina         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,14 +22,27 @@ head_a *define_list_a(int argc, char **argv)
 	a_list *head;
 	head_a *point;
 	
+	//int check;
+
 	int i = 1;
 	head = NULL;
 	point = malloc(sizeof(head_a));
-
+	// 
+	if (argc == 1)
+	{
+		write(1, "Error!", 6);
+		exit(0);
+	}
 	while (i < argc)
 	{
+		if (checkthearg(argv[i]) == 0)
+			{
+				write(1, "Error!", 6);
+				exit(0);
+			}
 		a_list *temp = malloc(sizeof(a_list));
 		temp -> content = ft_atoi(argv[i]);
+		
 		ft_lstadd_back(&head, temp);
 		i++;
 	}
@@ -58,36 +71,20 @@ void print_the_list(head_a *head)
 }
 int main(int argc, char **argv)
 {
-
 	head_a *a; 
-	head_a *b;
+	int check;
 
-	b = define_list_b();
-	a = define_list_a(argc, argv);
- 
-	// printf("%spile A\n", KRED);	
-	// printf("******\n");
-	// print_the_list(a);
-	// printf("_____________________________________\n");
-	// printf("%spile B\n", KBLU);	
-	// printf("******\n");
-	// print_the_list(b);
-	// printf("_____________________________________\n");
-	// printf("%s***********************************************\n", KGRN);
-	// printf("%s***********************************************\n", KGRN);
-	
-	// printf("%spile A\n", KRED);	
-	// printf("******\n");
-	// print_the_list(a);
-
+	//head_a *b;
+	//b = define_list_b();
+	a = define_list_a(argc, argv);	
+	check = check_doubl(a);
+	if (check == 0)
+	{
+		write(1, "Error!", 6);
+		exit(0);
+	}
 	printf("%spile A\n", KBLU);	
 	printf("******\n");
 	print_the_list(a);
-
-	ra(a);
-	printf("%spile A\n", KBLU);	
-	printf("******\n");
-	print_the_list(a);
-
 }
 

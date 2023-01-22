@@ -32,9 +32,18 @@ a_list	*ft_lstlast(a_list *lst);
 a_list	*findsecondlastnode(a_list *head);
 void	sa(head_a *head);
 void	sb(head_a *head);
+void	ss(head_a *heada, head_a *headb);
 void	pb(head_a *heada, head_a *headb);
 void	pa(head_a *heada, head_a *headb);
-void	rra(head_a *heada);
 void	ra(head_a *heada);
+void	rb(head_a *headb);
+void 	rr(head_a *heada, head_a *headb);
 void	rrb(head_a *headb);
+void	rrr(head_a *heada, head_a *headb);
+void 	rra(head_a *heada);
+int		ft_isdigit(int c);
+int		checkthearg(char *arg);
+int		ft_strlen(const char *s);
+int		check_doubl(head_a *heada);
+
 #endif
