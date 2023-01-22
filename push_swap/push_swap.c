@@ -6,7 +6,7 @@
 /*   By: mklimina <mklimina@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/16 23:33:36 by mklimina          #+#    #+#             */
-/*   Updated: 2023/01/22 18:39:32 by mklimina         ###   ########.fr       */
+/*   Updated: 2023/01/22 22:44:49 by mklimina         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,19 +27,13 @@ head_a *define_list_a(int argc, char **argv)
 	int i = 1;
 	head = NULL;
 	point = malloc(sizeof(head_a));
-	// 
-	if (argc == 1)
-	{
-		write(1, "Error!", 6);
-		exit(0);
-	}
 	while (i < argc)
 	{
 		if (checkthearg(argv[i]) == 0)
-			{
-				write(1, "Error!", 6);
+		{
+				write(1, "Error\n", 6);
 				exit(0);
-			}
+		}
 		a_list *temp = malloc(sizeof(a_list));
 		temp -> content = ft_atoi(argv[i]);
 		
@@ -73,6 +67,7 @@ int main(int argc, char **argv)
 {
 	head_a *a; 
 	int check;
+	//int check_srt;
 
 	//head_a *b;
 	//b = define_list_b();
@@ -80,11 +75,12 @@ int main(int argc, char **argv)
 	check = check_doubl(a);
 	if (check == 0)
 	{
-		write(1, "Error!", 6);
+		write(1, "Error\n", 6);
 		exit(0);
 	}
 	printf("%spile A\n", KBLU);	
 	printf("******\n");
 	print_the_list(a);
+	
 }
 

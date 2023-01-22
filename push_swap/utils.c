@@ -6,7 +6,7 @@
 /*   By: mklimina <mklimina@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/17 18:11:19 by mklimina          #+#    #+#             */
-/*   Updated: 2023/01/22 01:38:44 by mklimina         ###   ########.fr       */
+/*   Updated: 2023/01/22 22:00:16 by mklimina         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,7 +48,7 @@ int	ft_isdigit(int c)
 		return (0);
 }
 
-int	ft_strlen(const char *s)
+int	ft_strlen(char *s)
 {
 	int	i;
 
@@ -56,4 +56,20 @@ int	ft_strlen(const char *s)
 	while (s[i])
 		i++;
 	return (i);
+}
+
+void checkchar(const char *str)
+{
+	int i;
+	i = 0;
+	
+	while (str[i] != '\0')
+	{
+		if (!(ft_isdigit(str[i])) || str[i] !='-')
+			{
+				write(1, "Error!", 6);
+				exit(0);
+			}	
+		i++;
+	}
 }

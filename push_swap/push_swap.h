@@ -42,8 +42,10 @@ void	rrb(head_a *headb);
 void	rrr(head_a *heada, head_a *headb);
 void 	rra(head_a *heada);
 int		ft_isdigit(int c);
-int		checkthearg(char *arg);
-int		ft_strlen(const char *s);
+int	checkthearg(char *arg);
+int		ft_strlen(char *s);
 int		check_doubl(head_a *heada);
-
+void	check_sort(head_a *heada);
+void	checkchar(const char *str);
+int		properint(char *arg);
 #endif

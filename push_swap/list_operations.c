@@ -6,7 +6,7 @@
 /*   By: mklimina <mklimina@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/18 21:21:53 by mklimina          #+#    #+#             */
-/*   Updated: 2023/01/22 18:35:47 by mklimina         ###   ########.fr       */
+/*   Updated: 2023/01/22 20:08:15 by mklimina         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -93,3 +93,23 @@ int check_doubl(head_a *heada)
 	}
 	return(1);
 }
+
+// void check_sort(head_a *heada)
+// {
+// 	a_list *start;
+// 	a_list *temp;
+// 	int count;
+// 	count = 0;
+// 	start = heada -> first;
+// 	while (start -> next != NULL)
+// 	{
+// 		printf("node value %d", start -> content);
+// 		start = start -> next;
+// 		// temp = start -> next;
+// 		// if (start->content < temp -> content) {
+//         //         count++;
+// 		// 		return(0);
+// 		// 	}
+// 		// temp = temp -> next;
+// 	}
+// 	}
