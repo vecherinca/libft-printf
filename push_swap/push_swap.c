@@ -6,16 +6,15 @@
 /*   By: mklimina <mklimina@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/16 23:33:36 by mklimina          #+#    #+#             */
-/*   Updated: 2023/01/23 16:54:18 by mklimina         ###   ########.fr       */
+/*   Updated: 2023/01/23 20:41:57 by mklimina         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 
 #include "push_swap.h"
 
-#include<stdlib.h>
-#include<stdio.h>
-
+#include <stdlib.h>
+#include <stdio.h>
 
 head_a *define_list_a(int argc, char **argv)
 {
@@ -51,16 +50,17 @@ head_a *define_list_b()
 	point -> first = head;
 	return(point);
 }
-
-void print_the_list(head_a *head)
+void pushswap(head_a *a, int argc)
 {
-	a_list *start;
-	start = head -> first;
-	while(start != NULL)
-	{	
+	int number;
 
-		printf("%d\n", start -> content);
-        start = start -> next;
+	number = argc - 1;
+	
+	// if (number == 2)
+	// 	sa(a);
+	if (number == 3)
+	{
+		sort3(a);
 	}
 }
 int main(int argc, char **argv)
@@ -78,9 +78,10 @@ int main(int argc, char **argv)
 		write(1, "Error\n", 6);
 		exit(0);
 	}
-	printf("%spile A\n", KBLU);	
+	printf("%spile A\n", KCYN);	
 	printf("******\n");
 	print_the_list(a);
-	
+	pushswap(a, argc);
+	print_the_list(a);
 }
 

@@ -42,10 +42,13 @@ void	rrb(head_a *headb);
 void	rrr(head_a *heada, head_a *headb);
 void 	rra(head_a *heada);
 int		ft_isdigit(int c);
-int	checkthearg(char *arg);
+int		checkthearg(char *arg);
 int		ft_strlen(char *s);
 int		check_doubl(head_a *heada);
-void	check_sort(head_a *heada);
-void	checkchar(const char *str);
+//void	check_sort(head_a *heada);
 int		properint(char *arg);
+void	pushswap(head_a *a, int argc);
+void	print_the_list(head_a *head);
+void	sort3(head_a *a);
+void	case1(a_list *one, a_list *two);
 #endif
