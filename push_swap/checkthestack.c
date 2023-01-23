@@ -6,7 +6,7 @@
 /*   By: mklimina <mklimina@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/21 23:37:38 by mklimina          #+#    #+#             */
-/*   Updated: 2023/01/22 22:49:20 by mklimina         ###   ########.fr       */
+/*   Updated: 2023/01/23 16:56:14 by mklimina         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,7 @@ int checkthearg(char *arg)
 
 	i = 0;
 	len = ft_strlen(arg);
-	if (len == 1 && arg[0] == 43)
+	if (len == 1 && arg[0] == 45)
 		return (0);
 	if (properint(arg))
 		return(1);
