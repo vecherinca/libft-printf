@@ -6,7 +6,7 @@
 /*   By: mklimina <mklimina@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/20 22:52:53 by mklimina          #+#    #+#             */
-/*   Updated: 2023/01/21 23:22:07 by mklimina         ###   ########.fr       */
+/*   Updated: 2023/01/25 23:02:21 by mklimina         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,34 +18,35 @@ void ra(head_a *heada)
 	a_list *starta;
 	a_list *finish;
 	a_list *seconda;
-
+	
 	starta = heada -> first;
 	finish = ft_lstlast(starta);
 	seconda = heada -> first -> next;
-	
 	heada -> first = seconda;
 	finish -> next = starta;
 	starta -> next = NULL;
 	write(1, "ra\n", 3);
 }
+
 /*rb (rotate b): Shift up all elements of stack b by 1.
 The first element becomes the last one.*/
+
 void rb(head_a *headb)
 {
 	a_list *startb;
 	a_list *finish;
 	a_list *seconda;
-
+	
 	startb = headb -> first;
 	finish = ft_lstlast(startb);
 	seconda = headb -> first -> next;
-	
 	headb -> first = seconda;
 	finish -> next = startb;
 	startb -> next = NULL;
+	
 	write(1, "rb\n", 3);
-
 }
+
 /**rr : ra and rb at the same time.**/
 void rr(head_a *heada, head_a *headb)
 {
@@ -57,7 +58,7 @@ void rr(head_a *heada, head_a *headb)
 The last element becomes the first one.**/
 void rra(head_a *heada)
 {
-	a_list *starta;
+	a_list *starta; 
 	a_list *finish;
 	a_list *prev;
 		

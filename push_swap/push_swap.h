@@ -26,7 +26,6 @@ typedef struct head_a
 
 int		ft_atoi(const char *str);
 int		ft_lstsize(a_list *lst);
-void	ft_lstdelone(a_list *lst, void (del)(int));
 void	ft_lstadd_back(a_list **lst, a_list *new);
 a_list	*ft_lstlast(a_list *lst);
 a_list	*findsecondlastnode(a_list *head);
@@ -47,8 +46,10 @@ int		ft_strlen(char *s);
 int		check_doubl(head_a *heada);
 //void	check_sort(head_a *heada);
 int		properint(char *arg);
-void	pushswap(head_a *a, int argc);
 void	print_the_list(head_a *head);
 void	sort3(head_a *a);
-void	case1(a_list *one, a_list *two);
+void	sort5(head_a *a, head_a *b);
+a_list	*find_min(a_list *start);
+void	pushmin(head_a *a, int min);
+void	pushswap(head_a *a, head_a *b, int argc);
 #endif
