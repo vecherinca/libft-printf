@@ -6,7 +6,7 @@
 /*   By: mklimina <mklimina@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/16 23:33:36 by mklimina          #+#    #+#             */
-/*   Updated: 2023/01/25 22:47:46 by mklimina         ###   ########.fr       */
+/*   Updated: 2023/01/27 18:47:19 by mklimina         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,11 @@
 
 #include <stdlib.h>
 #include <stdio.h>
-
+/*
+what to fix: 1)write standart error
+2) if a.out is empty there is an error
+3)./a.out 8 7 6 3 1 ---> 13 commands
+*/
 head_a *define_list_a(int argc, char **argv)
 {
 	a_list *head;
@@ -37,7 +41,7 @@ head_a *define_list_a(int argc, char **argv)
 		if(!temp)
 			return(NULL);
 		temp -> content = ft_atoi(argv[i]);
-		
+		temp -> next = NULL;
 		ft_lstadd_back(&head, temp);
 		i++;
 	}
@@ -72,25 +76,38 @@ int main(int argc, char **argv)
 	int check;
 	//int check_srt;
 	head_a *b;
-	a = define_list_a(argc, argv);	
+	a = define_list_a(argc, argv);
 	b = define_list_b();
+
 	if(!b)
 		return(0);
 	check = check_doubl(a);
 	if (check == 0)
 	{
-		write(1, "Error\n", 6);
+		write(2, "Error\n", 6);
 		exit(0);
 	}
+	assign_index(a);
 	printf("\n");
 	printf("%s********* pile A **********\n", KCYN);	
 	print_the_list(a);
-	printf("%s****** COMMANDS ********\n", KGRN);
-	pushswap(a, b, argc);
-	printf("%s****** END COMMANDS ********\n", KGRN);
-	printf("%s********* pile A UPD**********\n", KRED);
-	print_the_list(a);
-	printf("%s****** PILE B ********\n", KYEL);
-	print_the_list(b);
+	printf("%s****** content vs indexes ********\n", KRED);
+	print_side_by_side(a);
+	
+	//a_list *start = a -> first;
+	// while (start -> next != NULL)
+	// {
+	// 	//printf("index --- > %d\n", start -> content);
+	// 	start = start -> next;
+	// }
+	// printf("%s****** COMMANDS ********\n", KGRN);
+	// pushswap(a, b, argc);
+	// printf("%s****** END COMMANDS ********\n", KGRN);
+	// printf("%s********* pile A UPD**********\n", KRED);
+	// print_the_list(a);
+	// printf("%s****** PILE B ********\n", KYEL);
+	// print_the_list(b);
+
+	
 }
 

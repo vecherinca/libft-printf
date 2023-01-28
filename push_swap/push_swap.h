@@ -15,7 +15,8 @@
 
 typedef struct a_list
 {
-	int			content;
+	int				content;
+	int				index;
 	struct a_list	*next;
 }a_list;
 
@@ -52,4 +53,7 @@ void	sort5(head_a *a, head_a *b);
 a_list	*find_min(a_list *start);
 void	pushmin(head_a *a, int min);
 void	pushswap(head_a *a, head_a *b, int argc);
+void	assign_index(head_a *a);
+void	print_side_by_side(head_a *head);
+void	print_index(head_a *head);
 #endif

@@ -6,7 +6,7 @@
 /*   By: mklimina <mklimina@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/17 18:11:19 by mklimina          #+#    #+#             */
-/*   Updated: 2023/01/23 18:14:53 by mklimina         ###   ########.fr       */
+/*   Updated: 2023/01/27 14:31:08 by mklimina         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -67,4 +67,27 @@ void print_the_list(head_a *head)
 		printf("%d\n", start -> content);
         start = start -> next;
 	}
+}
+
+void print_index(head_a *head)
+{
+	a_list *start;
+	start = head -> first;
+	while(start != NULL)
+	{	
+		printf("%d\n", start -> index);
+        start = start -> next;
+	}
+}
+
+void print_side_by_side(head_a *head)
+{
+    a_list *start = head->first;
+
+	 printf("INDEX\t\tCONTENT\n");
+    while(start != NULL)
+    {   
+        printf("%d\t\t%d\n", start->index, start->content);
+        start = start->next;
+    }
 }

@@ -6,7 +6,7 @@
 /*   By: mklimina <mklimina@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/24 16:21:30 by mklimina          #+#    #+#             */
-/*   Updated: 2023/01/25 23:47:36 by mklimina         ###   ########.fr       */
+/*   Updated: 2023/01/27 14:19:16 by mklimina         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,9 +19,11 @@ void sort5(head_a *a, head_a *b)
 	
 	start = a -> first;
 	min = find_min(start);
-	//printf("FIRST MIN ----> %d\n", min -> content);
 	pushmin(a, min -> content);
-	temp = min -> next;
+	if (min -> next == NULL)
+		temp = a -> first;
+	else
+		temp = min -> next;
 	pb(a, b);
 	min = find_min(temp);
 	pushmin(a, min -> content);
@@ -29,29 +31,22 @@ void sort5(head_a *a, head_a *b)
 	sort3(a);
 	pa(a, b);
 	pa(a, b);
-	//printf("second MIN ----> %d\n", min -> content);
-	
-	//printf("temp node ----> %d\n", temp ---> content);
-	//pushmin(a, min -> content);
-	// pb(a, b);
 }
 
 a_list *find_min(a_list *start)
 {
-	int min;
-	a_list *node;
-	
-	min = start -> content;
+	a_list *min;
+	min = start;
 	while (start != NULL)
 	{
-		if (start -> content < min)
+		if (start -> content < min -> content)
 		{
-			node = start;
-			min = start -> content;
+			//node = start;
+			min = start;
 		}
 		start = start -> next;
 	}
-	return(node);
+	return(min);
 }
 
 void pushmin(head_a *a, int min)
