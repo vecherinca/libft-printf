@@ -6,7 +6,7 @@
 /*   By: mklimina <mklimina@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/26 19:59:44 by mklimina          #+#    #+#             */
-/*   Updated: 2023/01/28 02:21:02 by mklimina         ###   ########.fr       */
+/*   Updated: 2023/01/28 02:21:38 by mklimina         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,7 +27,6 @@ void	assign_index(head_a *a)
 			i--;
 	}
 	start = a -> first;
-	//deux = start -> next;	
 	while (start  != NULL)
 	{
 		//reinit the deux

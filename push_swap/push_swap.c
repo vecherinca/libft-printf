@@ -6,7 +6,7 @@
 /*   By: mklimina <mklimina@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/16 23:33:36 by mklimina          #+#    #+#             */
-/*   Updated: 2023/01/27 18:47:19 by mklimina         ###   ########.fr       */
+/*   Updated: 2023/02/01 17:53:38 by mklimina         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -69,7 +69,13 @@ void pushswap(head_a *a, head_a *b, int argc)
 		sort3(a);
 	if (number == 5)
 		sort5(a, b);
+// 	if (number > 10)
+// 		sort100(a, b);
 }
+/*
+./a.out 5 1000 8 0 -1
+for this case it's giving 13 fix that
+*/
 int main(int argc, char **argv)
 {
 	head_a *a; 
@@ -100,14 +106,12 @@ int main(int argc, char **argv)
 	// 	//printf("index --- > %d\n", start -> content);
 	// 	start = start -> next;
 	// }
-	// printf("%s****** COMMANDS ********\n", KGRN);
-	// pushswap(a, b, argc);
-	// printf("%s****** END COMMANDS ********\n", KGRN);
-	// printf("%s********* pile A UPD**********\n", KRED);
-	// print_the_list(a);
-	// printf("%s****** PILE B ********\n", KYEL);
-	// print_the_list(b);
-
-	
+	printf("%s****** COMMANDS ********\n", KGRN);
+	pushswap(a, b, argc);
+	printf("%s****** END COMMANDS ********\n", KGRN);
+	printf("%s********* pile A UPD**********\n", KRED);
+	print_the_list(a);
+	printf("%s****** PILE B ********\n", KYEL);
+	print_the_list(b);
 }
 

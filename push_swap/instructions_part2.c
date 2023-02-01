@@ -6,7 +6,7 @@
 /*   By: mklimina <mklimina@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/20 22:52:53 by mklimina          #+#    #+#             */
-/*   Updated: 2023/01/25 23:02:21 by mklimina         ###   ########.fr       */
+/*   Updated: 2023/01/28 19:36:38 by mklimina         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,6 +48,7 @@ void rb(head_a *headb)
 }
 
 /**rr : ra and rb at the same time.**/
+// check the number of elements
 void rr(head_a *heada, head_a *headb)
 {
 	ra(heada);
@@ -55,7 +56,7 @@ void rr(head_a *heada, head_a *headb)
 	write(1, "rr\n", 3);
 }
 /**rra (reverse rotate a): Shift down all elements of stack a by 1.
-The last element becomes the first one.**/
+The last element becomes the first one.**/ 
 void rra(head_a *heada)
 {
 	a_list *starta; 
