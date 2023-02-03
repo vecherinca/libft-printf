@@ -6,7 +6,7 @@
 /*   By: mklimina <mklimina@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/24 16:21:30 by mklimina          #+#    #+#             */
-/*   Updated: 2023/02/01 17:54:52 by mklimina         ###   ########.fr       */
+/*   Updated: 2023/02/01 18:09:33 by mklimina         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,16 +48,17 @@ a_list *find_min(a_list *start)
 	}
 	return(min);
 }
-
+// ./a.out 5 -1 -3 45 7
+//./a.out 5 1000 8 0 -1
 void pushmin(head_a *a, int min)
 {
 	a_list *start;
 	
+	
 	start = a -> first;
 	while (start -> content != min)
 	{
-		
-		ra(a);
+		rra(a);
 		start = a -> first;
 	}
 	// printf("END\n");

@@ -6,7 +6,7 @@
 /*   By: mklimina <mklimina@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/16 23:33:36 by mklimina          #+#    #+#             */
-/*   Updated: 2023/02/01 17:53:38 by mklimina         ###   ########.fr       */
+/*   Updated: 2023/02/01 19:44:47 by mklimina         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -94,24 +94,24 @@ int main(int argc, char **argv)
 		exit(0);
 	}
 	assign_index(a);
-	printf("\n");
-	printf("%s********* pile A **********\n", KCYN);	
-	print_the_list(a);
+	// printf("\n");
+	// printf("%s********* pile A **********\n", KCYN);	
+	// print_the_list(a);
 	printf("%s****** content vs indexes ********\n", KRED);
 	print_side_by_side(a);
 	
-	//a_list *start = a -> first;
-	// while (start -> next != NULL)
-	// {
-	// 	//printf("index --- > %d\n", start -> content);
-	// 	start = start -> next;
-	// }
-	printf("%s****** COMMANDS ********\n", KGRN);
-	pushswap(a, b, argc);
-	printf("%s****** END COMMANDS ********\n", KGRN);
-	printf("%s********* pile A UPD**********\n", KRED);
-	print_the_list(a);
-	printf("%s****** PILE B ********\n", KYEL);
-	print_the_list(b);
+	// //a_list *start = a -> first;
+	// // while (start -> next != NULL)
+	// // {
+	// // 	//printf("index --- > %d\n", start -> content);
+	// // 	start = start -> next;
+	// // }
+	// printf("%s****** COMMANDS ********\n", KGRN);
+	// pushswap(a, b, argc);
+	// printf("%s****** END COMMANDS ********\n", KGRN);
+	// printf("%s********* pile A UPD**********\n", KRED);
+	// print_the_list(a);
+	// printf("%s****** PILE B ********\n", KYEL);
+	// print_the_list(b);
 }
 
