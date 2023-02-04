@@ -56,5 +56,6 @@ void	pushswap(head_a *a, head_a *b, int argc);
 void	assign_index(head_a *a);
 void	print_side_by_side(head_a *head);
 void	print_index(head_a *head);
-a_list	find_min_next();
+
+int find_min_next(a_list *start, int min);
 #endif
