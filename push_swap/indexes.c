@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   indexes.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mklimina <mklimina@student.42.fr>          +#+  +:+       +#+        */
+/*   By: maria <maria@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/26 19:59:44 by mklimina          #+#    #+#             */
-/*   Updated: 2023/02/04 01:10:59 by mklimina         ###   ########.fr       */
+/*   Updated: 2023/02/04 20:18:29 by maria            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,7 @@ int find_min_next(a_list *start, int min)
 	new_min = start -> content;
 	while (start != NULL)
 	{
-		if (start -> content < new_min && start -> content != min)
+		if ((start -> content < new_min) && (start -> content > min))
 			new_min = start -> content;
 		start = start -> next;
 	}
@@ -41,15 +41,16 @@ void	assign_index(head_a *a)
 	
 	while (i < size)
 	{
-		while (start -> content >= minmin && start -> next != NULL)
+		while (start != NULL)
 		{
-			start -> index = i;
-			start = start -> next;
+			if (start -> content >= minmin)
+			{
+				start -> index = i;
+			}
+			if (start -> next!= NULL)
+				start = start -> next;
 		}
-		if (start -> content < minmin)
-			start -> index = i - 1;
-		else
-			start -> index = i;
+		start -> index = i;
 		start = a -> first;
 		minmin = find_min_next(start, minmin);
 		i++;
