@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   indexes.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: maria <maria@student.42.fr>                +#+  +:+       +#+        */
+/*   By: mklimina <mklimina@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/26 19:59:44 by mklimina          #+#    #+#             */
-/*   Updated: 2023/02/04 20:18:29 by maria            ###   ########.fr       */
+/*   Updated: 2023/02/10 16:56:32 by mklimina         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,15 +41,15 @@ void	assign_index(head_a *a)
 	
 	while (i < size)
 	{
-		while (start != NULL)
+		while (start -> next!= NULL)
 		{
 			if (start -> content >= minmin)
 			{
 				start -> index = i;
 			}
-			if (start -> next!= NULL)
-				start = start -> next;
+			start = start -> next;
 		}
+		// this shit is not working you need to check the last case
 		start -> index = i;
 		start = a -> first;
 		minmin = find_min_next(start, minmin);
