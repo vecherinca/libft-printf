@@ -56,6 +56,8 @@ void	pushswap(head_a *a, head_a *b, int argc);
 void	assign_index(head_a *a);
 void	print_side_by_side(head_a *head);
 void	print_index(head_a *head);
-
+int find_max(a_list *start);
 int find_min_next(a_list *start, int min);
+a_list *find_max_node(a_list *start);
+void sort100(head_a *a,head_a *b);
 #endif

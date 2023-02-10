@@ -6,7 +6,7 @@
 /*   By: mklimina <mklimina@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/16 23:33:36 by mklimina          #+#    #+#             */
-/*   Updated: 2023/02/01 19:44:47 by mklimina         ###   ########.fr       */
+/*   Updated: 2023/02/10 23:31:23 by mklimina         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -69,8 +69,8 @@ void pushswap(head_a *a, head_a *b, int argc)
 		sort3(a);
 	if (number == 5)
 		sort5(a, b);
-// 	if (number > 10)
-// 		sort100(a, b);
+	if (number > 5)
+		sort100(a, b);
 }
 /*
 ./a.out 5 1000 8 0 -1
@@ -97,8 +97,8 @@ int main(int argc, char **argv)
 	// printf("\n");
 	// printf("%s********* pile A **********\n", KCYN);	
 	// print_the_list(a);
-	printf("%s****** content vs indexes ********\n", KRED);
-	print_side_by_side(a);
+	//printf("%s****** content vs indexes ********\n", KRED);
+	///print_side_by_side(a);
 	
 	// //a_list *start = a -> first;
 	// // while (start -> next != NULL)
@@ -107,7 +107,11 @@ int main(int argc, char **argv)
 	// // 	start = start -> next;
 	// // }
 	// printf("%s****** COMMANDS ********\n", KGRN);
-	// pushswap(a, b, argc);
+	pushswap(a, b, argc);
+	printf("%s********* pile A **********\n", KCYN);
+	print_the_list(a);
+	printf("%s********* pile B **********\n", KRED);
+	print_the_list(b);
 	// printf("%s****** END COMMANDS ********\n", KGRN);
 	// printf("%s********* pile A UPD**********\n", KRED);
 	// print_the_list(a);
