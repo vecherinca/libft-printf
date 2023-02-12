@@ -17,6 +17,7 @@ typedef struct a_list
 {
 	int				content;
 	int				index;
+	int 			next_biggest;
 	struct a_list	*next;
 }a_list;
 
@@ -24,6 +25,16 @@ typedef struct head_a
 {
 	a_list *first;
 }head_a;
+
+typedef struct algo_values
+{
+	a_list *node;
+	int rra;
+	int rrb;
+	int ra;
+	int rb;
+
+}algo_values;
 
 int		ft_atoi(const char *str);
 int		ft_lstsize(a_list *lst);
@@ -35,12 +46,12 @@ void	sb(head_a *head);
 void	ss(head_a *heada, head_a *headb);
 void	pb(head_a *heada, head_a *headb);
 void	pa(head_a *heada, head_a *headb);
-void	ra(head_a *heada);
-void	rb(head_a *headb);
+void	ra(head_a *heada, int flag);
+void	rb(head_a *headb, int flag);
 void 	rr(head_a *heada, head_a *headb);
-void	rrb(head_a *headb);
+void	rrb(head_a *headb, int flag);
 void	rrr(head_a *heada, head_a *headb);
-void 	rra(head_a *heada);
+void 	rra(head_a *heada, int flag);
 int		ft_isdigit(int c);
 int		checkthearg(char *arg);
 int		ft_strlen(char *s);
@@ -60,4 +71,5 @@ int find_max(a_list *start);
 int find_min_next(a_list *start, int min);
 a_list *find_max_node(a_list *start);
 void sort100(head_a *a,head_a *b);
+void algo(head_a *a, head_a *b);
 #endif

@@ -6,7 +6,7 @@
 /*   By: mklimina <mklimina@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/26 19:59:44 by mklimina          #+#    #+#             */
-/*   Updated: 2023/02/10 21:39:52 by mklimina         ###   ########.fr       */
+/*   Updated: 2023/02/12 15:43:02 by mklimina         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,10 +34,7 @@ int find_max(a_list *start)
 	while (start != NULL)
 	{
 		if (start -> content > max -> content)
-		{
-			//node = start;
 			max = start;
-		}
 		start = start -> next;
 	}
 	return(max -> content);
@@ -65,7 +62,6 @@ void	assign_index(head_a *a)
 			start = start -> next;
 		}
 		start = a -> first;
-		minmin = minmin;
 		minmin = find_min_next(start, minmin);
 		i++;
 	}

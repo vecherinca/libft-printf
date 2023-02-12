@@ -6,7 +6,7 @@
 /*   By: mklimina <mklimina@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/24 16:21:30 by mklimina          #+#    #+#             */
-/*   Updated: 2023/02/01 18:09:33 by mklimina         ###   ########.fr       */
+/*   Updated: 2023/02/11 21:50:22 by mklimina         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,7 +58,7 @@ void pushmin(head_a *a, int min)
 	start = a -> first;
 	while (start -> content != min)
 	{
-		rra(a);
+		rra(a, 1);
 		start = a -> first;
 	}
 	// printf("END\n");

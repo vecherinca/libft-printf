@@ -6,7 +6,7 @@
 /*   By: mklimina <mklimina@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/23 17:38:22 by mklimina          #+#    #+#             */
-/*   Updated: 2023/01/23 22:09:02 by mklimina         ###   ########.fr       */
+/*   Updated: 2023/02/11 21:52:21 by mklimina         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,15 +29,15 @@ void sort3(head_a *a)
 	if(one > two && one > three && two > three)
 	{
 		sa(a);
-		rra(a);
+		rra(a, 1);
 	}
 	if(one > two && one > three && two < three)
-		ra(a);
+		ra(a, 1);
 	if(one < two && one < three && two > three)
 	{
 		sa(a);
-		ra(a);
+		ra(a, 1);
 	}
 	if(one < two && one > three && two > three)
-		rra(a);
+		rra(a, 1);
 }
