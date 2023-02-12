@@ -6,7 +6,7 @@
 /*   By: mklimina <mklimina@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/26 17:02:29 by mklimina          #+#    #+#             */
-/*   Updated: 2023/02/12 16:09:02 by mklimina         ###   ########.fr       */
+/*   Updated: 2023/02/12 19:25:07 by mklimina         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,6 +40,25 @@ void presort(int median, head_a *b, head_a *a)
 	}
 }
 
+void test_instr(head_a *a,head_a *b)
+{
+	// here what I want to do is for every node
+	// write the number of functions
+	a_list *start_a;
+	a_list *start_b;
+	
+	algo_values count_a;
+	algo_values count_b;
+
+	start_a = a -> first;
+	start_b = b -> first;
+	
+	while (start_b -> next != NULL)
+	{
+		
+		
+	}
+}
 
 void sort100(head_a *a,head_a *b)
 {
@@ -49,5 +68,5 @@ void sort100(head_a *a,head_a *b)
 	median = ft_lstsize(start)/2;
 	//printf("MEDIAN ----> %d\n", median);
 	presort(median, b, a);
-	
+	test_instr(a, b);
 }

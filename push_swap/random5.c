@@ -6,7 +6,7 @@
 /*   By: mklimina <mklimina@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/24 16:21:30 by mklimina          #+#    #+#             */
-/*   Updated: 2023/02/11 21:50:22 by mklimina         ###   ########.fr       */
+/*   Updated: 2023/02/12 21:42:01 by mklimina         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,10 +40,7 @@ a_list *find_min(a_list *start)
 	while (start != NULL)
 	{
 		if (start -> content < min -> content)
-		{
-			//node = start;
 			min = start;
-		}
 		start = start -> next;
 	}
 	return(min);

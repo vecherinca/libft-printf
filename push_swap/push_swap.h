@@ -37,10 +37,13 @@ typedef struct algo_values
 }algo_values;
 
 int		ft_atoi(const char *str);
+int		ft_isdigit(int c);
+
 int		ft_lstsize(a_list *lst);
 void	ft_lstadd_back(a_list **lst, a_list *new);
 a_list	*ft_lstlast(a_list *lst);
 a_list	*findsecondlastnode(a_list *head);
+
 void	sa(head_a *head);
 void	sb(head_a *head);
 void	ss(head_a *heada, head_a *headb);
@@ -52,24 +55,29 @@ void 	rr(head_a *heada, head_a *headb);
 void	rrb(head_a *headb, int flag);
 void	rrr(head_a *heada, head_a *headb);
 void 	rra(head_a *heada, int flag);
-int		ft_isdigit(int c);
+
 int		checkthearg(char *arg);
 int		ft_strlen(char *s);
 int		check_doubl(head_a *heada);
-//void	check_sort(head_a *heada);
 int		properint(char *arg);
+
 void	print_the_list(head_a *head);
-void	sort3(head_a *a);
-void	sort5(head_a *a, head_a *b);
-a_list	*find_min(a_list *start);
-void	pushmin(head_a *a, int min);
-void	pushswap(head_a *a, head_a *b, int argc);
-void	assign_index(head_a *a);
 void	print_side_by_side(head_a *head);
 void	print_index(head_a *head);
-int find_max(a_list *start);
-int find_min_next(a_list *start, int min);
+
+void	pushswap(head_a *a, head_a *b, int argc);
+
+//void	check_sort(head_a *heada);
+void	assign_index(head_a *a);
+void	sort3(head_a *a);
+void	sort5(head_a *a, head_a *b);
+void	sort100(head_a *a,head_a *b);
+void	algo(head_a *a, head_a *b);
+
+a_list	*find_min(a_list *start);
+void	pushmin(head_a *a, int min);
+int		find_max(a_list *start);
+int		find_min_next(a_list *start, int min);
 a_list *find_max_node(a_list *start);
-void sort100(head_a *a,head_a *b);
-void algo(head_a *a, head_a *b);
+
 #endif
