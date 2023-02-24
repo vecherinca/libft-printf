@@ -6,7 +6,7 @@
 /*   By: maria <maria@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/26 17:02:29 by mklimina          #+#    #+#             */
-/*   Updated: 2023/02/21 03:01:07 by maria            ###   ########.fr       */
+/*   Updated: 2023/02/24 01:36:53 by maria            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,9 +39,28 @@ void presort(int median, head_a *b, head_a *a)
 		start = a->first;
 	}
 }
-
-void count_moves_a(a_list *node_a)
+//je sais pas si c marche comme je veux
+algo_values count_moves_a(a_list *node_a, head_a *a, algo_values current)
 {
+	int count;
+	int size;
+	a_list *starta;
+
+	starta = a -> first;
+	size = ft_lstsize(starta);
+	//printf("SIZE//2 %d\n", size/2);
+	count = 0;
+	//printf("First node of A --> %d\n", starta -> index);
+	while (node_a != starta)
+	{
+		count++;
+		starta = starta -> next;
+	}
+	if (count <= size/2)
+		current.ra = count;
+	else if(count > size/2)
+		current.rra = size - count + 1;
+	return(current);
 }
 
 a_list *get_nearest_max(a_list *b_node, head_a *a)
@@ -49,50 +68,69 @@ a_list *get_nearest_max(a_list *b_node, head_a *a)
 	int diff;
 	a_list *start_a;
 	a_list *first_max;
+	int max;
+
 	start_a = a->first;
-	diff = b_node -> index - start_a -> index;
+	max = find_max(start_a);
 	first_max = start_a;
-	//printf("difference ----> %d", diff);
-	while (start_a)
+	diff = b_node -> index - max;
+	while (start_a!=NULL)
 	{
-		if ((start_a -> index > b_node -> index) && (b_node -> index - start_a -> index > diff))
+		if ((start_a -> index > b_node -> index) && (b_node -> index - start_a -> index >= diff))
+		{
 			first_max = start_a;
+			diff = (b_node -> index - start_a -> index);
+		}
 		start_a = start_a -> next;
 	}
 	return(first_max);
 }
-int number_moves(head_a *a,a_list *b_node, head_a *b, algo_values current)
+algo_values number_moves(head_a *a,a_list *b_node, head_a *b, algo_values current)
 {
-	//count the moves for a/
-	//first you need to check the index lol but it's after
+
+	// b_node is initialized value
 	int count;
 	int size;
-	int total;
-	a_list *node;
+	//int total;
+	a_list *node; // it's a random node
 	a_list *node_a;
-	node = b -> first;
+	
+	current.rb = 0;
+	current.ra = 0;
+	current.rrb = 0;
+	current.rra = 0;
+	
+	node = b -> first; 
 	size = ft_lstsize(node);
-	//printf("size %d", size);
 	count = 0;
-	//printf("b_node -> content %d\n", b_node -> content);
-	//printf("node -> content %d\n", node -> content);
 	while (b_node != node)
 	{
 		count++;
 		node = node -> next;
 	}
-	if (count < size/2)
+	if (count <= size/2)
 		current.rb = count;
 	else if(count > size/2)
 		current.rrb = size - count + 1;
 	
-	//printf("current.rrb -- > %d\n", current.rrb);
-	//printf("current.rb -- > %d\n", current.rb);
 	node_a = get_nearest_max(b_node, a);
-	count_moves_a(node_a);
-	printf("max_node_a ---> %d\n", node_a -> content);
-	total = current.rrb + current.rb;
-	return(total);
+	current = count_moves_a(node_a, a, current);
+	//printf("max_node_a ---> %d\n", node_a -> content);
+	return(current);
+}
+
+int calc_instructions(algo_values current, algo_values next_node)
+{
+	int total_current;
+	int total_next_node;
+
+	total_current = current.rra + current.rrb + current.rb + current.ra;
+	total_next_node = next_node.rra + next_node.rrb + next_node.rb +next_node.ra;
+
+	if (total_next_node < total_current)
+		return(1);
+	else
+		return(0);
 }
 void test_instr(head_a *a,head_a *b)
 {
@@ -102,18 +140,22 @@ void test_instr(head_a *a,head_a *b)
 	a_list *start_b;
 	int numb_moves;
 	algo_values current;
-	current.rra = 0;
-	current.ra = 0;
-	current.rrb = 0;
-	current.rb = 0;
-	
-	numb_moves = 0;
+	algo_values next_node;
+
 	current.node = b -> first;
-	start_b = a -> first;
-	//now you need to make a function that counts a number of 
-	//moves
-	//add here node a cause u r gonna send it to another function in order to calculate the sum
-	numb_moves = number_moves(a, current.node, b, current);
+	start_b = b -> first;
+	current = number_moves(a, current.node, b, current);
+	while (start_b != NULL)
+	{
+		if (calc_instructions(current, number_moves(a, start_b, b, next_node)) == 1)
+			current.node = start_b;
+		start_b = start_b -> next;
+	}
+	printf("current.rrb -- > %d\n", current.rrb);
+	printf("current.rb -- > %d\n", current.rb);
+	printf("current.rra -- > %d\n", current.rra);
+	printf("current.ra -- > %d\n", current.ra);
+	// 
 	//printf("Number of moves --> %d\n", numb_moves);
 	//printf("current.node ----> %d\n", current.node -> content);
 	// also here you write a loop while 
@@ -127,5 +169,13 @@ void sort100(head_a *a,head_a *b)
 	start = a -> first;
 	median = ft_lstsize(start)/2;
 	presort(median, b, a);
+	pa(a, b); 
+	pa(a, b); 
+	pa(a, b);
+	printf("LIST B\n");
+	print_side_by_side(b);
+	printf("\n");
+	printf("LIST A\n");
+	print_side_by_side(a);
 	test_instr(a, b);
 }

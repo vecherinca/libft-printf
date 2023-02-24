@@ -6,7 +6,7 @@
 /*   By: maria <maria@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/16 23:33:36 by mklimina          #+#    #+#             */
-/*   Updated: 2023/02/21 02:57:04 by maria            ###   ########.fr       */
+/*   Updated: 2023/02/21 21:14:55 by maria            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -95,6 +95,7 @@ int main(int argc, char **argv)
 	}
 	assign_index(a);
 	pushswap(a, b, argc);
+	//print_side_by_side(a);
 	// printf("\n");
 	// printf("%s********* pile A **********\n", KCYN);	
 	// print_the_list(a);
