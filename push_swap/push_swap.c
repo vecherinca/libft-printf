@@ -6,7 +6,7 @@
 /*   By: maria <maria@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/16 23:33:36 by mklimina          #+#    #+#             */
-/*   Updated: 2023/02/21 21:14:55 by maria            ###   ########.fr       */
+/*   Updated: 2023/02/24 14:54:57 by maria            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,7 +53,7 @@ head_a *define_list_b()
 {
 	head_a *point;
 	point = malloc(sizeof(a_list));
-	a_list *head  = NULL;
+	a_list *head = NULL;
 	point -> first = head;
 	return(point);
 }
@@ -94,8 +94,8 @@ int main(int argc, char **argv)
 		exit(0);
 	}
 	assign_index(a);
-	pushswap(a, b, argc);
 	//print_side_by_side(a);
+	pushswap(a, b, argc);
 	// printf("\n");
 	// printf("%s********* pile A **********\n", KCYN);	
 	// print_the_list(a);

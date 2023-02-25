@@ -73,11 +73,11 @@ void	sort3(head_a *a);
 void	sort5(head_a *a, head_a *b);
 void	sort100(head_a *a,head_a *b);
 void	algo(head_a *a, head_a *b);
-
+void movefastest(algo_values current, head_a *a, head_a *b);
 a_list	*find_min(a_list *start);
 void	pushmin(head_a *a, int min);
 int		find_max(a_list *start);
 int		find_min_next(a_list *start, int min);
-a_list *find_max_node(a_list *start);
+a_list *find_max_nnode(a_list *start);
 
 #endif
