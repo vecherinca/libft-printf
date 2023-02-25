@@ -6,7 +6,7 @@
 /*   By: maria <maria@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/26 17:02:29 by mklimina          #+#    #+#             */
-/*   Updated: 2023/02/25 01:52:00 by maria            ###   ########.fr       */
+/*   Updated: 2023/02/26 00:31:13 by maria            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,6 +46,9 @@ algo_values count_moves_a(a_list *node_a, head_a *a, algo_values current)
 	int size;
 	a_list *starta;
 
+	current.ra = 0;
+	current.rra = 0;
+	
 	starta = a -> first;
 	size = ft_lstsize(starta);
 	//printf("SIZE//2 %d\n", size/2);
@@ -106,9 +109,7 @@ algo_values number_moves(head_a *a,a_list *b_node, head_a *b, algo_values curren
 	a_list *node_a;
 	
 	current.rb = 0;
-	current.ra = 0;
 	current.rrb = 0;
-	current.rra = 0;
 	
 	node = b -> first; 
 	size = ft_lstsize(node);
@@ -123,26 +124,26 @@ algo_values number_moves(head_a *a,a_list *b_node, head_a *b, algo_values curren
 	else if(count > size/2)
 		current.rrb = size - count + 1;
 	
-	//node_a = get_nearest_max(b_node, a);
-	//current = count_moves_a(node_a, a, current);
+	node_a = get_nearest_max(b_node, a);
+	current = count_moves_a(node_a, a, current);
 	//printf("THE CLOSEST MAX ---> %d\n", node_a -> index);
 	// printf("THE ---> %d\n", node_a -> index);
 	return(current);
 }
 
-// int calc_instructions(algo_values current, algo_values next_node)
-// {
-// 	int total_current;
-// 	int total_next_node;
+int calc_instructions(algo_values current, algo_values next_node)
+{
+	int total_current;
+	int total_next_node;
 
-// 	total_current = current.rra + current.rrb + current.rb + current.ra;
-// 	total_next_node = next_node.rra + next_node.rrb + next_node.rb +next_node.ra;
+	total_current = current.rra + current.rrb + current.rb + current.ra;
+	total_next_node = next_node.rra + next_node.rrb + next_node.rb +next_node.ra;
 
-// 	if (total_next_node < total_current)
-// 		return(1);
-// 	else
-// 		return(0);
-// }
+	if (total_next_node < total_current)
+		return(1);
+	else
+		return(0);
+}
 void test_instr(head_a *a,head_a *b)
 {
 	// here what I want to do is for every node
@@ -155,26 +156,25 @@ void test_instr(head_a *a,head_a *b)
 
 	current.node = b -> first;
 	start_b = b -> first;
-	current = number_moves(a, current.node, b, current);
+	current = number_moves(a, start_b, b, current);
+	next_node = number_moves(a, start_b->next, b, current);
 	while (start_b)
 	{
-
 		while (start_b != NULL)
 		{
 			if (calc_instructions(current, number_moves(a, start_b, b, next_node)) == 1)
 				current = next_node;
 			start_b = start_b -> next;
 		}
-		printf("LIST B\n");
-		print_index(b);
-		printf("\n");
-		printf("LIST A\n");
-		print_index(a);
-		movefastest(current, a, b);	
-		pa(a, b);
+		// printf("COMMANDS\n");
+		// printf("current.rrb -- > %d\n", current.rrb);
+		// printf("current.rb -- > %d\n", current.rb);
+		// printf("current.rra -- > %d\n", current.rra);
+		// printf("current.ra -- > %d\n", current.ra);
+		movefastest(current, a, b);
+		pa(a,b);
 		start_b = b -> first;
 	}
-
 	// 
 	//printf("Number of moves --> %d\n", numb_moves);
 	//printf("current.node ----> %d\n", current.node -> content);
@@ -190,6 +190,8 @@ void sort100(head_a *a,head_a *b)
 	median = ft_lstsize(start)/2;
 	presort(median, b, a);
 	test_instr(a, b);
-	printf("LIST A\n");
-	print_index(a);
+	// printf("LIST A\n");
+	// print_index(a);
+	// printf("LIST B\n");
+	// print_index(b);
 }
