@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   instructions_part2.c                               :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mklimina <mklimina@student.42.fr>          +#+  +:+       +#+        */
+/*   By: maria <maria@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/20 22:52:53 by mklimina          #+#    #+#             */
-/*   Updated: 2023/02/11 21:51:41 by mklimina         ###   ########.fr       */
+/*   Updated: 2023/02/26 15:18:53 by maria            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,11 +20,14 @@ void ra(head_a *heada, int flag)
 	a_list *seconda;
 	
 	starta = heada -> first;
-	finish = ft_lstlast(starta);
-	seconda = heada -> first -> next;
-	heada -> first = seconda;
-	finish -> next = starta;
-	starta -> next = NULL;
+	if(ft_lstsize(starta) > 1)
+	{
+		finish = ft_lstlast(starta);
+		seconda = heada -> first -> next;
+		heada -> first = seconda;
+		finish -> next = starta;
+		starta -> next = NULL;
+	}
 	if (flag != 0)
 		write(1, "ra\n", 3);
 }
@@ -37,13 +40,15 @@ void rb(head_a *headb, int flag)
 	a_list *startb;
 	a_list *finish;
 	a_list *seconda;
-	
 	startb = headb -> first;
-	finish = ft_lstlast(startb);
-	seconda = headb -> first -> next;
-	headb -> first = seconda;
-	finish -> next = startb;
-	startb -> next = NULL;
+	if(ft_lstsize(startb) > 1)
+	{
+		finish = ft_lstlast(startb);
+		seconda = headb -> first -> next;
+		headb -> first = seconda;
+		finish -> next = startb;
+		startb -> next = NULL;
+	}
 	if (flag != 0)
 		write(1, "rb\n", 3);
 }

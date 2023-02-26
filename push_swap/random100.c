@@ -6,7 +6,7 @@
 /*   By: maria <maria@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/26 17:02:29 by mklimina          #+#    #+#             */
-/*   Updated: 2023/02/26 00:31:13 by maria            ###   ########.fr       */
+/*   Updated: 2023/02/26 15:19:53 by maria            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -190,8 +190,8 @@ void sort100(head_a *a,head_a *b)
 	median = ft_lstsize(start)/2;
 	presort(median, b, a);
 	test_instr(a, b);
-	// printf("LIST A\n");
-	// print_index(a);
+	printf("LIST A\n");
+	print_index(a);
 	// printf("LIST B\n");
 	// print_index(b);
 }
