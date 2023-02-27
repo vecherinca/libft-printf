@@ -6,7 +6,7 @@
 /*   By: maria <maria@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/20 22:52:53 by mklimina          #+#    #+#             */
-/*   Updated: 2023/02/26 15:18:53 by maria            ###   ########.fr       */
+/*   Updated: 2023/02/27 01:04:04 by maria            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -68,13 +68,15 @@ void rra(head_a *heada, int flag)
 	a_list *starta; 
 	a_list *finish;
 	a_list *prev;
-		
 	starta = heada -> first;
-	prev = findsecondlastnode(starta);
-	finish = ft_lstlast(starta);
-	heada -> first = finish;
-	prev -> next = NULL;
-	finish -> next = starta;
+	if(ft_lstsize(starta) > 1)
+	{
+		prev = findsecondlastnode(starta);
+		finish = ft_lstlast(starta);
+		heada -> first = finish;
+		prev -> next = NULL;
+		finish -> next = starta;
+	}
 	if (flag != 0)
 		write(1, "rra\n", 4);
 }
@@ -86,13 +88,15 @@ void rrb(head_a *headb, int flag)
 	a_list *startb;
 	a_list *finish;
 	a_list *prev;
-		
 	startb = headb -> first;
-	prev = findsecondlastnode(startb);
-	finish = ft_lstlast(startb);
-	headb -> first = finish;
-	prev -> next = NULL;
-	finish -> next = startb;
+	if(ft_lstsize(startb) > 1)
+	{
+		prev = findsecondlastnode(startb);
+		finish = ft_lstlast(startb);
+		headb -> first = finish;
+		prev -> next = NULL;
+		finish -> next = startb;
+	}
 	if (flag != 0)
 		write(1, "rrb\n", 4);
 }

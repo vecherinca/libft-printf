@@ -6,7 +6,7 @@
 /*   By: maria <maria@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/26 17:02:29 by mklimina          #+#    #+#             */
-/*   Updated: 2023/02/26 15:19:53 by maria            ###   ########.fr       */
+/*   Updated: 2023/02/27 01:20:14 by maria            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -62,7 +62,7 @@ algo_values count_moves_a(a_list *node_a, head_a *a, algo_values current)
 	if (count <= size/2)
 		current.ra = count;
 	else if(count > size/2)
-		current.rra = size - count + 1;
+		current.rra = size - count;
 	return(current);
 }
 a_list *find_max_nnode(a_list *start)
@@ -91,10 +91,7 @@ a_list *get_nearest_max(a_list *b_node, head_a *a)
 	while (start_a != NULL)
 	{
 		if ((start_a -> index > b_node -> index) && (start_a -> index < first_max -> index))
-		{
 			first_max = start_a;
-			//diff = (b_node -> index - start_a -> index);
-		}
 		start_a = start_a -> next;
 	}
 	return(first_max);
@@ -122,7 +119,7 @@ algo_values number_moves(head_a *a,a_list *b_node, head_a *b, algo_values curren
 	if (count <= size/2)
 		current.rb = count;
 	else if(count > size/2)
-		current.rrb = size - count + 1;
+		current.rrb = size - count;
 	
 	node_a = get_nearest_max(b_node, a);
 	current = count_moves_a(node_a, a, current);
@@ -156,21 +153,28 @@ void test_instr(head_a *a,head_a *b)
 
 	current.node = b -> first;
 	start_b = b -> first;
-	current = number_moves(a, start_b, b, current);
-	next_node = number_moves(a, start_b->next, b, current);
 	while (start_b)
 	{
+		current = number_moves(a, start_b, b, current);
 		while (start_b != NULL)
 		{
-			if (calc_instructions(current, number_moves(a, start_b, b, next_node)) == 1)
+			next_node = number_moves(a, start_b, b, next_node);
+			if (calc_instructions(current, next_node) == 1)
 				current = next_node;
 			start_b = start_b -> next;
 		}
-		// printf("COMMANDS\n");
-		// printf("current.rrb -- > %d\n", current.rrb);
-		// printf("current.rb -- > %d\n", current.rb);
-		// printf("current.rra -- > %d\n", current.rra);
-		// printf("current.ra -- > %d\n", current.ra);
+		printf("******************* %s\n", KMAG);
+		printf("LIST A\n");
+		print_index(a);
+		printf("******************* %s\n", KRED);
+		printf("LIST B\n");
+		print_index(b);
+		printf("******************* %s\n", KBLU);
+		printf("EACH ITERATION FOR CURRENT NODE\n");
+		printf("current.rrb -- > %d\n", current.rrb);
+		printf("current.rb -- > %d\n", current.rb);
+		printf("current.rra -- > %d\n", current.rra);
+		printf("current.ra -- > %d\n", current.ra);
 		movefastest(current, a, b);
 		pa(a,b);
 		start_b = b -> first;
