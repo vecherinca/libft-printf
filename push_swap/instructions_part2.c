@@ -6,7 +6,7 @@
 /*   By: maria <maria@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/20 22:52:53 by mklimina          #+#    #+#             */
-/*   Updated: 2023/02/27 01:04:04 by maria            ###   ########.fr       */
+/*   Updated: 2023/02/27 03:24:14 by maria            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,9 +27,9 @@ void ra(head_a *heada, int flag)
 		heada -> first = seconda;
 		finish -> next = starta;
 		starta -> next = NULL;
+		if (flag != 0)
+			write(1, "ra\n", 3);
 	}
-	if (flag != 0)
-		write(1, "ra\n", 3);
 }
 
 /*rb (rotate b): Shift up all elements of stack b by 1.
@@ -48,9 +48,9 @@ void rb(head_a *headb, int flag)
 		headb -> first = seconda;
 		finish -> next = startb;
 		startb -> next = NULL;
+		if (flag != 0)
+			write(1, "rb\n", 3);
 	}
-	if (flag != 0)
-		write(1, "rb\n", 3);
 }
 
 /**rr : ra and rb at the same time.**/
@@ -76,9 +76,9 @@ void rra(head_a *heada, int flag)
 		heada -> first = finish;
 		prev -> next = NULL;
 		finish -> next = starta;
+		if (flag != 0)
+			write(1, "rra\n", 4);
 	}
-	if (flag != 0)
-		write(1, "rra\n", 4);
 }
 
 /**rrb (reverse rotate b): Shift down all elements of stack b by 1.
@@ -96,9 +96,9 @@ void rrb(head_a *headb, int flag)
 		headb -> first = finish;
 		prev -> next = NULL;
 		finish -> next = startb;
+		if (flag != 0)
+			write(1, "rrb\n", 4);
 	}
-	if (flag != 0)
-		write(1, "rrb\n", 4);
 }
 
 /*rrr : rra and rrb at the same time.*/

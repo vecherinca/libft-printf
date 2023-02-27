@@ -6,7 +6,7 @@
 /*   By: maria <maria@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/26 17:02:29 by mklimina          #+#    #+#             */
-/*   Updated: 2023/02/27 01:20:14 by maria            ###   ########.fr       */
+/*   Updated: 2023/02/27 02:07:14 by maria            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -163,18 +163,6 @@ void test_instr(head_a *a,head_a *b)
 				current = next_node;
 			start_b = start_b -> next;
 		}
-		printf("******************* %s\n", KMAG);
-		printf("LIST A\n");
-		print_index(a);
-		printf("******************* %s\n", KRED);
-		printf("LIST B\n");
-		print_index(b);
-		printf("******************* %s\n", KBLU);
-		printf("EACH ITERATION FOR CURRENT NODE\n");
-		printf("current.rrb -- > %d\n", current.rrb);
-		printf("current.rb -- > %d\n", current.rb);
-		printf("current.rra -- > %d\n", current.rra);
-		printf("current.ra -- > %d\n", current.ra);
 		movefastest(current, a, b);
 		pa(a,b);
 		start_b = b -> first;
@@ -185,17 +173,51 @@ void test_instr(head_a *a,head_a *b)
 	// also here you write a loop while 
 	// where you compare lol
 }
+void push_zero(head_a *a, a_list *zero)
+{
+	int size;
+	int count;
+	algo_values go_zero;
+	a_list *starta;
 
+	starta = a -> first;
+	size = ft_lstsize(starta);
+	count = 0;
+	go_zero.ra = 0;
+	go_zero.rra = 0;
+	while (starta != zero)
+	{
+		count++;
+		starta = starta -> next;
+	}
+	if (count <= size/2)
+		go_zero.ra = count;
+	else if(count > size/2)
+		go_zero.rra = size - count;
+	
+	while (go_zero.rra != 0)
+	{
+		rra(a, 1);
+		go_zero.rra--;
+	}
+	while (go_zero.ra != 0)
+	{
+		ra(a, 1);
+		go_zero.ra--;
+	}
+}
 void sort100(head_a *a,head_a *b)
 {
 	int median;
+	a_list *zero;
 	a_list *start;
+
 	start = a -> first;
+	zero = find_min(start);
 	median = ft_lstsize(start)/2;
 	presort(median, b, a);
 	test_instr(a, b);
-	printf("LIST A\n");
-	print_index(a);
-	// printf("LIST B\n");
-	// print_index(b);
+	push_zero(a, zero);
+	// printf("LIST A %s\n", KMAG);
+	// print_index(a);
 }

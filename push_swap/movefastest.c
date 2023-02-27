@@ -6,7 +6,7 @@
 /*   By: maria <maria@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/12 15:10:56 by mklimina          #+#    #+#             */
-/*   Updated: 2023/02/25 02:17:19 by maria            ###   ########.fr       */
+/*   Updated: 2023/02/27 03:22:48 by maria            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,6 +14,16 @@
 
 void movefastest(algo_values current, head_a *a, head_a *b)
 {
+        // if (current.ra == current.rb)
+        // {
+        //     int rr_val;
+        //     rr_val = current.ra;
+        //     while (rr_val != 0)
+        //     {
+        //         rr(a, b);
+        //         rr_val--;
+        //     }
+        // }
         while (current.ra != 0)
         {
             ra(a, 1);
