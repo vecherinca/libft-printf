@@ -6,7 +6,7 @@
 /*   By: maria <maria@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/26 17:02:29 by mklimina          #+#    #+#             */
-/*   Updated: 2023/02/28 02:01:14 by maria            ###   ########.fr       */
+/*   Updated: 2023/02/28 15:35:40 by maria            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,7 +35,7 @@ void presort(int median, head_a *b, head_a *a)
 		if (start -> index != maximum)
 			pushto_median(start, b, a, median);
 		else
-			rra(a, 1);
+			ra(a, 1);
 		start = a->first;
 	}
 }
