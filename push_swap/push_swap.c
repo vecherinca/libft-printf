@@ -6,7 +6,7 @@
 /*   By: maria <maria@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/16 23:33:36 by mklimina          #+#    #+#             */
-/*   Updated: 2023/02/24 14:54:57 by maria            ###   ########.fr       */
+/*   Updated: 2023/02/28 19:24:25 by maria            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,6 +25,8 @@ head_a *define_list_a(int argc, char **argv)
 	a_list *head;
 	head_a *point;
 	
+	if (argc == 1)
+		exit(0);
 	int i = 1;
 	head = NULL;
 	point = malloc(sizeof(head_a));
@@ -68,8 +70,10 @@ void pushswap(head_a *a, head_a *b, int argc)
 		sa(a);
 	if (number == 3)
 		sort3(a);
+	if (number == 4)
+		sort5(a, b, 4);
 	if (number == 5)
-		sort5(a, b);
+		sort5(a, b, 5);
 	if (number > 5)
 		sort100(a, b);
 }
@@ -88,35 +92,15 @@ int main(int argc, char **argv)
 	if(!b)
 		return(0);
 	check = check_doubl(a);
+	//check if sorted check if double
 	if (check == 0)
 	{
 		write(2, "Error\n", 6);
 		exit(0);
 	}
 	assign_index(a);
-	//print_side_by_side(a);
 	pushswap(a, b, argc);
-	// printf("\n");
-	// printf("%s********* pile A **********\n", KCYN);	
-	// print_the_list(a);
-	//printf("%s****** content vs indexes ********\n", KRED);
-	///print_side_by_side(a);
-	
-	// //a_list *start = a -> first;
-	// // while (start -> next != NULL)
-	// // {
-	// // 	//printf("index --- > %d\n", start -> content);
-	// // 	start = start -> next;
-	// // }
-	// printf("%s****** COMMANDS ********\n", KGRN);
-	// printf("%s********* pile A **********\n", KCYN);
-	// print_the_list(a);
-	// printf("%s********* pile B **********\n", KRED);
-	// print_the_list(b);
-	// printf("%s****** END COMMANDS ********\n", KGRN);
 	// printf("%s********* pile A UPD**********\n", KRED);
 	// print_the_list(a);
-	// printf("%s****** PILE B ********\n", KYEL);
-	// print_the_list(b);
 }
 

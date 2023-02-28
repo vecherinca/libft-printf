@@ -3,15 +3,15 @@
 /*                                                        :::      ::::::::   */
 /*   random5.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mklimina <mklimina@student.42.fr>          +#+  +:+       +#+        */
+/*   By: maria <maria@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/24 16:21:30 by mklimina          #+#    #+#             */
-/*   Updated: 2023/02/12 21:42:01 by mklimina         ###   ########.fr       */
+/*   Updated: 2023/03/01 00:29:07 by maria            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
-void sort5(head_a *a, head_a *b)
+void sort5(head_a *a, head_a *b, int flag)
 {
 	a_list *start;
 	a_list *min;
@@ -25,12 +25,20 @@ void sort5(head_a *a, head_a *b)
 	else
 		temp = min -> next;
 	pb(a, b);
-	min = find_min(temp);
-	pushmin(a, min -> content);
-	pb(a, b);	
-	sort3(a);
-	pa(a, b);
-	pa(a, b);
+	if (flag == 5)
+	{
+		min = find_min(temp);
+		pushmin(a, min -> content);
+		pb(a, b);	
+		sort3(a);
+		pa(a, b);
+		pa(a, b);
+	}
+	if (flag == 4)
+	{
+		sort3(a);
+		pa(a, b);
+	}
 }
 
 a_list *find_min(a_list *start)
@@ -50,13 +58,26 @@ a_list *find_min(a_list *start)
 void pushmin(head_a *a, int min)
 {
 	a_list *start;
+	int count;
+	int len;
+
 	
-	
+	count = 0;
+	start = a -> first;
+	len = ft_lstsize(start);
+	while (start -> content != min)
+	{
+		count++;
+		start = start->next;
+	}
 	start = a -> first;
 	while (start -> content != min)
 	{
-		rra(a, 1);
-		start = a -> first;
+		if (count <= len/2)
+			ra(a, 1);
+		if (count > len/2)
+			rra(a, 1);
+		start = a->first;
 	}
 	// printf("END\n");
 }

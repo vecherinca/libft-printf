@@ -17,7 +17,6 @@ typedef struct a_list
 {
 	int				content;
 	int				index;
-	int 			next_biggest;
 	struct a_list	*next;
 }a_list;
 
@@ -33,10 +32,12 @@ typedef struct algo_values
 	int rrb;
 	int ra;
 	int rb;
+	int rr;
+	int rrr;
 
 }algo_values;
 
-int		ft_atoi(const char *str);
+int		ft_atoi(char *str);
 int		ft_isdigit(int c);
 
 int		ft_lstsize(a_list *lst);
@@ -59,8 +60,8 @@ void 	rra(head_a *heada, int flag);
 int		checkthearg(char *arg);
 int		ft_strlen(char *s);
 int		check_doubl(head_a *heada);
-int		properint(char *arg);
-
+int		ft_strcmp(char *s1, char *s2);
+char	*ft_itoa(int n);
 void	print_the_list(head_a *head);
 void	print_side_by_side(head_a *head);
 void	print_index(head_a *head);
@@ -70,7 +71,7 @@ void	pushswap(head_a *a, head_a *b, int argc);
 //void	check_sort(head_a *heada);
 void	assign_index(head_a *a);
 void	sort3(head_a *a);
-void	sort5(head_a *a, head_a *b);
+void	sort5(head_a *a, head_a *b, int flag);
 void	sort100(head_a *a,head_a *b);
 void	algo(head_a *a, head_a *b);
 void movefastest(algo_values current, head_a *a, head_a *b);
