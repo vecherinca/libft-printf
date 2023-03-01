@@ -6,38 +6,41 @@
 /*   By: maria <maria@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/21 23:37:38 by mklimina          #+#    #+#             */
-/*   Updated: 2023/03/01 02:56:36 by maria            ###   ########.fr       */
+/*   Updated: 2023/03/01 17:34:25 by maria            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
-int checkthearg(char *arg)
-{	
-	char *test;
+int	checkthearg(char *arg)
+{
+	char	*test;
+
 	test = ft_itoa(ft_atoi(arg));
 	if (ft_strcmp(test, arg) != 0)
-		return(0);
-	return(1);
+		return (0);
+	return (1);
 }
 
-int is_sorted(head_a *a)
+int	is_sorted(head_a *a)
 {
-	a_list *starta;
-	starta = a -> first;
+	a_list	*starta;
 
-	while (starta -> next!= NULL)
+	starta = a->first;
+	while (starta->next != NULL)
 	{
-		if (starta -> content > starta -> next -> content && starta -> content != starta -> next -> content)
-			return(0);
-		starta = starta -> next;	
+		if (starta->content > starta->next->content
+			&& (starta->content != starta->next->content))
+			return (0);
+		starta = starta->next;
 	}
-	return(1);
+	return (1);
 }
 
-int check_the_stack(head_a *a)
+int	check_the_stack(head_a *a)
 {
-	int check;
+	int	check;
+
 	check = check_doubl(a);
 	if (check == 0)
 	{
@@ -45,5 +48,5 @@ int check_the_stack(head_a *a)
 		exit(0);
 	}
 	if (is_sorted(a) == 1)
-		exit(0);	
+		exit(0);
 }
