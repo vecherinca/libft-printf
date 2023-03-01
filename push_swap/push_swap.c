@@ -6,7 +6,7 @@
 /*   By: maria <maria@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/16 23:33:36 by mklimina          #+#    #+#             */
-/*   Updated: 2023/02/28 19:24:25 by maria            ###   ########.fr       */
+/*   Updated: 2023/03/01 02:13:33 by maria            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,11 +15,7 @@
 
 #include <stdlib.h>
 #include <stdio.h>
-/*
-what to fix: 1)write standart error
-2) if a.out is empty there is an error
-3)./a.out 8 7 6 3 1 ---> 13 commands
-*/
+
 head_a *define_list_a(int argc, char **argv)
 {
 	a_list *head;
@@ -77,10 +73,20 @@ void pushswap(head_a *a, head_a *b, int argc)
 	if (number > 5)
 		sort100(a, b);
 }
-/*
-./a.out 5 1000 8 0 -1
-for this case it's giving 13 fix that
-*/
+
+int is_sorted(head_a *a)
+{
+	a_list *starta;
+	starta = a -> first;
+
+	while (starta -> next!= NULL)
+	{
+		if (starta -> content > starta -> next -> content)
+			return(0);
+		starta = starta -> next;	
+	}
+	return(1);
+}
 int main(int argc, char **argv)
 {
 	head_a *a; 
@@ -91,8 +97,9 @@ int main(int argc, char **argv)
 	b = define_list_b(); 
 	if(!b)
 		return(0);
+	if (is_sorted(a) == 1)
+		exit(0);	
 	check = check_doubl(a);
-	//check if sorted check if double
 	if (check == 0)
 	{
 		write(2, "Error\n", 6);
