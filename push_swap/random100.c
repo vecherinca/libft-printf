@@ -6,7 +6,7 @@
 /*   By: maria <maria@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/26 17:02:29 by mklimina          #+#    #+#             */
-/*   Updated: 2023/02/28 15:35:40 by maria            ###   ########.fr       */
+/*   Updated: 2023/03/01 03:02:58 by maria            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,12 +48,9 @@ algo_values count_moves_a(a_list *node_a, head_a *a, algo_values current)
 
 	current.ra = 0;
 	current.rra = 0;
-	
 	starta = a -> first;
 	size = ft_lstsize(starta);
-	//printf("SIZE//2 %d\n", size/2);
 	count = 0;
-	//printf("First node of A --> %d\n", starta -> index);
 	while (node_a != starta)
 	{
 		count++;
@@ -98,16 +95,13 @@ a_list *get_nearest_max(a_list *b_node, head_a *a)
 }
 algo_values number_moves(head_a *a,a_list *b_node, head_a *b, algo_values current)
 {
-	// b_node is initialized value
 	int count;
 	int size;
-	//int total;
-	a_list *node; // it's a random node
+	a_list *node; 
 	a_list *node_a;
 	
 	current.rb = 0;
 	current.rrb = 0;
-	
 	node = b -> first; 
 	size = ft_lstsize(node);
 	count = 0;
@@ -120,11 +114,8 @@ algo_values number_moves(head_a *a,a_list *b_node, head_a *b, algo_values curren
 		current.rb = count;
 	else if(count > size/2)
 		current.rrb = size - count;
-	
 	node_a = get_nearest_max(b_node, a);
 	current = count_moves_a(node_a, a, current);
-	//printf("THE CLOSEST MAX ---> %d\n", node_a -> index);
-	// printf("THE ---> %d\n", node_a -> index);
 	return(current);
 }
 
@@ -143,8 +134,6 @@ int calc_instructions(algo_values current, algo_values next_node)
 }
 void test_instr(head_a *a,head_a *b)
 {
-	// here what I want to do is for every node
-	// write the number of functions
 	a_list *start_a;
 	a_list *start_b;
 	int numb_moves;
@@ -167,11 +156,6 @@ void test_instr(head_a *a,head_a *b)
 		pa(a,b);
 		start_b = b -> first;
 	}
-	// 
-	//printf("Number of moves --> %d\n", numb_moves);
-	//printf("current.node ----> %d\n", current.node -> content);
-	// also here you write a loop while 
-	// where you compare lol
 }
 void push_zero(head_a *a, a_list *zero)
 {
@@ -218,6 +202,4 @@ void sort100(head_a *a,head_a *b)
 	presort(median, b, a);
 	test_instr(a, b);
 	push_zero(a, zero);
-	// printf("LIST A %s\n", KMAG);
-	// print_index(a);
 }

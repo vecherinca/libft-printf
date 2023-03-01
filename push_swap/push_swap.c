@@ -6,7 +6,7 @@
 /*   By: maria <maria@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/16 23:33:36 by mklimina          #+#    #+#             */
-/*   Updated: 2023/03/01 02:13:33 by maria            ###   ########.fr       */
+/*   Updated: 2023/03/01 02:58:35 by maria            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,8 +21,6 @@ head_a *define_list_a(int argc, char **argv)
 	a_list *head;
 	head_a *point;
 	
-	if (argc == 1)
-		exit(0);
 	int i = 1;
 	head = NULL;
 	point = malloc(sizeof(head_a));
@@ -74,37 +72,17 @@ void pushswap(head_a *a, head_a *b, int argc)
 		sort100(a, b);
 }
 
-int is_sorted(head_a *a)
-{
-	a_list *starta;
-	starta = a -> first;
-
-	while (starta -> next!= NULL)
-	{
-		if (starta -> content > starta -> next -> content)
-			return(0);
-		starta = starta -> next;	
-	}
-	return(1);
-}
 int main(int argc, char **argv)
 {
 	head_a *a; 
-	int check;
-	//int check_srt;
 	head_a *b;
+	if (argc == 1)
+		exit(0);
 	a = define_list_a(argc, argv);
 	b = define_list_b(); 
 	if(!b)
 		return(0);
-	if (is_sorted(a) == 1)
-		exit(0);	
-	check = check_doubl(a);
-	if (check == 0)
-	{
-		write(2, "Error\n", 6);
-		exit(0);
-	}
+	check_the_stack(a);
 	assign_index(a);
 	pushswap(a, b, argc);
 	// printf("%s********* pile A UPD**********\n", KRED);
