@@ -6,7 +6,7 @@
 /*   By: maria <maria@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/16 23:33:36 by mklimina          #+#    #+#             */
-/*   Updated: 2023/03/01 02:58:35 by maria            ###   ########.fr       */
+/*   Updated: 2023/03/01 15:02:19 by maria            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,33 +16,35 @@
 #include <stdlib.h>
 #include <stdio.h>
 
+a_list *create_list(int argc, char **argv)
+{
+    a_list *head = NULL;
+    int i = 1;
+    while (i < argc)
+    {
+        if (checkthearg(argv[i]) == 0)
+        {
+            write(2, "Error\n", 6);
+            exit(0);
+        }
+        a_list *temp = malloc(sizeof(a_list));
+        if (!temp)
+            return NULL;
+        temp->content = ft_atoi(argv[i]);
+        temp->next = NULL;
+        ft_lstadd_back(&head, temp);
+        i++;
+    }
+    return head;
+}
+
 head_a *define_list_a(int argc, char **argv)
 {
-	a_list *head;
-	head_a *point;
-	
-	int i = 1;
-	head = NULL;
-	point = malloc(sizeof(head_a));
-	if(!point)
-		return(NULL); 
-	while (i < argc)
-	{
-		if (checkthearg(argv[i]) == 0)
-		{
-				write(1, "Error\n", 6);
-				exit(0);
-		}
-		a_list *temp = malloc(sizeof(a_list));
-		if(!temp)
-			return(NULL);
-		temp -> content = ft_atoi(argv[i]);
-		temp -> next = NULL;
-		ft_lstadd_back(&head, temp);
-		i++;
-	}
-	point -> first = head;
-	return (point);
+    head_a *point = malloc(sizeof(head_a));
+    if (!point)
+        return NULL;
+    point->first = create_list(argc, argv);
+    return point;
 }
 
 head_a *define_list_b()

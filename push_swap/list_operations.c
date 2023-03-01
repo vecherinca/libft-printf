@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   list_operations.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mklimina <mklimina@student.42.fr>          +#+  +:+       +#+        */
+/*   By: maria <maria@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/18 21:21:53 by mklimina          #+#    #+#             */
-/*   Updated: 2023/01/23 23:07:41 by mklimina         ###   ########.fr       */
+/*   Updated: 2023/03/01 15:02:02 by maria            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,7 +50,6 @@ void	ft_lstadd_back(a_list **lst, a_list *new)
 
 a_list	*ft_lstlast(a_list *lst)
 {
-	//a_list	*prev;
 	if (!lst)
 		return (NULL);
 	while (lst -> next != NULL)
@@ -93,23 +92,3 @@ int check_doubl(head_a *heada)
 	}
 	return(1);
 }
-
-// void check_sort(head_a *heada)
-// {
-// 	a_list *start;
-// 	a_list *temp;
-// 	int count;
-// 	count = 0;
-// 	start = heada -> first;
-// 	while (start -> next != NULL)
-// 	{
-// 		printf("node value %d", start -> content);
-// 		start = start -> next;
-// 		// temp = start -> next;
-// 		// if (start->content < temp -> content) {
-//         //         count++;
-// 		// 		return(0);
-// 		// 	}
-// 		// temp = temp -> next;
-// 	}
-// 	}
