@@ -6,142 +6,22 @@
 /*   By: maria <maria@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/26 17:02:29 by mklimina          #+#    #+#             */
-/*   Updated: 2023/03/01 03:02:58 by maria            ###   ########.fr       */
+/*   Updated: 2023/03/02 00:43:27 by maria            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
-void pushto_median(a_list *start, head_a *b, head_a *a, int median)
+void	test_instr(head_a *a, head_a *b)
 {
-	if (start -> index <= median)
-	{
-		pb(a, b);
-		rb(b, 1);
-	}
-	else
-		pb(a, b);
-}
+	a_list		*start_a;
+	a_list		*start_b;
+	int			numb_moves;
+	algo_values	current;
+	algo_values	next_node;
 
-void presort(int median, head_a *b, head_a *a)
-{
-	int maximum;
-	a_list *start;
-	start = a->first;
-	//i think it's -1 for sure but check lol
-	maximum = ft_lstsize(start) - 1;
-	while (start -> next != NULL)
-	{
-		if (start -> index != maximum)
-			pushto_median(start, b, a, median);
-		else
-			ra(a, 1);
-		start = a->first;
-	}
-}
-//je sais pas si c marche comme je veux
-algo_values count_moves_a(a_list *node_a, head_a *a, algo_values current)
-{
-	int count;
-	int size;
-	a_list *starta;
-
-	current.ra = 0;
-	current.rra = 0;
-	starta = a -> first;
-	size = ft_lstsize(starta);
-	count = 0;
-	while (node_a != starta)
-	{
-		count++;
-		starta = starta -> next;
-	}
-	if (count <= size/2)
-		current.ra = count;
-	else if(count > size/2)
-		current.rra = size - count;
-	return(current);
-}
-a_list *find_max_nnode(a_list *start)
-{
-	a_list *max;
-	max = start;
-	while (start != NULL)
-	{
-		if (start -> content > max -> content)
-			max = start;
-		start = start -> next;
-	}
-	return(max);
-}
-a_list *get_nearest_max(a_list *b_node, head_a *a)
-{
-	int diff;
-	a_list *start_a;
-	a_list *first_max;
-	int max;
-
-	start_a = a->first;
-	//max = find_max(start_a);
-	first_max = find_max_nnode(start_a);
-	//printf
-	while (start_a != NULL)
-	{
-		if ((start_a -> index > b_node -> index) && (start_a -> index < first_max -> index))
-			first_max = start_a;
-		start_a = start_a -> next;
-	}
-	return(first_max);
-}
-algo_values number_moves(head_a *a,a_list *b_node, head_a *b, algo_values current)
-{
-	int count;
-	int size;
-	a_list *node; 
-	a_list *node_a;
-	
-	current.rb = 0;
-	current.rrb = 0;
-	node = b -> first; 
-	size = ft_lstsize(node);
-	count = 0;
-	while (b_node != node)
-	{
-		count++;
-		node = node -> next;
-	}
-	if (count <= size/2)
-		current.rb = count;
-	else if(count > size/2)
-		current.rrb = size - count;
-	node_a = get_nearest_max(b_node, a);
-	current = count_moves_a(node_a, a, current);
-	return(current);
-}
-
-int calc_instructions(algo_values current, algo_values next_node)
-{
-	int total_current;
-	int total_next_node;
-
-	total_current = current.rra + current.rrb + current.rb + current.ra;
-	total_next_node = next_node.rra + next_node.rrb + next_node.rb +next_node.ra;
-
-	if (total_next_node < total_current)
-		return(1);
-	else
-		return(0);
-}
-void test_instr(head_a *a,head_a *b)
-{
-	a_list *start_a;
-	a_list *start_b;
-	int numb_moves;
-	algo_values current;
-	algo_values next_node;
-
-	current.node = b -> first;
-	start_b = b -> first;
+	current.node = b->first;
+	start_b = b->first;
 	while (start_b)
 	{
 		current = number_moves(a, start_b, b, current);
@@ -150,35 +30,16 @@ void test_instr(head_a *a,head_a *b)
 			next_node = number_moves(a, start_b, b, next_node);
 			if (calc_instructions(current, next_node) == 1)
 				current = next_node;
-			start_b = start_b -> next;
+			start_b = start_b->next;
 		}
 		movefastest(current, a, b);
-		pa(a,b);
-		start_b = b -> first;
+		pa(a, b);
+		start_b = b->first;
 	}
 }
-void push_zero(head_a *a, a_list *zero)
-{
-	int size;
-	int count;
-	algo_values go_zero;
-	a_list *starta;
 
-	starta = a -> first;
-	size = ft_lstsize(starta);
-	count = 0;
-	go_zero.ra = 0;
-	go_zero.rra = 0;
-	while (starta != zero)
-	{
-		count++;
-		starta = starta -> next;
-	}
-	if (count <= size/2)
-		go_zero.ra = count;
-	else if(count > size/2)
-		go_zero.rra = size - count;
-	
+void	zero_zero(algo_values go_zero, head_a *a)
+{
 	while (go_zero.rra != 0)
 	{
 		rra(a, 1);
@@ -190,15 +51,40 @@ void push_zero(head_a *a, a_list *zero)
 		go_zero.ra--;
 	}
 }
-void sort100(head_a *a,head_a *b)
-{
-	int median;
-	a_list *zero;
-	a_list *start;
 
-	start = a -> first;
+void	push_zero(head_a *a, a_list *zero)
+{
+	int			size;
+	int			count;
+	algo_values	go_zero;
+	a_list		*starta;
+
+	starta = a->first;
+	size = ft_lstsize(starta);
+	count = 0;
+	go_zero.ra = 0;
+	go_zero.rra = 0;
+	while (starta != zero)
+	{
+		count++;
+		starta = starta->next;
+	}
+	if (count <= size / 2)
+		go_zero.ra = count;
+	else if (count > size / 2)
+		go_zero.rra = size - count;
+	zero_zero(go_zero, a);
+}
+
+void	sort100(head_a *a, head_a *b)
+{
+	int		median;
+	a_list	*zero;
+	a_list	*start;
+
+	start = a->first;
 	zero = find_min(start);
-	median = ft_lstsize(start)/2;
+	median = ft_lstsize(start) / 2;
 	presort(median, b, a);
 	test_instr(a, b);
 	push_zero(a, zero);

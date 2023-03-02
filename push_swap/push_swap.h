@@ -4,6 +4,7 @@
 #include <stdlib.h>
 #include <stdio.h>
 #include <unistd.h>
+
 #define KNRM  "\x1B[0m"
 #define KRED  "\x1B[31m"
 #define KGRN  "\x1B[32m"
@@ -37,49 +38,49 @@ typedef struct algo_values
 
 }algo_values;
 
-int		ft_atoi(char *str);
-int		ft_isdigit(int c);
+int			ft_atoi(char *str);
+int			ft_isdigit(int c);
 
-int		ft_lstsize(a_list *lst);
-void	ft_lstadd_back(a_list **lst, a_list *new);
-a_list	*ft_lstlast(a_list *lst);
-a_list	*findsecondlastnode(a_list *head);
+int			ft_lstsize(a_list *lst);
+void		ft_lstadd_back(a_list **lst, a_list *new);
+a_list		*ft_lstlast(a_list *lst);
+a_list		*findsecondlastnode(a_list *head);
 
-void	sa(head_a *head);
-void	sb(head_a *head);
-void	ss(head_a *heada, head_a *headb);
-void	pb(head_a *heada, head_a *headb);
-void	pa(head_a *heada, head_a *headb);
-void	ra(head_a *heada, int flag);
-void	rb(head_a *headb, int flag);
-void 	rr(head_a *heada, head_a *headb);
-void	rrb(head_a *headb, int flag);
-void	rrr(head_a *heada, head_a *headb);
-void 	rra(head_a *heada, int flag);
+void		sa(head_a *head);
+void		sb(head_a *head);
+void		ss(head_a *heada, head_a *headb);
+void		pb(head_a *heada, head_a *headb);
+void		pa(head_a *heada, head_a *headb);
+void		ra(head_a *heada, int flag);
+void		rb(head_a *headb, int flag);
+void 		rr(head_a *heada, head_a *headb);
+void		rrb(head_a *headb, int flag);
+void		rrr(head_a *heada, head_a *headb);
+void 		rra(head_a *heada, int flag);
 
-int		checkthearg(char *arg);
-int		check_the_stack(head_a *a);
-int		ft_strlen(char *s);
-int		check_doubl(head_a *heada);
-int		ft_strcmp(char *s1, char *s2);
-char	*ft_itoa(int n);
-void	print_the_list(head_a *head);
-void	print_side_by_side(head_a *head);
-void	print_index(head_a *head);
-
-void	pushswap(head_a *a, head_a *b, int argc);
-
-//void	check_sort(head_a *heada);
-void	assign_index(head_a *a);
-void	sort3(head_a *a);
-void	sort5(head_a *a, head_a *b, int flag);
-void	sort100(head_a *a,head_a *b);
-void	algo(head_a *a, head_a *b);
-void movefastest(algo_values current, head_a *a, head_a *b);
-a_list	*find_min(a_list *start);
-void	pushmin(head_a *a, int min);
-int		find_max(a_list *start);
-int		find_min_next(a_list *start, int min);
-a_list *find_max_nnode(a_list *start);
+int			checkthearg(char *arg);
+int			check_the_stack(head_a *a);
+int			ft_strlen(char *s);
+int			check_doubl(head_a *heada);
+int			ft_strcmp(char *s1, char *s2);
+char		*ft_itoa(int n);
+a_list		*find_max_nnode(a_list *start);
+void		pushswap(head_a *a, head_a *b, int argc);
+void		pushto_median(a_list *start, head_a *b, head_a *a, int median);
+void		presort(int median, head_a *b, head_a *a);
+algo_values count_moves_a(a_list *node_a, head_a *a, algo_values current);
+a_list *get_nearest_max(a_list *b_node, head_a *a);
+algo_values number_moves(head_a *a, a_list *b_node, head_a *b, algo_values current);
+int calc_instructions(algo_values current, algo_values next_node);
+void		assign_index(head_a *a);
+void		sort3(head_a *a);
+void		sort5(head_a *a, head_a *b, int flag);
+void		sort100(head_a *a,head_a *b);
+void		movefastest(algo_values current, head_a *a, head_a *b);
+a_list		*find_min(a_list *start);
+void		pushmin(head_a *a, int min);
+int			find_max(a_list *start);
+int			find_min_next(a_list *start, int min);
+a_list 		*find_max_nnode(a_list *start);
 
 #endif

@@ -6,7 +6,7 @@
 /*   By: maria <maria@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/17 18:11:19 by mklimina          #+#    #+#             */
-/*   Updated: 2023/02/28 23:43:53 by maria            ###   ########.fr       */
+/*   Updated: 2023/03/02 01:37:46 by maria            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,36 +58,28 @@ int	ft_strlen(char *s)
 	return (i);
 }
 
-void print_the_list(head_a *head)
+int	ft_strcmp(char *s1, char *s2)
 {
-	a_list *start;
-	start = head -> first;
-	while(start != NULL)
-	{	
-		printf("%d\n", start -> content);
-        start = start -> next;
+	int	i;
+
+	i = 0;
+	while ((s1[i] != '\0' && s2[i] != '\0') && (s1[i] == s2[i]))
+	{
+			i++;
 	}
+	return (s1[i] - s2[i]);
 }
 
-void print_index(head_a *head)
+a_list	*find_max_nnode(a_list *start)
 {
-	a_list *start;
-	start = head -> first;
-	while(start != NULL)
-	{	
-		printf("%d\n", start -> index);
-        start = start -> next;
+	a_list	*max;
+
+	max = start;
+	while (start != NULL)
+	{
+		if (start->content > max->content)
+			max = start;
+		start = start->next;
 	}
-}
-
-void print_side_by_side(head_a *head)
-{
-    a_list *start = head->first;
-
-	 printf("INDEX\t\tCONTENT\n");
-    while(start != NULL)
-    {   
-        printf("%d\t\t%d\n", start->index, start->content);
-        start = start->next;
-    }
+	return (max);
 }
