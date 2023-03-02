@@ -6,7 +6,7 @@
 /*   By: maria <maria@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/02 00:35:10 by maria             #+#    #+#             */
-/*   Updated: 2023/03/02 00:55:50 by maria            ###   ########.fr       */
+/*   Updated: 2023/03/02 01:58:31 by maria            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,8 +37,6 @@ algo_values	count_moves_a(a_list *node_a, head_a *a, algo_values current)
 
 a_list	*get_nearest_max(a_list *b_node, head_a *a)
 {
-	int		diff;
-	int		max;
 	a_list	*start_a;
 	a_list	*first_max;
 

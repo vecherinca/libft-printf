@@ -6,7 +6,7 @@
 /*   By: maria <maria@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/26 17:02:29 by mklimina          #+#    #+#             */
-/*   Updated: 2023/03/02 00:43:27 by maria            ###   ########.fr       */
+/*   Updated: 2023/03/02 01:59:09 by maria            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,9 +14,7 @@
 
 void	test_instr(head_a *a, head_a *b)
 {
-	a_list		*start_a;
 	a_list		*start_b;
-	int			numb_moves;
 	algo_values	current;
 	algo_values	next_node;
 
