@@ -6,7 +6,7 @@
 /*   By: maria <maria@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/21 23:37:38 by mklimina          #+#    #+#             */
-/*   Updated: 2023/03/03 17:01:36 by maria            ###   ########.fr       */
+/*   Updated: 2023/03/03 17:03:33 by maria            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,7 @@ int	checkthearg(char *arg)
 	test = ft_itoa(ft_atoi(arg));
 	if (ft_strcmp(test, arg) != 0)
 		return (free(test),0);
-	return (1);
+	return (free(test),1);
 }
 
 int	is_sorted(head_a *a)
