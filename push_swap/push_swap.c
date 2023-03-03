@@ -6,7 +6,7 @@
 /*   By: maria <maria@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/16 23:33:36 by mklimina          #+#    #+#             */
-/*   Updated: 2023/03/03 03:28:03 by maria            ###   ########.fr       */
+/*   Updated: 2023/03/03 16:14:16 by maria            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,7 +41,7 @@ a_list	*create_list(int argc, char **argv)
 head_a	*define_list_a(int argc, char **argv)
 {
 	head_a	*point;
-	point = NULL;
+
 	point = malloc(sizeof(head_a));
 	if (!point)
 		return (NULL);
@@ -77,6 +77,18 @@ void	pushswap(head_a *a, head_a *b, int argc)
 		sort100(a, b);
 }
 
+void	free_list(a_list *head)
+{
+    a_list	*current = head;
+    a_list	*next;
+
+    while	(current != NULL)
+    {
+        next = current->next;
+        free(current);
+        current = next;
+    }
+}
 int	main(int argc, char **argv)
 {
 	head_a	*a;
@@ -91,4 +103,7 @@ int	main(int argc, char **argv)
 	check_the_stack(a);
 	assign_index(a);
 	pushswap(a, b, argc);
+	free_list(a -> first);
+	free_list(b -> first);
+
 }
