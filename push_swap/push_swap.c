@@ -6,7 +6,7 @@
 /*   By: maria <maria@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/16 23:33:36 by mklimina          #+#    #+#             */
-/*   Updated: 2023/03/03 16:14:16 by maria            ###   ########.fr       */
+/*   Updated: 2023/03/03 16:30:52 by maria            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -77,7 +77,7 @@ void	pushswap(head_a *a, head_a *b, int argc)
 		sort100(a, b);
 }
 
-void	free_list(a_list *head)
+void	free_list(a_list *head, head_a *main)
 {
     a_list	*current = head;
     a_list	*next;
@@ -88,13 +88,16 @@ void	free_list(a_list *head)
         free(current);
         current = next;
     }
+	free(main);
 }
+
+
 int	main(int argc, char **argv)
 {
 	head_a	*a;
 	head_a	*b;
 
-	if (argc == 1)
+	if (argc == 1 || argc == 2)
 		exit(0);
 	a = define_list_a(argc, argv);
 	b = define_list_b();
@@ -103,7 +106,7 @@ int	main(int argc, char **argv)
 	check_the_stack(a);
 	assign_index(a);
 	pushswap(a, b, argc);
-	free_list(a -> first);
-	free_list(b -> first);
+	free_list(a -> first, a);
+	free_list(b -> first, b);
 
 }
