@@ -6,7 +6,7 @@
 /*   By: maria <maria@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/16 23:33:36 by mklimina          #+#    #+#             */
-/*   Updated: 2023/03/03 16:41:42 by maria            ###   ########.fr       */
+/*   Updated: 2023/03/03 18:12:08 by maria            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -103,7 +103,7 @@ int	main(int argc, char **argv)
 	b = define_list_b();
 	if (!b)
 		return (0);
-	check_the_stack(a);
+	check_the_stack(a, b);
 	assign_index(a);
 	pushswap(a, b, argc);
 	free_list(a -> first, a);

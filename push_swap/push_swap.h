@@ -59,7 +59,7 @@ void		rrr(head_a *heada, head_a *headb);
 void 		rra(head_a *heada, int flag);
 
 int			checkthearg(char *arg);
-int			check_the_stack(head_a *a);
+int			check_the_stack(head_a *a, head_a *b);
 int			ft_strlen(char *s);
 int			check_doubl(head_a *heada);
 int			ft_strcmp(char *s1, char *s2);
