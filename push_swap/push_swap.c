@@ -6,7 +6,7 @@
 /*   By: maria <maria@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/16 23:33:36 by mklimina          #+#    #+#             */
-/*   Updated: 2023/03/03 03:21:38 by maria            ###   ########.fr       */
+/*   Updated: 2023/03/03 03:23:18 by maria            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,12 +35,6 @@ a_list	*create_list(int argc, char **argv)
 		ft_lstadd_back(&head, temp);
 		i++;
 	}
-	while (temp != NULL)
-    {
-        a_list *temp2 = temp->next;
-        free(temp);
-        temp = temp2;
-    }
 	return (head);
 }
 
