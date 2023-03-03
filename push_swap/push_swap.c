@@ -6,13 +6,13 @@
 /*   By: maria <maria@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/16 23:33:36 by mklimina          #+#    #+#             */
-/*   Updated: 2023/03/03 18:12:08 by maria            ###   ########.fr       */
+/*   Updated: 2023/03/03 19:53:43 by maria            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
-a_list	*create_list(int argc, char **argv)
+a_list	*create_list(int argc, char **argv, head_a *point)
 {
 	a_list	*temp;
 	a_list	*head;
@@ -25,6 +25,7 @@ a_list	*create_list(int argc, char **argv)
 		if (checkthearg(argv[i]) == 0)
 		{
 			write(2, "Error\n", 6);
+			free_list(head, point);
 			exit(0);
 		}
 		temp = malloc(sizeof(a_list));
@@ -45,7 +46,7 @@ head_a	*define_list_a(int argc, char **argv)
 	point = malloc(sizeof(head_a));
 	if (!point)
 		return (NULL);
-	point->first = create_list(argc, argv);
+	point->first = create_list(argc, argv, point);
 	return (point);
 }
 
@@ -79,18 +80,18 @@ void	pushswap(head_a *a, head_a *b, int argc)
 
 void	free_list(a_list *head, head_a *main)
 {
-    a_list	*current = head;
-    a_list	*next;
+	a_list	*current;
+	a_list	*next;
 
-    while	(current != NULL)
-    {
-        next = current->next;
-        free(current);
-        current = next;
-    }
+	current = head;
+	while (current != NULL)
+	{
+		next = current->next;
+		free(current);
+		current = next;
+	}
 	free(main);
 }
-
 
 int	main(int argc, char **argv)
 {
