@@ -6,7 +6,7 @@
 /*   By: maria <maria@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/16 23:33:36 by mklimina          #+#    #+#             */
-/*   Updated: 2023/03/03 03:23:18 by maria            ###   ########.fr       */
+/*   Updated: 2023/03/03 03:28:03 by maria            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,7 +41,7 @@ a_list	*create_list(int argc, char **argv)
 head_a	*define_list_a(int argc, char **argv)
 {
 	head_a	*point;
-
+	point = NULL;
 	point = malloc(sizeof(head_a));
 	if (!point)
 		return (NULL);
