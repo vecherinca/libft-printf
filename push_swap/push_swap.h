@@ -74,6 +74,7 @@ algo_values number_moves(head_a *a, a_list *b_node, head_a *b, algo_values curre
 int calc_instructions(algo_values current, algo_values next_node);
 void		assign_index(head_a *a);
 void		sort3(head_a *a);
+void		free_list(a_list *head, head_a *main);
 void		sort5(head_a *a, head_a *b, int flag);
 void		sort100(head_a *a,head_a *b);
 void		movefastest(algo_values current, head_a *a, head_a *b);

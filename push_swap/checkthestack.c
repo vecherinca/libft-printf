@@ -6,7 +6,7 @@
 /*   By: maria <maria@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/21 23:37:38 by mklimina          #+#    #+#             */
-/*   Updated: 2023/03/03 15:59:00 by maria            ###   ########.fr       */
+/*   Updated: 2023/03/03 16:39:27 by maria            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,7 +31,10 @@ int	is_sorted(head_a *a)
 	{
 		if (starta->content > starta->next->content
 			&& (starta->content != starta->next->content))
+		{
+			free_list(a -> first, a);
 			return (0);
+		}
 		starta = starta->next;
 	}
 	return (1);
