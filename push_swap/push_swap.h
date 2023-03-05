@@ -5,15 +5,6 @@
 #include <stdio.h>
 #include <unistd.h>
 
-#define KNRM  "\x1B[0m"
-#define KRED  "\x1B[31m"
-#define KGRN  "\x1B[32m"
-#define KYEL  "\x1B[33m"
-#define KBLU  "\x1B[34m"
-#define KMAG  "\x1B[35m"
-#define KCYN  "\x1B[36m"
-#define KWHT  "\x1B[37m"
-
 typedef struct a_list
 {
 	int				content;
@@ -57,7 +48,8 @@ void 		rr(head_a *heada, head_a *headb);
 void		rrb(head_a *headb, int flag);
 void		rrr(head_a *heada, head_a *headb);
 void 		rra(head_a *heada, int flag);
-
+head_a		*define_list_b(void);
+head_a		*define_list_a(int argc, char **argv);
 int			checkthearg(char *arg);
 int			check_the_stack(head_a *a, head_a *b);
 int			ft_strlen(char *s);
@@ -68,10 +60,10 @@ a_list		*find_max_nnode(a_list *start);
 void		pushswap(head_a *a, head_a *b, int argc);
 void		pushto_median(a_list *start, head_a *b, head_a *a, int median);
 void		presort(int median, head_a *b, head_a *a);
-algo_values count_moves_a(a_list *node_a, head_a *a, algo_values current);
-a_list *get_nearest_max(a_list *b_node, head_a *a);
+algo_values	count_moves_a(a_list *node_a, head_a *a, algo_values current);
+a_list		*get_nearest_max(a_list *b_node, head_a *a);
 algo_values number_moves(head_a *a, a_list *b_node, head_a *b, algo_values current);
-int calc_instructions(algo_values current, algo_values next_node);
+int			calc_instructions(algo_values current, algo_values next_node);
 void		assign_index(head_a *a);
 void		sort3(head_a *a);
 void		free_list(a_list *head, head_a *main);

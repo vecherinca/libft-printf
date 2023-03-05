@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   push_swap.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: maria <maria@student.42.fr>                +#+  +:+       +#+        */
+/*   By: mklimina <mklimina@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/16 23:33:36 by mklimina          #+#    #+#             */
-/*   Updated: 2023/03/04 00:23:26 by maria            ###   ########.fr       */
+/*   Updated: 2023/03/05 18:15:04 by mklimina         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,6 +57,8 @@ head_a	*define_list_b(void)
 
 	head = NULL;
 	point = malloc(sizeof(a_list));
+	if (!point)
+		return (NULL);
 	point->first = head;
 	return (point);
 }
@@ -92,4 +94,3 @@ void	free_list(a_list *head, head_a *main)
 	}
 	free(main);
 }
-
