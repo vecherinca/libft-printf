@@ -6,7 +6,7 @@
 /*   By: mklimina <mklimina@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/04 17:49:56 by mklimina          #+#    #+#             */
-/*   Updated: 2022/12/13 17:45:35 by mklimina         ###   ########.fr       */
+/*   Updated: 2022/12/15 16:07:42 by mklimina         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -79,13 +79,9 @@ char	*get_the_line(char *stash)
 
 char	*init_stash(char *stash, char *buffer, int fd)
 {
-	int	bytes;
-
-	bytes = 0;
 	if (buffer[0] == '\0')
-		bytes = read(fd, buffer, BUFFER_SIZE);
+		read(fd, buffer, BUFFER_SIZE);
 	stash = NULL;
-	bytes = bytes;
 	stash = ft_strjoin("", buffer);
 	return (stash);
 }
@@ -100,20 +96,18 @@ char	*get_next_line(int fd)
 	if (fd < 0 || BUFFER_SIZE <= 0)
 		return (NULL);
 	bytes = 1;
-	stash = "";
-	stash = init_stash(stash, buffer[fd], fd);
+	stash = init_stash("", buffer[fd], fd);
+	if (!stash)
+		return (NULL);
 	while ((bytes != 0 && check_the_line(buffer[fd]) != 1) || bytes == -1)
 	{
 		ft_bzero(buffer[fd], BUFFER_SIZE);
 		bytes = read(fd, buffer[fd], BUFFER_SIZE);
 		if ((bytes == 0 && check_the_line(buffer[fd]) == 0) || (bytes == -1))
 			break ;
-		line = ft_strdup(stash);
-		free(stash);
-		stash = ft_strjoin(line, buffer[fd]);
-		free(line);
+		if (ft_do_ze_line(&line, buffer[fd], &stash))
+			return (NULL);
 	}
-	line = get_the_line(stash);
-	clean_stash(stash, buffer[fd]);
-	return (free(stash), line);
+	return (line = get_the_line(stash), clean_stash(stash, buffer[fd]), \
+		free(stash), line);
 }

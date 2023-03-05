@@ -6,7 +6,7 @@
 /*   By: mklimina <mklimina@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/04 17:56:33 by mklimina          #+#    #+#             */
-/*   Updated: 2022/12/12 22:09:23 by mklimina         ###   ########.fr       */
+/*   Updated: 2022/12/15 16:02:11 by mklimina         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -78,22 +78,15 @@ char	*ft_strjoin(char const *s1, char const *s2)
 	return (output);
 }
 
-char	*ft_strdup(const char *src)
+int	ft_do_ze_line(char **line, char *buffer, char **stash)
 {
-	int		i;
-	char	*output;
-	int		len;
-
-	len = ft_strlen(src);
-	i = 0;
-	output = malloc(sizeof(char) * len + 1);
-	if (!output)
-		return (0);
-	while (src[i])
-	{
-		output[i] = src[i];
-		i++;
-	}
-	output[i] = '\0';
-	return (output);
+	*line = ft_strjoin("", *stash);
+	if (!*line)
+		return (1);
+	free(*stash);
+	*stash = ft_strjoin(*line, buffer);
+	if (!*stash)
+		return (free(*line), 1);
+	free(*line);
+	return (0);
 }
