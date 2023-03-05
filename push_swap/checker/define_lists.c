@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   define_lists.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: maria <maria@student.42.fr>                +#+  +:+       +#+        */
+/*   By: mklimina <mklimina@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/03 23:39:28 by maria             #+#    #+#             */
-/*   Updated: 2023/03/04 15:54:06 by maria            ###   ########.fr       */
+/*   Updated: 2023/03/05 19:12:34 by mklimina         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,10 +25,10 @@ int	ft_strcmp(char *s1, char *s2)
 	return (s1[i] - s2[i]);
 }
 
-void	free_list(a_list *head, head_a *main)
+void	free_list(t_a_list *head, t_head_a *main)
 {
-	a_list	*current;
-	a_list	*next;
+	t_a_list	*current;
+	t_a_list	*next;
 
 	current = head;
 	while (current != NULL)
@@ -50,9 +50,9 @@ int	checkthearg(char *arg)
 	return (free(test), 1);
 }
 
-int	is_sorted(head_a *a)
+int	is_sorted(t_head_a *a)
 {
-	a_list	*starta;
+	t_a_list	*starta;
 
 	starta = a->first;
 	while (starta->next != NULL)
@@ -93,7 +93,7 @@ int ft_atoi(char *str)
 	return (result * sign);
 }
 
-int	check_the_stack(head_a *a, head_a *b)
+int	check_the_stack(t_head_a *a, t_head_a *b)
 {
 	int	check;
 
@@ -114,10 +114,10 @@ int	check_the_stack(head_a *a, head_a *b)
 	return (1);
 }
 
-a_list	*createlist(int argc, char **argv, head_a *point)
+t_a_list	*createlist(int argc, char **argv, t_head_a *point)
 {
-	a_list	*temp;
-	a_list	*head;
+	t_a_list	*temp;
+	t_a_list	*head;
 	int		i;
 
 	head = NULL;
@@ -130,7 +130,7 @@ a_list	*createlist(int argc, char **argv, head_a *point)
 			free_list(head, point);
 			exit(0);
 		}
-		temp = malloc(sizeof(a_list));
+		temp = malloc(sizeof(t_a_list));
 		if (!temp)
 			return (NULL);
 		temp->content = ft_atoi(argv[i]);
@@ -141,24 +141,24 @@ a_list	*createlist(int argc, char **argv, head_a *point)
 	return (head);
 }
 
-head_a	*define_list_a(int argc, char **argv)
+t_head_a	*define_list_a(int argc, char **argv)
 {
-	head_a	*point;
+	t_head_a	*point;
 
-	point = malloc(sizeof(head_a));
+	point = malloc(sizeof(t_head_a));
 	if (!point)
 		return (NULL);
 	point->first = createlist(argc, argv, point);
 	return (point);
 }
 
-head_a	*define_list_b(void)
+t_head_a	*define_list_b(void)
 {
-	head_a	*point;
-	a_list	*head;
+	t_head_a	*point;
+	t_a_list	*head;
 
 	head = NULL;
-	point = malloc(sizeof(a_list));
+	point = malloc(sizeof(t_a_list));
 	point->first = head;
 	return (point);
 }

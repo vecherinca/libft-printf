@@ -3,17 +3,17 @@
 /*                                                        :::      ::::::::   */
 /*   list_operations.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: maria <maria@student.42.fr>                +#+  +:+       +#+        */
+/*   By: mklimina <mklimina@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/18 21:21:53 by mklimina          #+#    #+#             */
-/*   Updated: 2023/03/04 01:35:41 by maria            ###   ########.fr       */
+/*   Updated: 2023/03/05 19:12:34 by mklimina         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "gnl/get_next_line.h"
 #include "checker.h"
 
-int	ft_lstsize(a_list *lst)
+int	ft_lstsize(t_a_list *lst)
 {
 	int	count;
 
@@ -26,9 +26,9 @@ int	ft_lstsize(a_list *lst)
 	return (count);
 }
 
-void	ft_lstadd_back(a_list **lst, a_list *new)
+void	ft_lstadd_back(t_a_list **lst, t_a_list *new)
 {
-	a_list	*tmp;
+	t_a_list	*tmp;
 
 	if (!*lst)
 	{
@@ -41,7 +41,7 @@ void	ft_lstadd_back(a_list **lst, a_list *new)
 	tmp->next = new;
 }
 
-a_list	*ft_lstlast(a_list *lst)
+t_a_list	*ft_lstlast(t_a_list *lst)
 {
 	if (!lst)
 		return (NULL);
@@ -50,9 +50,9 @@ a_list	*ft_lstlast(a_list *lst)
 	return (lst);
 }
 
-a_list	*findsecondlastnode(a_list *head)
+t_a_list	*findsecondlastnode(t_a_list *head)
 {
-	a_list	*temp;
+	t_a_list	*temp;
 
 	temp = head;
 	while (temp != NULL)
@@ -64,10 +64,10 @@ a_list	*findsecondlastnode(a_list *head)
 	return (0);
 }
 
-int	check_doubl(head_a *heada)
+int	check_doubl(t_head_a *heada)
 {
-	a_list	*start;
-	a_list	*temp;
+	t_a_list	*start;
+	t_a_list	*temp;
 	int		count;
 
 	count = 0;

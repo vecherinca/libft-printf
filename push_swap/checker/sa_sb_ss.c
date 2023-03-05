@@ -3,21 +3,21 @@
 /*                                                        :::      ::::::::   */
 /*   sa_sb_ss.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: maria <maria@student.42.fr>                +#+  +:+       +#+        */
+/*   By: mklimina <mklimina@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/18 21:10:20 by mklimina          #+#    #+#             */
-/*   Updated: 2023/03/04 01:52:09 by maria            ###   ########.fr       */
+/*   Updated: 2023/03/05 19:12:34 by mklimina         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "gnl/get_next_line.h"
 #include "checker.h"
 
-void	sa(head_a *head)
+void	sa(t_head_a *head)
 {
 	int		count;
-	a_list	*temp;
-	a_list	*start;
+	t_a_list	*temp;
+	t_a_list	*start;
 	int		swap;
 
 	start = head->first;
@@ -31,11 +31,11 @@ void	sa(head_a *head)
 	}
 }
 
-void	sb(head_a *head)
+void	sb(t_head_a *head)
 {
 	int		count;
-	a_list	*temp;
-	a_list	*start;
+	t_a_list	*temp;
+	t_a_list	*start;
 	int		swap;
 
 	start = head->first;
@@ -49,7 +49,7 @@ void	sb(head_a *head)
 	}
 }
 
-void	ss(head_a *heada, head_a *headb)
+void	ss(t_head_a *heada, t_head_a *headb)
 {
 	sa(heada);
 	sb(headb);
