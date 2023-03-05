@@ -6,7 +6,7 @@
 /*   By: maria <maria@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/17 18:11:19 by mklimina          #+#    #+#             */
-/*   Updated: 2023/03/02 01:37:46 by maria            ###   ########.fr       */
+/*   Updated: 2023/03/03 20:39:25 by maria            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,15 +48,15 @@ int	ft_isdigit(int c)
 		return (0);
 }
 
-int	ft_strlen(char *s)
-{
-	int	i;
+// int	ft_strlen(char *s)
+// {
+// 	int	i;
 
-	i = 0;
-	while (s[i])
-		i++;
-	return (i);
-}
+// 	i = 0;
+// 	while (s[i])
+// 		i++;
+// 	return (i);
+// }
 
 int	ft_strcmp(char *s1, char *s2)
 {

@@ -6,7 +6,7 @@
 /*   By: maria <maria@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/16 23:33:36 by mklimina          #+#    #+#             */
-/*   Updated: 2023/03/03 19:53:43 by maria            ###   ########.fr       */
+/*   Updated: 2023/03/04 00:23:26 by maria            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -93,21 +93,3 @@ void	free_list(a_list *head, head_a *main)
 	free(main);
 }
 
-int	main(int argc, char **argv)
-{
-	head_a	*a;
-	head_a	*b;
-
-	if (argc == 1 || argc == 2)
-		exit(0);
-	a = define_list_a(argc, argv);
-	b = define_list_b();
-	if (!b)
-		return (0);
-	check_the_stack(a, b);
-	assign_index(a);
-	pushswap(a, b, argc);
-	free_list(a -> first, a);
-	free_list(b -> first, b);
-
-}
