@@ -3,16 +3,16 @@
 /*                                                        :::      ::::::::   */
 /*   indexes.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: maria <maria@student.42.fr>                +#+  +:+       +#+        */
+/*   By: mklimina <mklimina@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/26 19:59:44 by mklimina          #+#    #+#             */
-/*   Updated: 2023/03/01 17:47:52 by maria            ###   ########.fr       */
+/*   Updated: 2023/03/05 20:10:52 by mklimina         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
-int	find_min_next(a_list *start, int min)
+int	find_min_next(t_a_list *start, int min)
 {
 	int	new_min;
 
@@ -26,9 +26,9 @@ int	find_min_next(a_list *start, int min)
 	return (new_min);
 }
 
-int	find_max(a_list *start)
+int	find_max(t_a_list *start)
 {
-	a_list	*max;
+	t_a_list	*max;
 
 	max = start;
 	while (start != NULL)
@@ -40,13 +40,13 @@ int	find_max(a_list *start)
 	return (max->content);
 }
 
-void	assign_index(head_a *a)
+void	assign_index(t_head_a *a)
 {
-	int		size;
-	int		i;
-	int		minmin;
-	a_list	*min;
-	a_list	*start;
+	int			size;
+	int			i;
+	int			minmin;
+	t_a_list	*min;
+	t_a_list	*start;
 
 	start = a->first;
 	i = 0;

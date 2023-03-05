@@ -3,16 +3,16 @@
 /*                                                        :::      ::::::::   */
 /*   movefastest.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: maria <maria@student.42.fr>                +#+  +:+       +#+        */
+/*   By: mklimina <mklimina@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/12 15:10:56 by mklimina          #+#    #+#             */
-/*   Updated: 2023/03/02 01:36:13 by maria            ###   ########.fr       */
+/*   Updated: 2023/03/05 19:11:22 by mklimina         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
-algo_values	max_pul_rr(algo_values current)
+t_algo_values	max_pul_rr(t_algo_values current)
 {
 	current.rr = 0;
 	if (current.rb > current.ra && current.ra > 0)
@@ -36,7 +36,7 @@ algo_values	max_pul_rr(algo_values current)
 	return (current);
 }
 
-algo_values	max_pull_rrr(algo_values current)
+t_algo_values	max_pull_rrr(t_algo_values current)
 {
 	current.rrr = 0;
 	if (current.rrb > current.rra && current.rra > 0)
@@ -60,7 +60,7 @@ algo_values	max_pull_rrr(algo_values current)
 	return (current);
 }
 
-void	run_rotate(algo_values current, head_a *a, head_a *b)
+void	run_rotate(t_algo_values current, t_head_a *a, t_head_a *b)
 {
 	while (current.rr != 0)
 	{
@@ -79,7 +79,7 @@ void	run_rotate(algo_values current, head_a *a, head_a *b)
 	}
 }
 
-void	run_reverse_rotate(algo_values current, head_a *a, head_a *b)
+void	run_reverse_rotate(t_algo_values current, t_head_a *a, t_head_a *b)
 {
 	while (current.rrr != 0)
 	{
@@ -98,7 +98,7 @@ void	run_reverse_rotate(algo_values current, head_a *a, head_a *b)
 	}
 }
 
-void	movefastest(algo_values current, head_a *a, head_a *b)
+void	movefastest(t_algo_values current, t_head_a *a, t_head_a *b)
 {
 	current = max_pul_rr(current);
 	current = max_pull_rrr(current);

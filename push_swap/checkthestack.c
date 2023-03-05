@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   checkthestack.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: maria <maria@student.42.fr>                +#+  +:+       +#+        */
+/*   By: mklimina <mklimina@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/21 23:37:38 by mklimina          #+#    #+#             */
-/*   Updated: 2023/03/03 18:43:12 by maria            ###   ########.fr       */
+/*   Updated: 2023/03/05 19:12:58 by mklimina         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,9 +22,9 @@ int	checkthearg(char *arg)
 	return (free(test), 1);
 }
 
-int	is_sorted(head_a *a)
+int	is_sorted(t_head_a *a)
 {
-	a_list	*starta;
+	t_a_list	*starta;
 
 	starta = a->first;
 	while (starta->next != NULL)
@@ -37,7 +37,7 @@ int	is_sorted(head_a *a)
 	return (1);
 }
 
-int	check_the_stack(head_a *a, head_a *b)
+int	check_the_stack(t_head_a *a, t_head_a *b)
 {
 	int	check;
 

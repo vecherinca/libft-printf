@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   utils.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: maria <maria@student.42.fr>                +#+  +:+       +#+        */
+/*   By: mklimina <mklimina@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/17 18:11:19 by mklimina          #+#    #+#             */
-/*   Updated: 2023/03/03 20:39:25 by maria            ###   ########.fr       */
+/*   Updated: 2023/03/05 19:12:58 by mklimina         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,16 +48,6 @@ int	ft_isdigit(int c)
 		return (0);
 }
 
-// int	ft_strlen(char *s)
-// {
-// 	int	i;
-
-// 	i = 0;
-// 	while (s[i])
-// 		i++;
-// 	return (i);
-// }
-
 int	ft_strcmp(char *s1, char *s2)
 {
 	int	i;
@@ -70,9 +60,9 @@ int	ft_strcmp(char *s1, char *s2)
 	return (s1[i] - s2[i]);
 }
 
-a_list	*find_max_nnode(a_list *start)
+t_a_list	*find_max_nnode(t_a_list *start)
 {
-	a_list	*max;
+	t_a_list	*max;
 
 	max = start;
 	while (start != NULL)

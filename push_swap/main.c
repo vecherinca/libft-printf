@@ -6,7 +6,7 @@
 /*   By: mklimina <mklimina@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/04 00:22:45 by maria             #+#    #+#             */
-/*   Updated: 2023/03/05 18:15:44 by mklimina         ###   ########.fr       */
+/*   Updated: 2023/03/05 19:11:39 by mklimina         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,8 +14,8 @@
 
 int	main(int argc, char **argv)
 {
-	head_a	*a;
-	head_a	*b;
+	t_head_a	*a;
+	t_head_a	*b;
 
 	if (argc == 1 || argc == 2)
 		exit(0);

@@ -3,20 +3,21 @@
 /*                                                        :::      ::::::::   */
 /*   numberofmoves.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: maria <maria@student.42.fr>                +#+  +:+       +#+        */
+/*   By: mklimina <mklimina@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/02 00:35:10 by maria             #+#    #+#             */
-/*   Updated: 2023/03/02 01:58:31 by maria            ###   ########.fr       */
+/*   Updated: 2023/03/05 20:09:13 by mklimina         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
-algo_values	count_moves_a(a_list *node_a, head_a *a, algo_values current)
+t_algo_values	count_moves_a(t_a_list *node_a, t_head_a *a,
+		t_algo_values current)
 {
-	int		count;
-	int		size;
-	a_list	*starta;
+	int			count;
+	int			size;
+	t_a_list	*starta;
 
 	current.ra = 0;
 	current.rra = 0;
@@ -35,10 +36,10 @@ algo_values	count_moves_a(a_list *node_a, head_a *a, algo_values current)
 	return (current);
 }
 
-a_list	*get_nearest_max(a_list *b_node, head_a *a)
+t_a_list	*get_nearest_max(t_a_list *b_node, t_head_a *a)
 {
-	a_list	*start_a;
-	a_list	*first_max;
+	t_a_list	*start_a;
+	t_a_list	*first_max;
 
 	start_a = a->first;
 	first_max = find_max_nnode(start_a);
@@ -52,12 +53,13 @@ a_list	*get_nearest_max(a_list *b_node, head_a *a)
 	return (first_max);
 }
 
-algo_values	number_moves(head_a *a, a_list *b_node, head_a *b, algo_values cur)
+t_algo_values	number_moves(t_head_a *a, t_a_list *b_node, t_head_a *b,
+		t_algo_values cur)
 {
-	int		count;
-	int		size;
-	a_list	*node;
-	a_list	*node_a;
+	int			count;
+	int			size;
+	t_a_list	*node;
+	t_a_list	*node_a;
 
 	cur.rb = 0;
 	cur.rrb = 0;
@@ -78,7 +80,7 @@ algo_values	number_moves(head_a *a, a_list *b_node, head_a *b, algo_values cur)
 	return (cur);
 }
 
-int	calc_instructions(algo_values current, algo_values next_node)
+int	calc_instructions(t_algo_values current, t_algo_values next_node)
 {
 	int	total_current;
 	int	nnext_node;

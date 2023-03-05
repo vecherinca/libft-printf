@@ -3,18 +3,18 @@
 /*                                                        :::      ::::::::   */
 /*   random5.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: maria <maria@student.42.fr>                +#+  +:+       +#+        */
+/*   By: mklimina <mklimina@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/24 16:21:30 by mklimina          #+#    #+#             */
-/*   Updated: 2023/03/01 19:29:28 by maria            ###   ########.fr       */
+/*   Updated: 2023/03/05 20:10:03 by mklimina         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
-void	flag5(a_list *temp, head_a *a, head_a *b)
+void	flag5(t_a_list *temp, t_head_a *a, t_head_a *b)
 {
-	a_list	*min;
+	t_a_list	*min;
 
 	min = find_min(temp);
 	pushmin(a, min->content);
@@ -24,11 +24,11 @@ void	flag5(a_list *temp, head_a *a, head_a *b)
 	pa(a, b);
 }
 
-void	sort5(head_a *a, head_a *b, int flag)
+void	sort5(t_head_a *a, t_head_a *b, int flag)
 {
-	a_list	*start;
-	a_list	*min;
-	a_list	*temp;
+	t_a_list	*start;
+	t_a_list	*min;
+	t_a_list	*temp;
 
 	start = a->first;
 	min = find_min(start);
@@ -47,9 +47,9 @@ void	sort5(head_a *a, head_a *b, int flag)
 	}
 }
 
-a_list	*find_min(a_list *start)
+t_a_list	*find_min(t_a_list *start)
 {
-	a_list	*min;
+	t_a_list	*min;
 
 	min = start;
 	while (start != NULL)
@@ -61,11 +61,11 @@ a_list	*find_min(a_list *start)
 	return (min);
 }
 
-void	pushmin(head_a *a, int min)
+void	pushmin(t_head_a *a, int min)
 {
-	a_list	*start;
-	int		count;
-	int		len;
+	t_a_list	*start;
+	int			count;
+	int			len;
 
 	count = 0;
 	start = a->first;

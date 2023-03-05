@@ -3,20 +3,20 @@
 /*                                                        :::      ::::::::   */
 /*   random100.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: maria <maria@student.42.fr>                +#+  +:+       +#+        */
+/*   By: mklimina <mklimina@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/26 17:02:29 by mklimina          #+#    #+#             */
-/*   Updated: 2023/03/02 01:59:09 by maria            ###   ########.fr       */
+/*   Updated: 2023/03/05 20:09:39 by mklimina         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
-void	test_instr(head_a *a, head_a *b)
+void	test_instr(t_head_a *a, t_head_a *b)
 {
-	a_list		*start_b;
-	algo_values	current;
-	algo_values	next_node;
+	t_a_list		*start_b;
+	t_algo_values	current;
+	t_algo_values	next_node;
 
 	current.node = b->first;
 	start_b = b->first;
@@ -36,7 +36,7 @@ void	test_instr(head_a *a, head_a *b)
 	}
 }
 
-void	zero_zero(algo_values go_zero, head_a *a)
+void	zero_zero(t_algo_values go_zero, t_head_a *a)
 {
 	while (go_zero.rra != 0)
 	{
@@ -50,12 +50,12 @@ void	zero_zero(algo_values go_zero, head_a *a)
 	}
 }
 
-void	push_zero(head_a *a, a_list *zero)
+void	push_zero(t_head_a *a, t_a_list *zero)
 {
-	int			size;
-	int			count;
-	algo_values	go_zero;
-	a_list		*starta;
+	int				size;
+	int				count;
+	t_algo_values	go_zero;
+	t_a_list		*starta;
 
 	starta = a->first;
 	size = ft_lstsize(starta);
@@ -74,11 +74,11 @@ void	push_zero(head_a *a, a_list *zero)
 	zero_zero(go_zero, a);
 }
 
-void	sort100(head_a *a, head_a *b)
+void	sort100(t_head_a *a, t_head_a *b)
 {
-	int		median;
-	a_list	*zero;
-	a_list	*start;
+	int			median;
+	t_a_list	*zero;
+	t_a_list	*start;
 
 	start = a->first;
 	zero = find_min(start);
