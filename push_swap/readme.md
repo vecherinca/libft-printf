@@ -25,8 +25,12 @@ The sorting of 5 numbers is also a very easy case. And having the algo for the t
 **What should be done:**
 - First, in the **stack A** we need to find the smallest element. Once it is found, it needs to be pushed to the top of the **stack A**. 
 - Now when we have the smallest element on the top, it(*smallest element*) should be pushed to stack B.
-- Then, we are repeating the same thing with the second smallest element. We are finding it -> pushing it to the top -> pushing to the **stack B**.
+- Then, we repeat the same thing with the second smallest element. We are finding it -> pushing it to the top -> pushing to the **stack B**.
 - Now we have two smallest numbers in a stack B and three values in **stack A**. 
-- So now we sort 3 numbers in a **stack A** with the algo for the three numbers and after than we execute two times the command push to list a (**pa**).
+- So now we sort 3 numbers in a **stack A** with the algo for the three numbers and after than we execute two times the command push to list a (**pa**).\
 Now, our list of 5 numbers is succesfully sorted.\
-Important note: when pushing
+Important note: when pushing the minumum node to the top of the list it's important that the position of the node is considered. If the smallest number is more that **size of a list/2** the we do the **rra**, if it's less - the **ra** is implemented. 
+
+## ❗️Sorting 100-500 numbers
+
+Now, the most interesting part. We can divide it in four parts: **Pre-sort, Finding the most efficient node to move, Moving the most efficient node and pushing the zero-node to the top.**
