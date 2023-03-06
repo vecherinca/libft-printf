@@ -1,33 +1,34 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
+/*   pa_pb.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: mklimina <mklimina@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/03/04 00:22:45 by maria             #+#    #+#             */
-/*   Updated: 2023/03/06 22:27:07 by mklimina         ###   ########.fr       */
+/*   Created: 2023/03/01 17:43:07 by maria             #+#    #+#             */
+/*   Updated: 2023/03/05 19:12:34 by mklimina         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "push_swap.h"
+#include "gnl/get_next_line.h"
+#include "checker.h"
 
-int	main(int argc, char **argv)
+void	pb(t_head_a *heada, t_head_a *headb)
 {
-	t_head_a	*a;
-	t_head_a	*b;
+	t_a_list	*starta;
 
-	if (argc < 2)
-		exit(0);
-	a = define_list_a(argc, argv);
-	if (!a)
-		return (0);
-	b = define_list_b();
-	if (!b)
-		return (0);
-	check_the_stack(a, b);
-	assign_index(a);
-	pushswap(a, b, argc);
-	free_list(a -> first, a);
-	free_list(b -> first, b);
+	starta = heada->first;
+	heada->first = starta->next;
+	starta->next = headb->first;
+	headb->first = starta;
+}
+
+void	pa(t_head_a *heada, t_head_a *headb)
+{
+	t_a_list	*startb;
+
+	startb = headb->first;
+	headb->first = startb->next;
+	startb->next = heada->first;
+	heada->first = startb;
 }
