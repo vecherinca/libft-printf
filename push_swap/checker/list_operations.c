@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   list_operations.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mklimina <mklimina@student.42.fr>          +#+  +:+       +#+        */
+/*   By: maria <maria@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/18 21:21:53 by mklimina          #+#    #+#             */
-/*   Updated: 2023/03/05 19:12:34 by mklimina         ###   ########.fr       */
+/*   Updated: 2023/03/06 01:43:09 by maria            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -68,7 +68,7 @@ int	check_doubl(t_head_a *heada)
 {
 	t_a_list	*start;
 	t_a_list	*temp;
-	int		count;
+	int			count;
 
 	count = 0;
 	start = heada->first;

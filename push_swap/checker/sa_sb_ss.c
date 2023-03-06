@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   sa_sb_ss.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mklimina <mklimina@student.42.fr>          +#+  +:+       +#+        */
+/*   By: maria <maria@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/18 21:10:20 by mklimina          #+#    #+#             */
-/*   Updated: 2023/03/05 19:12:34 by mklimina         ###   ########.fr       */
+/*   Updated: 2023/03/06 01:43:31 by maria            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,10 +15,10 @@
 
 void	sa(t_head_a *head)
 {
-	int		count;
+	int			count;
 	t_a_list	*temp;
 	t_a_list	*start;
-	int		swap;
+	int			swap;
 
 	start = head->first;
 	temp = start->next;
@@ -33,10 +33,10 @@ void	sa(t_head_a *head)
 
 void	sb(t_head_a *head)
 {
-	int		count;
+	int			count;
 	t_a_list	*temp;
 	t_a_list	*start;
-	int		swap;
+	int			swap;
 
 	start = head->first;
 	temp = start->next;
