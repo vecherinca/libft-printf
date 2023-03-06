@@ -6,7 +6,7 @@
 /*   By: maria <maria@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/03 23:39:28 by maria             #+#    #+#             */
-/*   Updated: 2023/03/06 01:47:43 by maria            ###   ########.fr       */
+/*   Updated: 2023/03/06 01:50:26 by maria            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,6 +58,8 @@ t_head_a	*define_list_b(void)
 
 	head = NULL;
 	point = malloc(sizeof(t_a_list));
+	if (!point)
+		return (NULL);
 	point->first = head;
 	return (point);
 }
