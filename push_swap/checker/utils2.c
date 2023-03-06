@@ -6,7 +6,7 @@
 /*   By: maria <maria@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/01 17:48:03 by maria             #+#    #+#             */
-/*   Updated: 2023/03/06 02:14:24 by maria            ###   ########.fr       */
+/*   Updated: 2023/03/06 02:27:34 by maria            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -71,7 +71,7 @@ char	*ft_itoa(int n)
 	return (output);
 }
 
-void	free_list_2(t_head_checker *head, t_checker *main)
+void	free_list_2(t_checker *head, t_head_checker *main)
 {
 	t_checker	*current;
 	t_checker	*next;

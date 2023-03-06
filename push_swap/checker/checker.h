@@ -6,7 +6,7 @@
 /*   By: maria <maria@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/03 20:32:19 by maria             #+#    #+#             */
-/*   Updated: 2023/03/06 02:12:47 by maria            ###   ########.fr       */
+/*   Updated: 2023/03/06 02:28:01 by maria            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,7 +43,7 @@ void		print_the_list(t_head_a *head);
 void		parsethecommads(t_head_a *a, t_head_a *b, t_checker *start);
 int			ft_strcmp(char *s1, char *s2);
 void		free_list(t_a_list *head, t_head_a *main);
-void		free_list_2(t_head_checker *head, t_checker *main);
+void	free_list_2(t_checker *head, t_head_checker *main);
 int			checkthearg(char *arg);
 int			is_sorted(t_head_a *a);
 int			ft_atoi(char *str);
