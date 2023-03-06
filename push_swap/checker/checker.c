@@ -6,7 +6,7 @@
 /*   By: maria <maria@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/03 20:21:34 by maria             #+#    #+#             */
-/*   Updated: 2023/03/06 01:47:07 by maria            ###   ########.fr       */
+/*   Updated: 2023/03/06 02:13:27 by maria            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -94,12 +94,21 @@ int	main(int argc, char **argv)
 	if (argc < 2)
 		exit(0);
 	lista = define_list_a(argc, argv);
+	if (lista)
+		return (NULL);
 	listb = define_list_b();
+	if (listb)
+		return (NULL);
 	check_the_stack(lista, listb);
 	start_node = init_the_inst();
+	if (start_node)
+		return (NULL);
 	parsethecommads(lista, listb, start_node -> first);
 	if (is_sorted(lista) == 1)
 		write(1, "OK\n", 3);
 	else
 		write(1, "KO\n", 3);
+	free_list(lista, lista ->first);
+	free_list(listb, listb ->first);
+	free_list_2(start_node, start_node -> first);
 }
