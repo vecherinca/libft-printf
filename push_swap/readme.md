@@ -40,4 +40,13 @@ Before the algorithm implementation, one important step must be done.
 
 ### Indexation
 
-The idea behind indexation is that we need to assign indexed(lol, what a surprise) to every node we in a list A. In this case it is will be easier to visualize it. 
+The idea behind indexation is that we need to assign indexed(lol, what a surprise) to every node we in a list A, before pushing it to a list B. In this case it is will be easier to visualize it. 
+
+|Actual number    | Index |
+| ----------- | ----------- |
+| 3           |2        |
+|5            | 4       |
+|4            | 3       |
+|2            | 1       |
+|1            | 0       |
+|6            | 5       |
