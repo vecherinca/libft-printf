@@ -77,7 +77,11 @@ The first part of this push-swap algorithm is very very easy understand. At this
 
 Step by step what must be done: 
 
-- Finding the median of the **list A**.
+- Finding the median of the **lis
+
+
+
+t A**.
 - Finding the maximum node of the **list A**. (at this point all our values are in list A) 
 - After identifying maximum and the median, we need to loop through the whole list and compare every node to a median. If it's bigger than a median we first push the node to a **list B** and then execute the rotate function(**ra**). If it's less than a median we only do the push to be function(**pa**). **Important notion: while sending nodes to the list B, we need to keep track on a maximum and not to push it to the List B.**
 
@@ -90,4 +94,4 @@ Step by step what must be done:
 After the pre-sort we can start the search for the most efficient node. But first I need to explain the sorting concept. 
 
 ### ✨✨✨ The concept ✨✨✨✨
-![gif with the concept]([https://gfycat.com/unfoldedsmugkentrosaurus)
+https://user-images.githubusercontent.com/43732011/223479534-7f0202b8-b6b7-4b7d-aeed-f8ac6223c5b4.mov
