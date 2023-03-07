@@ -77,6 +77,9 @@ Step by step what must be done at this step.
 
 - Finding the median of the **list A**.
 - Finding the maximum node of the **list A**. (at this point all our values are in list A) 
-- After identifying maximum and the median, we need to loop through the whole list and compare every node to a median. If it's bigger than a median we first push the node to a **list B** and then execute the rotate function(**ra**). If it's less than a median we only do the push to be function(**pa**). Important notion: while sending nodes to the list B, we need to keep track on a maximum and not to push it to the List B. So after the pre-sort is done we have list A with one maximum node and pre-sorted **list B** that looks like this:
+- After identifying maximum and the median, we need to loop through the whole list and compare every node to a median. If it's bigger than a median we first push the node to a **list B** and then execute the rotate function(**ra**). If it's less than a median we only do the push to be function(**pa**). Important notion: while sending nodes to the list B, we need to keep track on a maximum and not to push it to the List B.\
 
+### So after the pre-sort is done we have list A with one maximum node and pre-sorted **list B** that looks like this. 
+
+![An image](https://i.pinimg.com/originals/0d/ea/12/0dea125082397ea72882aaf1a16a46c6.png)
 
