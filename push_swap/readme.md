@@ -90,4 +90,4 @@ Step by step what must be done:
 After the pre-sort we can start the search for the most efficient node. But first I need to explain the sorting concept. 
 
 ### ✨✨✨ The concept ✨✨✨✨
-![gif with the concept](https://gfycat.com/unfoldedsmugkentrosaurus)
+![gif with the concept]([https://gfycat.com/unfoldedsmugkentrosaurus)
