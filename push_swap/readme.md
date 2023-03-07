@@ -87,7 +87,7 @@ Step by step what must be done:
 
 ## Finding the most efficient node to move
 
-After the pre-sort we can start the search for the most efficient node. But first I need to explain the sorting concept. 
+After the pre-sort we can start the search for the most efficient node. But first the sorting concept should be explained. 
 
 ### ✨✨✨ The concept ✨✨✨✨
 https://user-images.githubusercontent.com/43732011/223479534-7f0202b8-b6b7-4b7d-aeed-f8ac6223c5b4.mov
