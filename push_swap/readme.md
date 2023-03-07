@@ -34,13 +34,13 @@ Important note: when pushing the minumum node to the top of the list it's import
 
 ## ❗️Sorting 100-500 numbers
 
-Now, the most interesting part. We can divide it in four parts: **Pre-sort, Finding the most efficient node to move, Moving the most efficient node and pushing the zero-node to the top.**
+Now, the most interesting part. *Push-swap itself*. We can divide it in four parts: **Pre-sort, Finding the most efficient node to move, Moving the most efficient node and pushing the zero-node to the top.**
 
 Before the algorithm implementation, one important step must be done. 
 
 ### Indexation
 
-The idea behind indexation is that we need to assign indexed(lol, what a surprise) to every node we in a list A, before pushing it to a list B. In this case it is will be easier to visualize it. 
+The idea behind indexation is that we need to assign indexes(lol, what a surprise) to every node we in a list A, before pushing it to a list B. In this case it is will be easier to visualize it. 
 
 |Actual number    | Index |
 | ----------- | ----------- |
@@ -67,8 +67,11 @@ typedef struct t_a_list
 
 ```
 
-When the indexation part is done and ready, we can implement the algorithm. 
+When the indexation part is done and ready, we can start to implement the algorithm. Hoooray :)
 
 
+## Pre-sort by using median
+The first part of this push-swap algorithm is very very easy understand. At this point what we need to do is to push all our numbers from list A to list B in a certain manner.
 
+Step by step what should be done at this
 
