@@ -51,7 +51,7 @@ The idea behind indexation is that we need to assign indexes(lol, what a surpris
 |1            | 0       |
 |6            | 5       |
 
-The node structure should be look like this. For every node we have an **int** value that is an actual number and int value for an assigned index. 
+The node structure should be look like this. For every node we have an **int** value that is an actual number and **int** value for an assigned index. 
 
 ![This is an image](https://i.pinimg.com/originals/85/36/9f/85369f81ccd5b961c490f045809a21c5.png)
 
@@ -71,7 +71,12 @@ When the indexation part is done and ready, we can start to implement the algori
 
 
 ## Pre-sort by using median
-The first part of this push-swap algorithm is very very easy understand. At this point what we need to do is to push all our numbers from list A to list B in a certain manner.
+The first part of this push-swap algorithm is very very easy understand. At this point what we need to do is to push all our numbers from list A to list B in a certain manner by using the median.
 
-Step by step what should be done at this
+Step by step what must be done at this step. 
+
+- Finding the median of the **list A**.
+- Finding the maximum node of the **list A**. (at this point all our values are in list A) 
+- After identifying maximum and the median, we need to loop through the whole list and compare every node to a median. If it's bigger than a median we first push the node to a **list B** and then execute the rotate function(**ra**). If it's less than a median we only do the push to be function(**pa**). Important notion: while sending nodes to the list B, we need to keep track on a maximum and not to push it to the List B. So after the pre-sort is done we have list A with one maximum node and pre-sorted **list B** that looks like this:
+
 
