@@ -10,6 +10,7 @@ So, let's start.
 ## ❗️Sorting 3 numbers
 3 numbers sorting is the easiest case in this whole project.\
 Here we have 5 main conditions to cover, you can see them on a image, that I took from [this very cool article](https://medium.com/@jamierobertdawson/push-swap-the-least-amount-of-moves-with-two-stacks-d1e76a71789a):
+Here we consider that **one** is the first number, **two** is the second and **three** - is oubviosly the third. 
 
 - If one is greater than two, but less than three, and if two is less than three, we swap the first two elements(**sa**).
 - If one is greater than both two and three, and two is greater than three, we swap(**sa**) the first two elements, then reverse rotate(**rra**) them.
@@ -34,3 +35,9 @@ Important note: when pushing the minumum node to the top of the list it's import
 ## ❗️Sorting 100-500 numbers
 
 Now, the most interesting part. We can divide it in four parts: **Pre-sort, Finding the most efficient node to move, Moving the most efficient node and pushing the zero-node to the top.**
+
+Before the algorithm implementation, one important step must be done. 
+
+### Indexation
+
+The idea behind indexation is that we need to assign indexed(lol, what a surprise) to every node we in a list A. In this case it is will be easier to visualize it. 
