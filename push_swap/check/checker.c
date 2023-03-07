@@ -6,7 +6,7 @@
 /*   By: mklimina <mklimina@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/03 20:21:34 by maria             #+#    #+#             */
-/*   Updated: 2023/03/06 20:21:01 by mklimina         ###   ########.fr       */
+/*   Updated: 2023/03/07 18:41:23 by mklimina         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,6 +56,31 @@ void	parsethecommads(t_head_a *a, t_head_a *b, t_checker *head)
 	}
 }
 
+int checksstr(char *sstr)
+{
+	if (ft_strcmp(sstr, "sa\n") == 0)
+		return(1);
+	if (ft_strcmp(sstr, "sb\n") == 0)
+		return(1);
+	if (ft_strcmp(sstr, "pa\n") == 0)
+		return(1);
+	if (ft_strcmp(sstr, "pb\n") == 0)
+		return(1);
+	if (ft_strcmp(sstr, "ra\n") == 0)
+		return(1);
+	if (ft_strcmp(sstr, "rb\n") == 0)
+		return(1);
+	if (ft_strcmp(sstr, "rr\n") == 0)
+		return(1);
+	if (ft_strcmp(sstr, "rra\n") == 0)
+		return(1);
+	if (ft_strcmp(sstr, "rrb\n") == 0)
+		return(1);
+	if (ft_strcmp(sstr, "rrr\n") == 0)
+		return(1);
+	return(0);
+}
+
 t_checker	*return_head(void)
 {
 	t_checker		*head;
@@ -68,6 +93,11 @@ t_checker	*return_head(void)
 		sstr = get_next_line(0);
 		if (!sstr)
 			break ;
+		if (checksstr(sstr) == 0)
+		{
+			write(2, "Error\n", 6);
+			exit(0);
+		}
 		temp = malloc(sizeof(t_checker));
 		if (!temp)
 			return (NULL);
@@ -102,6 +132,8 @@ int	main(int argc, char **argv)
 	t_head_a		*lista;
 	t_head_a		*listb;
 
+	if (argc == 1)
+		write(1, "Checker needs some arguments!", 30);
 	if (argc < 2)
 		exit(0);
 	lista = define_list_a(argc, argv);

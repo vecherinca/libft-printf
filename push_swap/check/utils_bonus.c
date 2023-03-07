@@ -6,7 +6,7 @@
 /*   By: mklimina <mklimina@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/06 01:44:44 by maria             #+#    #+#             */
-/*   Updated: 2023/03/06 20:16:02 by mklimina         ###   ########.fr       */
+/*   Updated: 2023/03/07 18:47:13 by mklimina         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,12 +36,6 @@ int	check_the_stack(t_head_a *a, t_head_a *b)
 	if (check == 0)
 	{
 		write(2, "Error\n", 6);
-		free_list(a-> first, a);
-		free_list(b-> first, b);
-		exit(0);
-	}
-	if (is_sorted(a) == 1)
-	{
 		free_list(a-> first, a);
 		free_list(b-> first, b);
 		exit(0);

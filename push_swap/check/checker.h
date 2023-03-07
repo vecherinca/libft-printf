@@ -6,7 +6,7 @@
 /*   By: mklimina <mklimina@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/03 20:32:19 by maria             #+#    #+#             */
-/*   Updated: 2023/03/06 20:16:21 by mklimina         ###   ########.fr       */
+/*   Updated: 2023/03/07 18:30:42 by mklimina         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,7 +39,6 @@ typedef struct checker_head
 	t_checker	*first;
 }	t_head_checker;
 void		add_back_lst(t_checker **lst, t_checker *new);
-void		print_the_list(t_head_a *head);
 void		parsethecommads(t_head_a *a, t_head_a *b, t_checker *start);
 int			ft_strcmp(char *s1, char *s2);
 void		free_list(t_a_list *head, t_head_a *main);
