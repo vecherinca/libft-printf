@@ -90,4 +90,6 @@ Step by step what must be done:
 After the pre-sort we can start the search for the most efficient node. But first the sorting concept should be explained. 
 
 ### ✨✨✨ The concept ✨✨✨✨
+
+The idea behind this sorting strategy in a most simple way is the following: for the every node in a **list B** we count the number of moves(rb, rrb) to put it on top and then for every node we are looking for a nearest maximum node and count the number of moves to put this nearest maximum node on top of the **list A**.
 https://user-images.githubusercontent.com/43732011/223479534-7f0202b8-b6b7-4b7d-aeed-f8ac6223c5b4.mov
