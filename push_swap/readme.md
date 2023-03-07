@@ -71,15 +71,19 @@ When the indexation part is done and ready, we can start to implement the algori
 
 
 ## Pre-sort by using median
+❗️***NB: From this point we are working only with the indexes and not the actual values.***
+
 The first part of this push-swap algorithm is very very easy understand. At this point what we need to do is to push all our numbers from list A to list B in a certain manner by using the median.
 
 Step by step what must be done at this step. 
 
 - Finding the median of the **list A**.
 - Finding the maximum node of the **list A**. (at this point all our values are in list A) 
-- After identifying maximum and the median, we need to loop through the whole list and compare every node to a median. If it's bigger than a median we first push the node to a **list B** and then execute the rotate function(**ra**). If it's less than a median we only do the push to be function(**pa**). Important notion: while sending nodes to the list B, we need to keep track on a maximum and not to push it to the List B.\
+- After identifying maximum and the median, we need to loop through the whole list and compare every node to a median. If it's bigger than a median we first push the node to a **list B** and then execute the rotate function(**ra**). If it's less than a median we only do the push to be function(**pa**). Important notion: while sending nodes to the list B, we need to keep track on a maximum and not to push it to the List B.
 
-### So after the pre-sort is done we have list A with one maximum node and pre-sorted **list B** that looks like this. 
+### So after the pre-sort is done we have list A with one maximum node and pre-sorted **list B** that looks like this: the big numbers are on the top and small numbers are on the bottom of the list. 
 
 ![An image](https://i.pinimg.com/originals/0d/ea/12/0dea125082397ea72882aaf1a16a46c6.png)
+
+## Finding the most efficient node to move
 
