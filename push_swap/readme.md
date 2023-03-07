@@ -52,4 +52,6 @@ The idea behind indexation is that we need to assign indexed(lol, what a surpris
 |6            | 5       |
 
 The node structure will look like this:
+![This is an image](https://i.pinimg.com/originals/e1/8f/56/e18f56f0ece7121afa4464f660c43ea5.png)
+
 
