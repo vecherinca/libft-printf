@@ -75,7 +75,7 @@ When the indexation part is done and ready, we can start to implement the algori
 
 The first part of this push-swap algorithm is very very easy understand. At this point what we need to do is to push all our numbers from list A to list B in a certain manner by using the median.
 
-Step by step what must be done at this step. 
+Step by step what must be done: 
 
 - Finding the median of the **list A**.
 - Finding the maximum node of the **list A**. (at this point all our values are in list A) 
@@ -87,3 +87,6 @@ Step by step what must be done at this step.
 
 ## Finding the most efficient node to move
 
+After the pre-sort we can start the search for the most efficient node. But first I need to explain the sorting concept. 
+
+### ✨✨✨ The concept ✨✨✨✨
