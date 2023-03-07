@@ -51,8 +51,24 @@ The idea behind indexation is that we need to assign indexed(lol, what a surpris
 |1            | 0       |
 |6            | 5       |
 
-The node structure will look like this:\
+The node structure should be look like this. For every node we have an **int** value that is an actual number and int value for an assigned index. 
 
-![This is an image](https://i.pinimg.com/originals/e1/8f/56/e18f56f0ece7121afa4464f660c43ea5.png | width="100")
+![This is an image](https://i.pinimg.com/originals/85/36/9f/85369f81ccd5b961c490f045809a21c5.png)
+
+In terms of code the structure of a linked list that I used has this form.
+
+```c
+typedef struct t_a_list
+{
+	int				content;
+	int				index;
+	struct t_a_list	*next;
+}	t_a_list;
+
+```
+
+When the indexation part is done and ready, we can implement the algorithm. 
+
+
 
 
