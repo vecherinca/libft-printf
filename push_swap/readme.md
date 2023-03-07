@@ -50,3 +50,6 @@ The idea behind indexation is that we need to assign indexed(lol, what a surpris
 |2            | 1       |
 |1            | 0       |
 |6            | 5       |
+
+The node structure will look like this:
+
