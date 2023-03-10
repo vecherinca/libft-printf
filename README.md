@@ -10,3 +10,5 @@ My notes so far. I am not doing great with the bonus part tbh.
 | Libft       |112/125|
 | ft_printf   | 100/125     |
 |get_next_line| 112/125 |
+|Born2beroot| 110/125 |
+|push_swap| 121/125 |
