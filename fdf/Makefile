@@ -1,7 +1,7 @@
 NAME = fdf
 CC = gcc
 
-CFLAGS = -Wall -Wextra -Werror
+CFLAGS = -Wall -Wextra -Werror -g
 
 SRC =  \
 	 ./fdf.c    \
