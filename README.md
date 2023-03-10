@@ -1,9 +1,8 @@
 # 42cursus
-This is the repository that containts two first 42 projects - Libft and ft_printf. 
+This is the repository that containts my 42 projects. 
 
-I'll do my best to include some useful insights that helped me while coding. 
+I'll do my best to include some useful insights that helped me while coding. So far you can find the tutorial for get_next_line and push_swap inside folders. 
 
-My notes so far. I am not doing great with the bonus part tbh. 
 
 |Project      | Note |
 | ----------- | ----------- |
