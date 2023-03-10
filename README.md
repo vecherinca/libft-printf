@@ -10,4 +10,4 @@ I'll do my best to include some useful insights that helped me while coding. So 
 | ft_printf   | 100/125     |
 |get_next_line| 112/125 |
 |Born2beroot| 110/125 |
-|push_swap| 121/125 |
+|![push_swap](https://github.com/vecherinca/42cursus/tree/main/push_swap)| 121/125 |
