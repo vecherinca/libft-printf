@@ -5,6 +5,7 @@ CFLAGS = -Wall -Wextra -Werror -g
 
 SRC =  \
 	 ./fdf.c    \
+	 ./ft_split.c \
 	gnl/get_next_line.c \
 	gnl/get_next_line_utils.c \
 

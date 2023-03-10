@@ -3,5 +3,12 @@
 
 # include "gnl/get_next_line.h"
 
-char    *ft_dup(char *src);
+typedef struct s_tab
+{
+	int x;
+	int y;
+	int z;
+	int color;
+}	t_tab;
+char	**ft_split(char *s, char c);
 #endif
