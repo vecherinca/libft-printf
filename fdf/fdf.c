@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   fdf.c                                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mklimina <mklimina@student.42.fr>          +#+  +:+       +#+        */
+/*   By: maria <maria@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/08 20:17:32 by maria             #+#    #+#             */
-/*   Updated: 2023/03/11 22:10:31 by mklimina         ###   ########.fr       */
+/*   Updated: 2023/03/12 00:51:23 by maria            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,12 +16,12 @@ int	main(int argc, char **argv)
 {
 	char	*name;
 	t_tab	**table;
-	//int		cnt;
+	int		cnt;
 
 	(void)argc;
 	name = argv[1];
-	//cnt = count_lines(name);
+	cnt = count_lines(name);
 	table = create_ttable(name);
 	table = table;
-	//print(table, cnt);
+	print(table, cnt);
 }

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   create_tab.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mklimina <mklimina@student.42.fr>          +#+  +:+       +#+        */
+/*   By: maria <maria@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/11 19:46:21 by mklimina          #+#    #+#             */
-/*   Updated: 2023/03/11 22:02:33 by mklimina         ###   ########.fr       */
+/*   Updated: 2023/03/11 23:42:48 by maria            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,7 @@ void	fillfill(char **data, t_tab **table)
 	int		ccnt;
 	int		j;
 	int		i;
-
+	i = 0;
 	while (data[i] != NULL)
 	{
 		j = 0;
