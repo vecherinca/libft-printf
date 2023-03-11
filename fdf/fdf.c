@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   fdf.c                                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mklimina <mklimina@student.42.fr>          +#+  +:+       +#+        */
+/*   By: maria <maria@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/08 20:17:32 by maria             #+#    #+#             */
-/*   Updated: 2023/03/10 22:21:08 by mklimina         ###   ########.fr       */
+/*   Updated: 2023/03/11 17:59:48 by maria            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,11 +47,11 @@ void fill_tabtab(char **data, char *name)
 	}
 }
 
-int count_col(char *tab)
+int count_col(char **tab)
 {
 	int i;
 	i = 0;
-	while(tab[i]!= '\0')
+	while(tab[i]!= NULL)
 		i++;
 	return(i);
 }
@@ -59,9 +59,11 @@ int	main(int argc, char **argv)
 {
 	char	*name;
 	char	**data;
-	//t_tab 	**table;
+	t_tab 	**table;
 	char 	**tab;
 	int 	cnt;
+	int		ccnt;
+	int		j;
 	
 	(void) argc;
 	name = argv[1];
@@ -72,24 +74,25 @@ int	main(int argc, char **argv)
 	data[cnt] = NULL;
 	fill_tabtab(data, name);
 	int i = 0;
-	while (data[i] != NULL)
-	{
-		printf("data--> %s\n",data[i]);
-		i++;
-	}
-	i = 0;
-	//table = malloc(sizeof(t_tab*) * (cnt + 1));
+	table = malloc(sizeof(t_tab) * (cnt + 1));
+	table[cnt] = NULL;
 	while(data[i]!=NULL)
 	{
-		int j = 0;
+		j = 0;
 		tab = ft_split(data[i], 32);
-		int ccnt;
-		ccnt = count_col(tab[j]);
-		//here u create malloc
-		printf("ccnt --> %d", ccnt);
-		while (tab[j]!=NULL)
+		ccnt = count_col(tab);
+		table[i] = malloc(sizeof(t_tab*) * ccnt+1);
+		//printf("tab[i] --> %s\n", tab[j]);
+		while (tab[j] != NULL)
 		{
-			printf("%s\n", tab[j]);
+			table[i][j].x = j;
+			table[i][j].y = i;
+			printf("******************\n");
+			printf("x ---> %d\n", table[i][j].x);
+			printf("y ---> %d\n", table[i][j].y);
+			printf("\n");
+			printf("******************\n");
+			//printf("%s ", tab[j]);
 			//and here u fill it
 			//printf("j ---> %d\n", j);
 			free(tab[j]);
@@ -97,5 +100,8 @@ int	main(int argc, char **argv)
 		}
 		free(tab);
 		i++;
-	}
+	}	
+
+	//print(table, cnt);
+    // Print a newline character to separate rows
 }

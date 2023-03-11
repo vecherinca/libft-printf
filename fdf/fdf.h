@@ -11,4 +11,5 @@ typedef struct s_tab
 	int color;
 }	t_tab;
 char	**ft_split(char *s, char c);
+void	print(t_tab **table, int cnt);
 #endif
