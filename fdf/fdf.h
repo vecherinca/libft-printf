@@ -26,5 +26,10 @@ int		ft_atoi(char *str);
 int		count_col(char **tab);
 int		count_lines(char *name);
 void	fill_tabtab(char **data, char *name);
-
+void	fillfill(char	**data, t_tab **table);
+t_tab	**create_ttable(char *name);
+int		powerof(int nb, int power);
+char	*ft_strstr(char *str, char *to_find);
+char	*ft_strchr(const char *s, int c);
+int		hextoint(char *hex);
 #endif

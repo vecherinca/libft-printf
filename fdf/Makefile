@@ -7,6 +7,9 @@ SRC =  \
 	 ./fdf.c    \
 	 ./ft_split.c \
 	 ./utils.c \
+	  ./utils2.c \
+	 ./create_tab.c \
+	 ./change_base.c \
 	gnl/get_next_line.c \
 	gnl/get_next_line_utils.c \
 

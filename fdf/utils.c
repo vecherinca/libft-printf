@@ -6,29 +6,29 @@
 /*   By: mklimina <mklimina@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/08 22:44:03 by maria             #+#    #+#             */
-/*   Updated: 2023/03/11 19:23:42 by mklimina         ###   ########.fr       */
+/*   Updated: 2023/03/11 21:56:20 by mklimina         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "fdf.h"
 
-void print(t_tab **table, int cnt)
+void	print(t_tab **t, int cnt)
 {
-	int i;
-	int j;
+	int	i;
+	int	j;
+
 	i = 0;
-	while (i < cnt) 
+	while (i < cnt)
 	{
 		j = 0;
-    	while (j < cnt) 
+		while (j < cnt)
 		{
-        // Print the x and y values for the current element
-       		printf("%s(%d, %d, %d) ", KGRN, table[i][j].x, table[i][j].y, table[i][j].z);
-       		j++;
+			printf("%s(%d, %d, %d, %d) ", KGRN, t[i][j].x, t[i][j].y, t[i][j].z, t[i][j].color);
+			j++;
 		}
-    	printf("\n");
-    	i++;
-    }
+		printf("\n");
+		i++;
+	}
 }
 
 int	ft_atoi(char *str)
@@ -57,38 +57,38 @@ int	ft_atoi(char *str)
 	return (result * sign);
 }
 
-int count_col(char **tab)
+int	count_col(char **tab)
 {
-	int i;
+	int	i;
+
 	i = 0;
-	while(tab[i]!= NULL)
+	while (tab[i] != NULL)
 		i++;
-	return(i);
+	return (i);
 }
 
-int count_lines(char *name)
+int	count_lines(char *name)
 {
-	int 	fd;
-	char 	buffer[1];
+	int		fd;
+	char	buffer[1];
 	int		bytes;
-	int		cnt;	
-	
+	int		cnt;
+
 	cnt = -1;
 	fd = open(name, O_RDONLY);
 	bytes = 1;
 	while (bytes != 0)
 	{
 		bytes = read(fd, buffer, 1);
-		if(buffer[0] == '\n')
+		if (buffer[0] == '\n')
 			cnt++;
 	}
-	return(cnt);
-	
+	return (cnt);
 }
 
-void fill_tabtab(char **data, char *name)
+void	fill_tabtab(char **data, char *name)
 {
-	int fd;
+	int	fd;
 	int	i;
 
 	i = 0;
@@ -96,7 +96,7 @@ void fill_tabtab(char **data, char *name)
 	while (1)
 	{
 		data[i] = get_next_line(fd);
-		if(data[i] == NULL)
+		if (data[i] == NULL)
 			break ;
 		i++;
 	}
