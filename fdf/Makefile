@@ -16,13 +16,13 @@ SRC =  \
 
 
 OBJ = $(SRC:.c=.o)
-
+.SILENT:
 
 all : ${NAME}
 
 ${NAME} : ${OBJ}
 	${CC} ${CFLAGS} -Lmlx_linux -lmlx_Linux -L/usr/lib -Imlx_linux -lXext -lX11 -lm -lz -o ${NAME} ${OBJ}
-
+	printf '\033[32m[ ✔ ] %s\n\033[0m' "Create FdF heheh"
 .o: .c
 	${CC} -c ${CFLAGS} $< -o $@
 

@@ -11,6 +11,7 @@
 #define KWHT  "\x1B[37m"
 
 # include "gnl/get_next_line.h"
+# include "mlx_linux/mlx.h"
 
 typedef struct s_tab
 {

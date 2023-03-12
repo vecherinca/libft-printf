@@ -17,11 +17,13 @@ int	main(int argc, char **argv)
 	char	*name;
 	t_tab	**table;
 	int		cnt;
-
+	void	*mlx;
 	(void)argc;
 	name = argv[1];
 	cnt = count_lines(name);
 	table = create_ttable(name);
 	table = table;
 	print(table, cnt);
+	mlx = mlx_init();
+	mlx = mlx;
 }
