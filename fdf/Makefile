@@ -3,7 +3,6 @@ CC = gcc
 
 CFLAGS = -Wall -Wextra -Werror -g
 
-LIBS = libmlx_Linux.a -lm -lX11 -lXext
 SRC =  \
 	 ./fdf.c    \
 	 ./ft_split.c \
@@ -21,10 +20,10 @@ OBJ = $(SRC:.c=.o)
 all : ${NAME}
 
 ${NAME} : ${OBJ}
-	${CC} ${CFLAGS} -Lmlx_linux -lmlx_Linux -L/usr/lib -Imlx_linux -lXext -lX11 -lm -lz -o ${NAME} ${OBJ}
-	printf '\033[32m[ ✔ ] %s\n\033[0m' "Create FdF heheh"
+	$(CC) $(OBJ) -Lmlx_linux -lmlx_Linux -L/usr/lib -Imlx_linux -lXext -lX11 -lm -lz -o $(NAME)
+	printf '\033[32m[ ✔ ] %s\n\033[0m' "FDF is created"
 .o: .c
-	${CC} -c ${CFLAGS} $< -o $@
+	$(CC) -I/usr/include -Imlx_linux -O3 -c $< -o $@
 
 clean: 
 	rm -f $(OBJ) 
@@ -34,4 +33,4 @@ fclean: clean
 
 re: fclean all
 
-.PHONY: all clean fclean re all bonus
+.PHONY: all clean fclean re all 
