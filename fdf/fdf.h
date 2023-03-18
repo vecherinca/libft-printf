@@ -10,8 +10,16 @@
 #define KCYN  "\x1B[36m"
 #define KWHT  "\x1B[37m"
 
+
 # include "gnl/get_next_line.h"
 # include "mlx_linux/mlx.h"
+# include <X11/keysym.h>
+
+typedef struct t_data
+{
+	void	*mlx_ptr;
+	void	*win_ptr;
+} t_data;	
 
 typedef struct s_tab
 {
