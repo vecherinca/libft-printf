@@ -6,17 +6,12 @@
 /*   By: mklimina <mklimina@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/08 20:17:32 by maria             #+#    #+#             */
-/*   Updated: 2023/03/18 22:46:43 by mklimina         ###   ########.fr       */
+/*   Updated: 2023/03/25 19:24:33 by mklimina         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "fdf.h"
 
-# define WINDOW_WIDTH 600
-# define WINDOW_HEIGHT 300
-#include <X11/X.h>
-#define MLX_ERROR 1
-#define RED_PIXEL 0xFF0000
 
 int	input_key(int keysym, t_data *data)
 {
@@ -66,10 +61,10 @@ int	main(int argc, char **argv)
 	}
 	
 	/*HOOKS*/
-	mlx_loop_hook(data.mlx_ptr, &render, &data);
-	mlx_hook(data.win_ptr, KeyRelease, KeyReleaseMask, &input_key, &data);
-	mlx_loop(data.mlx_ptr);
-	mlx_destroy_display(data.mlx_ptr);
-	free(data.mlx_ptr);
+	// mlx_loop_hook(data.mlx_ptr, &render, &data);
+	// mlx_hook(data.win_ptr, KeyRelease, KeyReleaseMask, &input_key, &data);
+	// mlx_loop(data.mlx_ptr);
+	// mlx_destroy_display(data.mlx_ptr);
+	// free(data.mlx_ptr);
 
 }

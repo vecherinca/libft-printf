@@ -10,6 +10,11 @@
 #define KCYN  "\x1B[36m"
 #define KWHT  "\x1B[37m"
 
+# define WINDOW_WIDTH 600
+# define WINDOW_HEIGHT 300
+#include <X11/X.h>
+#define MLX_ERROR 1
+#define RED_PIXEL 0xFF0000
 
 # include "gnl/get_next_line.h"
 # include "mlx_linux/mlx.h"
@@ -19,6 +24,7 @@ typedef struct t_data
 {
 	void	*mlx_ptr;
 	void	*win_ptr;
+	t_img	img;
 } t_data;	
 
 typedef struct s_tab
@@ -29,6 +35,14 @@ typedef struct s_tab
 	int color;
 }	t_tab;
 
+typedef struct s_img
+{
+	void	*mlx_img;
+	char	*addr;
+	int		bpp; /* bits per pixel */
+	int		line_len;
+	int		endian;
+}	t_img;
 char	**ft_split(char *s, char c);
 void	print(t_tab **table, int cnt);
 int		ft_atoi(char *str);
