@@ -9,25 +9,19 @@
 #define KMAG  "\x1B[35m"
 #define KCYN  "\x1B[36m"
 #define KWHT  "\x1B[37m"
-
-# define WINDOW_WIDTH 600
-# define WINDOW_HEIGHT 300
 #include <X11/X.h>
-#define MLX_ERROR 1
-#define RED_PIXEL 0xFF0000
-
 # include "gnl/get_next_line.h"
 # include "mlx_linux/mlx.h"
 # include <X11/keysym.h>
 
-typedef struct t_data
-{
-	void	*mlx_ptr;
-	void	*win_ptr;
-	t_img	img;
-} t_data;	
+# define WINDOW_WIDTH 600
+# define WINDOW_HEIGHT 300
+# define MLX_ERROR 1
+# define RED_PIXEL 0xFF0000
+# define GREEN_PIXEL 0xFF00
+# define WHITE_PIXEL 0xFFFFFF
 
-typedef struct s_tab
+typedef struct t_tab
 {
 	int x;
 	int y;
@@ -35,7 +29,7 @@ typedef struct s_tab
 	int color;
 }	t_tab;
 
-typedef struct s_img
+typedef struct t_img
 {
 	void	*mlx_img;
 	char	*addr;
@@ -43,6 +37,26 @@ typedef struct s_img
 	int		line_len;
 	int		endian;
 }	t_img;
+
+typedef struct t_data
+{
+	void	*mlx_ptr;
+	void	*win_ptr;
+	t_img	img;
+	int		cur_img;
+} t_data;
+
+typedef struct t_rect
+{
+	int	x;
+	int	y;
+	int width;
+	int height;
+	int color;
+
+}	t_rect;
+
+
 char	**ft_split(char *s, char c);
 void	print(t_tab **table, int cnt);
 int		ft_atoi(char *str);
@@ -55,4 +69,8 @@ int		powerof(int nb, int power);
 char	*ft_strstr(char *str, char *to_find);
 char	*ft_strchr(const char *s, int c);
 int		hextoint(char *hex);
+void	render_background(t_img *img, int color);
+int		render(t_data *data);
+void	img_pix_put(t_img *img, int x, int y, int color);
+int		render_rect(t_img *img, t_rect rect);
 #endif
