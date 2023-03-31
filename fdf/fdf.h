@@ -56,6 +56,12 @@ typedef struct t_rect
 
 }	t_rect;
 
+typedef struct t_lines
+{
+	int hor_j;
+	int ver_i;
+
+}	t_lines;
 
 char	**ft_split(char *s, char c);
 void	print(t_tab **table, int cnt);

@@ -6,7 +6,7 @@
 /*   By: mklimina <mklimina@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/08 22:44:03 by maria             #+#    #+#             */
-/*   Updated: 2023/03/11 21:56:20 by mklimina         ###   ########.fr       */
+/*   Updated: 2023/03/31 22:22:41 by mklimina         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -63,7 +63,10 @@ int	count_col(char **tab)
 
 	i = 0;
 	while (tab[i] != NULL)
+	{
+		//printf("i ----> %s\n", tab[i]);
 		i++;
+	}
 	return (i);
 }
 

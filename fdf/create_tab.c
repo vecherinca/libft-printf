@@ -6,7 +6,7 @@
 /*   By: mklimina <mklimina@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/11 19:46:21 by mklimina          #+#    #+#             */
-/*   Updated: 2023/03/30 21:51:13 by mklimina         ###   ########.fr       */
+/*   Updated: 2023/03/31 21:15:41 by mklimina         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,6 +18,7 @@ void	fillfill(char **data, t_tab **table)
 	int		ccnt;
 	int		j;
 	int		i;
+	
 	i = 0;
 	while (data[i] != NULL)
 	{
