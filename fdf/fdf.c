@@ -6,7 +6,7 @@
 /*   By: mklimina <mklimina@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/08 20:17:32 by maria             #+#    #+#             */
-/*   Updated: 2023/03/31 23:03:19 by mklimina         ###   ########.fr       */
+/*   Updated: 2023/04/01 19:56:30 by mklimina         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,28 +23,32 @@ int	input_key(int keysym, t_data *data)
 	return (0);
 }
 
-int render_rect(t_img *img, t_rect rect)
+int render_rect(t_img *img, t_tab **table, t_lines cnt)
 {
 	int	i;
 	int j;
-	i = rect.y;
-	while (i < rect.y + rect.height)
+	cnt = cnt;
+	i = 0;
+	while (i < cnt.ver_i)
 	{
-		j = rect.x;
-		while (j < rect.x + rect.width)
-			img_pix_put(img, j++, i, rect.color);
-		++i;
+		j = 0;
+		while (j < cnt.hor_j)
+		{
+			img_pix_put(img, table[i][j].x, table[i][j].y, table[i][j].color);
+			j++;
+		}
+		i++;
 	}
 	return (0);
 }
 
-int	render(t_data *data)
+int	render(t_data *data, t_tab **table, t_lines cnt)
 {
+	cnt = cnt;
 	if (data -> win_ptr == NULL)
 		return (1);
 	render_background(&data->img, WHITE_PIXEL);	
-	render_rect(&data->img, (t_rect){WINDOW_WIDTH - 100, WINDOW_HEIGHT - 100, 100, 100, GREEN_PIXEL});
-	//render_rect(&data->img, (t_rect){0, 0, 100, 100, RED_PIXEL});
+	render_rect(&data->img, table, cnt);
 
 	mlx_put_image_to_window(data -> mlx_ptr, data -> win_ptr, data -> img.mlx_img, 0, 0);
 
@@ -52,8 +56,10 @@ int	render(t_data *data)
 }
 
 
-int draw(t_table cnt, t_tab **table)
+int draw(t_lines cnt, t_tab **table)
 {
+	cnt = cnt;
+	table = table;
 	t_data	data;
 	data.mlx_ptr = mlx_init();
 	if(data.mlx_ptr == NULL)
