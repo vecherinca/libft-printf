@@ -6,7 +6,7 @@
 /*   By: mklimina <mklimina@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/25 19:23:06 by mklimina          #+#    #+#             */
-/*   Updated: 2023/03/30 20:55:28 by mklimina         ###   ########.fr       */
+/*   Updated: 2023/04/01 22:04:33 by mklimina         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,6 +34,8 @@ void	img_pix_put(t_img *img, int x, int y, int color)
 {
 	char    *pixel;
 
+	if ((x < 0 || x >= WINDOW_WIDTH) || (y < 0 || y >= WINDOW_HEIGHT))
+		return ;
     pixel = img->addr + (y * img->line_len + x * (img->bpp / 8));
 	*(int *)pixel = color;
 }

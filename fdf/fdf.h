@@ -14,8 +14,8 @@
 # include "mlx_linux/mlx.h"
 # include <X11/keysym.h>
 
-# define WINDOW_WIDTH 600
-# define WINDOW_HEIGHT 300
+# define WINDOW_WIDTH 1920
+# define WINDOW_HEIGHT 1080
 # define MLX_ERROR 1
 # define RED_PIXEL 0xFF0000
 # define GREEN_PIXEL 0xFF00
@@ -38,13 +38,6 @@ typedef struct t_img
 	int		endian;
 }	t_img;
 
-typedef struct t_data
-{
-	void	*mlx_ptr;
-	void	*win_ptr;
-	t_img	img;
-	int		cur_img;
-} t_data;
 
 typedef struct t_rect
 {
@@ -63,6 +56,17 @@ typedef struct t_lines
 
 }	t_lines;
 
+typedef struct t_data
+{
+	void	*mlx_ptr;
+	void	*win_ptr;
+	t_img	img;
+	int		cur_img;
+	t_tab	**table;
+	t_lines cnt;
+
+} t_data;
+
 char	**ft_split(char *s, char c);
 void	print(t_tab **table, int cnt);
 int		ft_atoi(char *str);
@@ -76,7 +80,7 @@ char	*ft_strstr(char *str, char *to_find);
 char	*ft_strchr(const char *s, int c);
 int		hextoint(char *hex);
 void	render_background(t_img *img, int color);
-int	render(t_data *data, t_tab **table, t_lines cnt);
+int		render(t_data *data);
 void	img_pix_put(t_img *img, int x, int y, int color);
 int		render_rect(t_img *img, t_tab **table, t_lines cnt);
 #endif
