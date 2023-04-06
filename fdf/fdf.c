@@ -6,7 +6,7 @@
 /*   By: mklimina <mklimina@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/08 20:17:32 by maria             #+#    #+#             */
-/*   Updated: 2023/04/01 23:38:02 by mklimina         ###   ########.fr       */
+/*   Updated: 2023/04/06 23:32:02 by mklimina         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,22 +23,46 @@ int	input_key(int keysym, t_data *data)
 	return (0);
 }
 
+int mod()
+
+void bresenham(float x, float y, float x1, float y1, t_tab **table)
+{
+	float x_step;
+	float y_step;
+	int max;
+	x_step = x1 - x;
+	y_step = y1 - y;
+
+	max = 
+}
+
 int render_rect(t_img *img, t_tab **table, t_lines cnt)
 {
 	int	i;
 	int j;
-
+	int x;
+	int y;
+	int x1;
+	int y2;
+	
 	i = 0;
 	//printf("i: %d, j: %d\n", cnt.ver_i, cnt.hor_j);
-	while (i < cnt.ver_i)
+	while (i < cnt.ver_i - 1)
 	{
 		j = 0;
 		// printf("liam est pas bg");
 		while (j < cnt.hor_j)
 		{
-			img_pix_put(img, (table[i][j].x * 64 - table[i][j].y * 64)
-			 + WINDOW_WIDTH/2, ((table[i][j].x * 32 + table[i][j].y * 32)
-			  + (WINDOW_HEIGHT/2) - ((cnt.ver_i + cnt.hor_j) * 32)/2) - table[i][j].z , table[i][j].color);
+			x =(table[i][j].x * 64 - table[i][j].y * 64)
+			 + WINDOW_WIDTH/2;
+			y = ((table[i][j].x * 32 + table[i][j].y * 32)
+			  + (WINDOW_HEIGHT/2) - ((cnt.ver_i + cnt.hor_j) * 32)/2) - table[i][j].z;
+
+			x1 = (table[i+1][j].x  * 64 - table[i][j].y * 64)
+			 + WINDOW_WIDTH/2;
+			y2 = ((table[i][j].x * 32 + table[i][j].y * 32)
+			  + (WINDOW_HEIGHT/2) - ((cnt.ver_i + cnt.hor_j) * 32)/2) - table[i][j].z;
+			  
 			//printf("x: %d, y: %d\n",  table[i][j].x, table[i][j].y);
 			j++;
 		}
@@ -112,7 +136,7 @@ int	main(int argc, char **argv)
 	t_lines	cnt;
 	t_data data;
 	//int ccnt;
-	
+	//what to connect
 	cnt.ver_i = 0;
 	cnt.hor_j = 0;
 	(void)argc;
