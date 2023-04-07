@@ -67,6 +67,15 @@ typedef struct t_data
 
 } t_data;
 
+typedef struct t_cord
+{
+	float	x;
+	float	y;
+	float	x1;
+	float	y1;
+
+} t_cord;
+
 char	**ft_split(char *s, char c);
 void	print(t_tab **table, int cnt);
 int		ft_atoi(char *str);
