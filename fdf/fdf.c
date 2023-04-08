@@ -6,7 +6,7 @@
 /*   By: mklimina <mklimina@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/08 20:17:32 by maria             #+#    #+#             */
-/*   Updated: 2023/04/07 23:18:59 by mklimina         ###   ########.fr       */
+/*   Updated: 2023/04/08 23:55:42 by mklimina         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,7 +30,7 @@ float	mod(float num)
 		return (-1 * num);
 }
 
-float max(float x_step, float y_step)
+float	max(float x_step, float y_step)
 {
 	if (x_step > y_step)
 		return (x_step);
@@ -41,25 +41,19 @@ void	bresenham(t_cord value, t_img *img, int color)
 {
 	float	x_step;
 	float	y_step;
-	int 	i;
-	float		max_step;
-	
-	
+	int		i;
+	float	max_step;
+
 	i = 0;
-	// printf(" value.x  -------> %f\n",  value.x);
-	// printf(" value.x1  -------> %f\n",  value.x1);
-	// printf(" value.y  -------> %f\n",  value.y);
-	// printf(" value.y1  -------> %f\n",  value.y1);
 	x_step = value.x1 - value.x;
 	y_step = value.y1 - value.y;
 	max_step = max(mod(x_step), mod(y_step));
 	x_step /= max_step;
 	y_step /= max_step;
-	
-	printf("max_step ----> %f\n", max_step);
+	//printf("max_step ----> %f\n", max_step);
 	while (i < max_step)
 	{
-		printf("Liam est bg, max step ----> %f\n", max_step);
+		//printf(" max step ----> %f\n", max_step);
 		img_pix_put(img, value.x, value.y, color);
 		value.x += x_step;
 		value.y += y_step;
@@ -70,34 +64,56 @@ void	bresenham(t_cord value, t_img *img, int color)
 
 int	render_rect(t_img *img, t_tab **table, t_lines cnt)
 {
-	int	i;
-	int	j;
-	t_cord value;
-	int color;
+	int		i;
+	int		j;
+	t_cord	value;
+	int		color;
+
 	i = 0;
 	value.x = 0;
 	value.y = 0;
 	value.x1 = 0;
 	value.y1 = 0;
-	//printf("i: %d, j: %d\n", cnt.ver_i, cnt.hor_j);
-	while (i < cnt.ver_i - 1)
+	printf("i: %d, j: %d\n", cnt.ver_i, cnt.hor_j);
+	while (i < cnt.ver_i)
 	{
 		j = 0;
-		// printf("liam est pas bg");
-		while (j < cnt.hor_j - 1)
+
+		while (j < cnt.hor_j)
 		{
-			value.x = (table[i][j].x * 64 - table[i][j].y * 64) + WINDOW_WIDTH / 2;
-			value.y = ((table[i][j].x * 32 + table[i][j].y * 32) + (WINDOW_HEIGHT / 2)
-					- ((cnt.ver_i + cnt.hor_j) * 32) / 2) - table[i][j].z;
+			
 			color = table[i][j].color;
-					
-			value.x1 = (table[i + 1][j].x * 64 - table[i+1][j].y * 64) + WINDOW_WIDTH / 2;
-			value.y1 = ((table[i + 1][j].x * 32 + table[i+1][j].y * 32) + (WINDOW_HEIGHT / 2) - ((cnt.ver_i + cnt.hor_j) * 32) / 2) - table[i+1][j].z;
-			//printf("value x: %f, value y: %f, value x1: %f, value y1: %f\n",  value.x, value.y, value.x1, value.y1);
-			bresenham(value, img, color);
-			value.x1 = (table[i][j + 1].x * 64 - table[i][j + 1].y * 64) + WINDOW_WIDTH / 2;
-			value.y1 = ((table[i][j + 1].x * 32 + table[i][j + 1].y * 32) + (WINDOW_HEIGHT / 2) - ((cnt.ver_i + cnt.hor_j) * 32) / 2) - table[i][j + 1].z;
-			bresenham(value, img, color);
+			//printf("value x: %f, value y: %f, value x1: %f, value y1: %f\n", value.x, value.y, value.x1, value.y1);
+			if(i < cnt.ver_i - 1)
+			{
+				value.x = (table[i][j].x * 64 - table[i][j].y * 64) + WINDOW_WIDTH / 2;
+				
+				value.y = ((table[i][j].x * 32 + table[i][j].y * 32)
+						+ (WINDOW_HEIGHT / 2) - ((cnt.ver_i + cnt.hor_j) * 32) / 2) - table[i][j].z;
+				
+				value.x1 = (table[i + 1][j].x * 64 - table[i + 1][j].y * 64)
+					+ WINDOW_WIDTH / 2;
+				
+				value.y1 = ((table[i + 1][j].x * 32 + table[i + 1][j].y * 32)
+						+ (WINDOW_HEIGHT / 2) - ((cnt.ver_i + cnt.hor_j) * 32) / 2) - table[i + 1][j].z;	
+				bresenham(value, img, color);
+			}
+			// this thing draws lines 
+			if (j < cnt.hor_j - 1)
+			{
+				value.x = (table[i][j].x * 64 - table[i][j].y * 64) + WINDOW_WIDTH / 2;
+				
+				value.y = ((table[i][j].x * 32 + table[i][j].y * 32)
+						+ (WINDOW_HEIGHT / 2) - ((cnt.ver_i + cnt.hor_j) * 32) / 2) - table[i][j].z;
+				value.x1 = (table[i][j + 1].x * 64 - table[i][j + 1].y * 64)
+					+ WINDOW_WIDTH / 2;
+			
+				value.y1 = ((table[i][j + 1].x * 32 + table[i][j + 1].y * 32)
+						+ (WINDOW_HEIGHT / 2) - ((cnt.ver_i + cnt.hor_j) * 32) / 2)
+					- table[i][j + 1].z;
+				bresenham(value, img, color);
+			}
+			//bresenham(value, img, color);
 			//color =  table[i][j].color;
 			//printf("x: %d, y: %d\n",  table[i][j].x, table[i][j].y);
 			j++;
