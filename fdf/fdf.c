@@ -6,7 +6,7 @@
 /*   By: mklimina <mklimina@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/08 20:17:32 by maria             #+#    #+#             */
-/*   Updated: 2023/04/10 18:32:53 by mklimina         ###   ########.fr       */
+/*   Updated: 2023/04/10 20:23:29 by mklimina         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,15 +14,20 @@
 
 int	input_key(int keysym, t_data *data)
 {
-	printf("dezoom ----> %f", data -> dezoom);
+	printf("dezoom ----> %f\n", data -> dezoom);
+	printf("key ----> %d\n", keysym);
 	if (keysym == XK_Escape)
 	{
 		mlx_destroy_window(data->mlx_ptr, data->win_ptr);
 		data->win_ptr = NULL;
 	}
-	if (keysym == XK_Tab)
+	if (keysym == 45 && data->dezoom > 0.01)
 	{
-		data->dezoom = data->dezoom - 0.1;
+		data->dezoom = data->dezoom - 0.01;
+	}
+	if (keysym == 61)
+	{
+		data->dezoom = data->dezoom + 0.01;
 	}
 	
 	return (0);
@@ -66,7 +71,23 @@ void	bresenham(t_cord value, t_img *img, int color)
 		i++;
 	}
 }
-// }
+
+float modify_x(float x, float y, t_data *data)
+{
+	float res;
+
+	res = ((x * 64 - y * 64) * data -> dezoom) + WINDOW_WIDTH / 2;
+	return(res);
+}
+
+float modify_y(float x, float y, float z, t_lines cnt, t_data *data)
+{
+	float res;
+
+	res =  (((x * 32 + y * 32)*data -> dezoom) + (WINDOW_HEIGHT / 2) 
+	- (((cnt.ver_i + cnt.hor_j) * 32) / 2) *data -> dezoom - z * data -> dezoom);
+	return(res);
+}
 
 int	render_rect(t_img *img, t_tab **table, t_lines cnt, t_data *data)
 {
@@ -86,29 +107,18 @@ int	render_rect(t_img *img, t_tab **table, t_lines cnt, t_data *data)
 		while (j < cnt.hor_j)
 		{
 			color = table[i][j].color;
+			value.x = modify_x(table[i][j].x, table[i][j].y, data);
+			value.y = modify_y(table[i][j].x, table[i][j].y,table[i][j].z, cnt, data);
 			if(i < cnt.ver_i - 1)
 			{
-				value.x = ((table[i][j].x * 64 - table[i][j].y * 64) + WINDOW_WIDTH / 2)*data -> dezoom;
-				value.y = (((table[i][j].x * 32 + table[i][j].y * 32)
-						+ (WINDOW_HEIGHT / 2) - ((cnt.ver_i + cnt.hor_j) * 32) / 2) - table[i][j].z)*data -> dezoom;
-						
-				value.x1 = ((table[i + 1][j].x * 64 - table[i + 1][j].y * 64)
-					+ WINDOW_WIDTH / 2) *data -> dezoom;
-					
-				value.y1 = (((table[i + 1][j].x * 32 + table[i + 1][j].y * 32)
-						+ (WINDOW_HEIGHT / 2) - ((cnt.ver_i + cnt.hor_j) * 32) / 2) - table[i + 1][j].z)*data -> dezoom;	
+				value.x1 = modify_x(table[i + 1][j].x, table[i + 1][j].y, data);
+				value.y1 = modify_y(table[i + 1][j].x, table[i + 1][j].y,table[i + 1][j].z, cnt, data);
 				bresenham(value, img, color);
 			}
 			if (j < cnt.hor_j - 1)
 			{
-				value.x = ((table[i][j].x * 64 - table[i][j].y * 64) + WINDOW_WIDTH / 2)*data -> dezoom;
-				value.y = (((table[i][j].x * 32 + table[i][j].y * 32)
-						+ (WINDOW_HEIGHT / 2) - ((cnt.ver_i + cnt.hor_j) * 32) / 2) - table[i][j].z)*data -> dezoom;
-				value.x1 = ((table[i][j + 1].x * 64 - table[i][j + 1].y * 64)
-					+ WINDOW_WIDTH / 2)*data -> dezoom;
-				value.y1 = (((table[i][j + 1].x * 32 + table[i][j + 1].y * 32)
-						+ (WINDOW_HEIGHT / 2) - ((cnt.ver_i + cnt.hor_j) * 32) / 2)
-					- table[i][j + 1].z)*data -> dezoom; // + dezoom
+				value.x1 = modify_x(table[i][j + 1].x, table[i][j + 1].y, data);
+				value.y1 = modify_y(table[i][j + 1].x, table[i][j + 1].y,table[i][j + 1].z, cnt, data);
 				bresenham(value, img, color);
 			}
 			j++;

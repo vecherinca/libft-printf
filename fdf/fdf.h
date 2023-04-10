@@ -64,7 +64,8 @@ typedef struct t_data
 	int		cur_img;
 	t_tab	**table;
 	t_lines cnt;
-	int zoom;
+	int move_y;
+	int move_x;
 	float dezoom;
 
 } t_data;
