@@ -19,7 +19,7 @@
 # define MLX_ERROR 1
 # define RED_PIXEL 0xFF0000
 # define GREEN_PIXEL 0xFF00
-# define WHITE_PIXEL 0x000000
+# define BLACK_PIXEL 0x000000
 
 typedef struct t_tab
 {
@@ -64,6 +64,8 @@ typedef struct t_data
 	int		cur_img;
 	t_tab	**table;
 	t_lines cnt;
+	int zoom;
+	float dezoom;
 
 } t_data;
 
@@ -91,5 +93,5 @@ int		hextoint(char *hex);
 void	render_background(t_img *img, int color);
 int		render(t_data *data);
 void	img_pix_put(t_img *img, int x, int y, int color);
-int		render_rect(t_img *img, t_tab **table, t_lines cnt);
+int		render_rect(t_img *img, t_tab **table, t_lines cnt, t_data *data);
 #endif

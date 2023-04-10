@@ -6,7 +6,7 @@
 /*   By: mklimina <mklimina@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/08 20:17:32 by maria             #+#    #+#             */
-/*   Updated: 2023/04/08 23:55:42 by mklimina         ###   ########.fr       */
+/*   Updated: 2023/04/10 18:32:53 by mklimina         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,11 +14,17 @@
 
 int	input_key(int keysym, t_data *data)
 {
+	printf("dezoom ----> %f", data -> dezoom);
 	if (keysym == XK_Escape)
 	{
 		mlx_destroy_window(data->mlx_ptr, data->win_ptr);
 		data->win_ptr = NULL;
 	}
+	if (keysym == XK_Tab)
+	{
+		data->dezoom = data->dezoom - 0.1;
+	}
+	
 	return (0);
 }
 
@@ -62,7 +68,7 @@ void	bresenham(t_cord value, t_img *img, int color)
 }
 // }
 
-int	render_rect(t_img *img, t_tab **table, t_lines cnt)
+int	render_rect(t_img *img, t_tab **table, t_lines cnt, t_data *data)
 {
 	int		i;
 	int		j;
@@ -74,48 +80,37 @@ int	render_rect(t_img *img, t_tab **table, t_lines cnt)
 	value.y = 0;
 	value.x1 = 0;
 	value.y1 = 0;
-	printf("i: %d, j: %d\n", cnt.ver_i, cnt.hor_j);
 	while (i < cnt.ver_i)
 	{
 		j = 0;
-
 		while (j < cnt.hor_j)
 		{
-			
 			color = table[i][j].color;
-			//printf("value x: %f, value y: %f, value x1: %f, value y1: %f\n", value.x, value.y, value.x1, value.y1);
 			if(i < cnt.ver_i - 1)
 			{
-				value.x = (table[i][j].x * 64 - table[i][j].y * 64) + WINDOW_WIDTH / 2;
-				
-				value.y = ((table[i][j].x * 32 + table[i][j].y * 32)
-						+ (WINDOW_HEIGHT / 2) - ((cnt.ver_i + cnt.hor_j) * 32) / 2) - table[i][j].z;
-				
-				value.x1 = (table[i + 1][j].x * 64 - table[i + 1][j].y * 64)
-					+ WINDOW_WIDTH / 2;
-				
-				value.y1 = ((table[i + 1][j].x * 32 + table[i + 1][j].y * 32)
-						+ (WINDOW_HEIGHT / 2) - ((cnt.ver_i + cnt.hor_j) * 32) / 2) - table[i + 1][j].z;	
+				value.x = ((table[i][j].x * 64 - table[i][j].y * 64) + WINDOW_WIDTH / 2)*data -> dezoom;
+				value.y = (((table[i][j].x * 32 + table[i][j].y * 32)
+						+ (WINDOW_HEIGHT / 2) - ((cnt.ver_i + cnt.hor_j) * 32) / 2) - table[i][j].z)*data -> dezoom;
+						
+				value.x1 = ((table[i + 1][j].x * 64 - table[i + 1][j].y * 64)
+					+ WINDOW_WIDTH / 2) *data -> dezoom;
+					
+				value.y1 = (((table[i + 1][j].x * 32 + table[i + 1][j].y * 32)
+						+ (WINDOW_HEIGHT / 2) - ((cnt.ver_i + cnt.hor_j) * 32) / 2) - table[i + 1][j].z)*data -> dezoom;	
 				bresenham(value, img, color);
 			}
-			// this thing draws lines 
 			if (j < cnt.hor_j - 1)
 			{
-				value.x = (table[i][j].x * 64 - table[i][j].y * 64) + WINDOW_WIDTH / 2;
-				
-				value.y = ((table[i][j].x * 32 + table[i][j].y * 32)
-						+ (WINDOW_HEIGHT / 2) - ((cnt.ver_i + cnt.hor_j) * 32) / 2) - table[i][j].z;
-				value.x1 = (table[i][j + 1].x * 64 - table[i][j + 1].y * 64)
-					+ WINDOW_WIDTH / 2;
-			
-				value.y1 = ((table[i][j + 1].x * 32 + table[i][j + 1].y * 32)
+				value.x = ((table[i][j].x * 64 - table[i][j].y * 64) + WINDOW_WIDTH / 2)*data -> dezoom;
+				value.y = (((table[i][j].x * 32 + table[i][j].y * 32)
+						+ (WINDOW_HEIGHT / 2) - ((cnt.ver_i + cnt.hor_j) * 32) / 2) - table[i][j].z)*data -> dezoom;
+				value.x1 = ((table[i][j + 1].x * 64 - table[i][j + 1].y * 64)
+					+ WINDOW_WIDTH / 2)*data -> dezoom;
+				value.y1 = (((table[i][j + 1].x * 32 + table[i][j + 1].y * 32)
 						+ (WINDOW_HEIGHT / 2) - ((cnt.ver_i + cnt.hor_j) * 32) / 2)
-					- table[i][j + 1].z;
+					- table[i][j + 1].z)*data -> dezoom; // + dezoom
 				bresenham(value, img, color);
 			}
-			//bresenham(value, img, color);
-			//color =  table[i][j].color;
-			//printf("x: %d, y: %d\n",  table[i][j].x, table[i][j].y);
 			j++;
 		}
 		i++;
@@ -127,10 +122,9 @@ int	render(t_data *data)
 {
 	if (data->win_ptr == NULL)
 		return (1);
-	// render_background(&data->img, WHITE_PIXEL);
-	render_rect(&data->img, data->table, data->cnt);
-	mlx_put_image_to_window(data->mlx_ptr, data->win_ptr, data->img.mlx_img, 0,
-			0);
+	render_background(&data->img, BLACK_PIXEL);
+	render_rect(&data->img, data->table, data->cnt, data);
+	mlx_put_image_to_window(data->mlx_ptr, data->win_ptr, data->img.mlx_img, 0,0);
 	return (0);
 }
 
@@ -152,6 +146,7 @@ int	draw(t_data data)
 			&data.img.line_len, &data.img.endian);
 	mlx_loop_hook(data.mlx_ptr, &render, &data);
 	mlx_hook(data.win_ptr, KeyPress, KeyPressMask, &input_key, &data);
+	mlx_key_hook(data.win_ptr, &input_key, &data);
 	mlx_loop(data.mlx_ptr);
 	mlx_destroy_image(data.mlx_ptr, data.img.mlx_img);
 	mlx_destroy_display(data.mlx_ptr);
@@ -176,7 +171,6 @@ int	count_columns(char *name)
 		continue ;
 	if (the_line[i][0] == '\n')
 		ccnt--;
-	// I don't think that I should
 	return (ccnt);
 }
 
@@ -191,6 +185,8 @@ int	main(int argc, char **argv)
 	//what to connect
 	cnt.ver_i = 0;
 	cnt.hor_j = 0;
+	data.dezoom = 1;
+	printf("***");
 	(void)argc;
 	name = argv[1];
 	//ccnt = count_lines(name);
@@ -204,6 +200,6 @@ int	main(int argc, char **argv)
 	data.table = table;
 	data.cnt.hor_j = cnt.hor_j;
 	data.cnt.ver_i = cnt.ver_i;
-	/*************Part MLX ********************/
+// 	/*************Part MLX ********************/
 	draw(data);
 }
