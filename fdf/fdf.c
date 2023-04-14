@@ -6,12 +6,12 @@
 /*   By: mklimina <mklimina@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/08 20:17:32 by maria             #+#    #+#             */
-/*   Updated: 2023/04/10 20:23:29 by mklimina         ###   ########.fr       */
+/*   Updated: 2023/04/15 00:50:54 by mklimina         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "fdf.h"
-
+#define PI 3.14159265358979323846
 int	input_key(int keysym, t_data *data)
 {
 	printf("dezoom ----> %f\n", data -> dezoom);
@@ -22,14 +22,19 @@ int	input_key(int keysym, t_data *data)
 		data->win_ptr = NULL;
 	}
 	if (keysym == 45 && data->dezoom > 0.01)
-	{
 		data->dezoom = data->dezoom - 0.01;
-	}
 	if (keysym == 61)
-	{
 		data->dezoom = data->dezoom + 0.01;
-	}
-	
+	if (keysym == 65363)
+		data->move_x = data->move_x - 1;
+	if (keysym == 65361)
+		data->move_x = data->move_x + 1;
+	if (keysym == 65362)
+	data->move_y = data->move_y + 1;
+	if (keysym == 65364)
+		data->move_y = data->move_y - 1;
+	if (keysym == 114)
+		data->rot -= 0.1;
 	return (0);
 }
 
@@ -75,18 +80,23 @@ void	bresenham(t_cord value, t_img *img, int color)
 float modify_x(float x, float y, t_data *data)
 {
 	float res;
-
-	res = ((x * 64 - y * 64) * data -> dezoom) + WINDOW_WIDTH / 2;
+	float cos_rot = cos(data->rot * (PI/180)); // transorm radian
+	float sin_rot = sin(data->rot * (PI/180)); // transorm radian
+	
+	res = (((x  *cos_rot * 64 - y *sin_rot * 64) * data -> dezoom) + WINDOW_WIDTH / 2) + data->move_x;
 	return(res);
 }
 
 float modify_y(float x, float y, float z, t_lines cnt, t_data *data)
 {
 	float res;
-
-	res =  (((x * 32 + y * 32)*data -> dezoom) + (WINDOW_HEIGHT / 2) 
-	- (((cnt.ver_i + cnt.hor_j) * 32) / 2) *data -> dezoom - z * data -> dezoom);
-	return(res);
+	
+	float cos_rot = cos(data->rot * (PI/180)); // transorm radian
+	float sin_rot = sin(data->rot * (PI/180)); // transorm radian
+	
+	res =  ((((x *sin_rot  * 32 + y *cos_rot* 32) * data -> dezoom) + (WINDOW_HEIGHT / 2) 
+	- (((cnt.ver_i * sin_rot + cnt.hor_j *cos_rot) * 32) / 2) *data -> dezoom - z * data -> dezoom)) + data->move_y;
+	return(res); 
 }
 
 int	render_rect(t_img *img, t_tab **table, t_lines cnt, t_data *data)
@@ -196,6 +206,9 @@ int	main(int argc, char **argv)
 	cnt.ver_i = 0;
 	cnt.hor_j = 0;
 	data.dezoom = 1;
+	data.move_x = 1;
+	data.move_y = 1;
+	data.rot = 45; // I transform to the radiam
 	printf("***");
 	(void)argc;
 	name = argv[1];

@@ -13,7 +13,7 @@
 # include "gnl/get_next_line.h"
 # include "mlx_linux/mlx.h"
 # include <X11/keysym.h>
-
+#include <math.h>
 # define WINDOW_WIDTH 1920
 # define WINDOW_HEIGHT 1080
 # define MLX_ERROR 1
@@ -64,9 +64,10 @@ typedef struct t_data
 	int		cur_img;
 	t_tab	**table;
 	t_lines cnt;
-	int move_y;
-	int move_x;
-	float dezoom;
+	int		move_y;
+	int		move_x;
+	float	dezoom;
+	float	rot;
 
 } t_data;
 
@@ -95,4 +96,5 @@ void	render_background(t_img *img, int color);
 int		render(t_data *data);
 void	img_pix_put(t_img *img, int x, int y, int color);
 int		render_rect(t_img *img, t_tab **table, t_lines cnt, t_data *data);
+
 #endif
