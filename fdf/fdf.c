@@ -6,7 +6,7 @@
 /*   By: mklimina <mklimina@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/08 20:17:32 by maria             #+#    #+#             */
-/*   Updated: 2023/04/15 15:50:19 by mklimina         ###   ########.fr       */
+/*   Updated: 2023/04/15 18:16:16 by mklimina         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,6 +37,10 @@ int	input_key(int keysym, t_data *data)
 		data->rot += 0.1;
 	if (keysym == 108)
 		data->rot -= 0.1;
+	if (keysym == 32)
+	{
+		data -> movez+= 1;
+	}	
 	return (0);
 }
 
@@ -85,7 +89,7 @@ float modify_x(float x, float y, t_data *data, t_lines cnt)
 	float cos_rot = cos(data->rot * (PI/180)); // transorm radian
 	float sin_rot = sin(data->rot * (PI/180)); // transorm radian
 	
-	res = (((x  *cos_rot * 64 - y *sin_rot * 64) * data -> dezoom) + WINDOW_WIDTH / 2) -
+	res = (((x  *cos_rot * data->point64 - y *sin_rot * data->point64) * data -> dezoom) + WINDOW_WIDTH / 2) -
 	 (((cnt.ver_i * cos_rot - cnt.hor_j *sin_rot) * 64) / 2) *data -> dezoom + data->move_x;
 	return(res);
 }
@@ -97,8 +101,8 @@ float modify_y(float x, float y, float z, t_lines cnt, t_data *data)
 	float cos_rot = cos(data->rot * (PI/180)); // transorm radian
 	float sin_rot = sin(data->rot * (PI/180)); // transorm radian
 	
-	res =  ((((x *sin_rot  * 32 + y *cos_rot* 32) * data -> dezoom) + (WINDOW_HEIGHT / 2) 
-	- (((cnt.ver_i * sin_rot + cnt.hor_j *cos_rot) * 32) / 2) *data -> dezoom - z * data -> dezoom)) + data->move_y;
+	res =  ((((x *sin_rot  * data->point32 + y * cos_rot * data->point32) * data -> dezoom) + (WINDOW_HEIGHT / 2) 
+	- (((cnt.ver_i * sin_rot + cnt.hor_j *cos_rot) * 32) / 2) *data -> dezoom - (z * data->movez) * data -> dezoom)) + data->move_y;
 	return(res); 
 }
 
@@ -211,7 +215,10 @@ int	main(int argc, char **argv)
 	data.dezoom = 1;
 	data.move_x = 1;
 	data.move_y = 1;
-	data.rot = 45; // I transform to the radiam
+	data.rot = 45;
+	data.point32 = 32;
+	data.movez = 1;
+	data.point64 = 64; // I transform to the radiam
 	printf("***");
 	(void)argc;
 	name = argv[1];

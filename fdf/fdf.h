@@ -68,6 +68,9 @@ typedef struct t_data
 	int		move_x;
 	float	dezoom;
 	float	rot;
+	int 	point64;
+	int 	point32;
+	int 	movez;
 
 } t_data;
 
