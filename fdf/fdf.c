@@ -6,7 +6,7 @@
 /*   By: mklimina <mklimina@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/08 20:17:32 by maria             #+#    #+#             */
-/*   Updated: 2023/04/15 18:16:16 by mklimina         ###   ########.fr       */
+/*   Updated: 2023/04/15 19:17:27 by mklimina         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,10 +37,10 @@ int	input_key(int keysym, t_data *data)
 		data->rot += 0.1;
 	if (keysym == 108)
 		data->rot -= 0.1;
-	if (keysym == 32)
-	{
+	if (keysym == 49)
 		data -> movez+= 1;
-	}	
+	if (keysym == 50)
+		data -> movez-= 1;
 	return (0);
 }
 
@@ -89,7 +89,7 @@ float modify_x(float x, float y, t_data *data, t_lines cnt)
 	float cos_rot = cos(data->rot * (PI/180)); // transorm radian
 	float sin_rot = sin(data->rot * (PI/180)); // transorm radian
 	
-	res = (((x  *cos_rot * data->point64 - y *sin_rot * data->point64) * data -> dezoom) + WINDOW_WIDTH / 2) -
+	res = (((x  * cos_rot * data->point64 - y * sin_rot * data->point64) * data -> dezoom) + WINDOW_WIDTH / 2) -
 	 (((cnt.ver_i * cos_rot - cnt.hor_j *sin_rot) * 64) / 2) *data -> dezoom + data->move_x;
 	return(res);
 }
