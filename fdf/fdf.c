@@ -6,7 +6,7 @@
 /*   By: mklimina <mklimina@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/08 20:17:32 by maria             #+#    #+#             */
-/*   Updated: 2023/04/15 00:50:54 by mklimina         ###   ########.fr       */
+/*   Updated: 2023/04/15 15:50:19 by mklimina         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,6 +34,8 @@ int	input_key(int keysym, t_data *data)
 	if (keysym == 65364)
 		data->move_y = data->move_y - 1;
 	if (keysym == 114)
+		data->rot += 0.1;
+	if (keysym == 108)
 		data->rot -= 0.1;
 	return (0);
 }
@@ -77,13 +79,14 @@ void	bresenham(t_cord value, t_img *img, int color)
 	}
 }
 
-float modify_x(float x, float y, t_data *data)
+float modify_x(float x, float y, t_data *data, t_lines cnt)
 {
 	float res;
 	float cos_rot = cos(data->rot * (PI/180)); // transorm radian
 	float sin_rot = sin(data->rot * (PI/180)); // transorm radian
 	
-	res = (((x  *cos_rot * 64 - y *sin_rot * 64) * data -> dezoom) + WINDOW_WIDTH / 2) + data->move_x;
+	res = (((x  *cos_rot * 64 - y *sin_rot * 64) * data -> dezoom) + WINDOW_WIDTH / 2) -
+	 (((cnt.ver_i * cos_rot - cnt.hor_j *sin_rot) * 64) / 2) *data -> dezoom + data->move_x;
 	return(res);
 }
 
@@ -117,17 +120,17 @@ int	render_rect(t_img *img, t_tab **table, t_lines cnt, t_data *data)
 		while (j < cnt.hor_j)
 		{
 			color = table[i][j].color;
-			value.x = modify_x(table[i][j].x, table[i][j].y, data);
+			value.x = modify_x(table[i][j].x, table[i][j].y, data, cnt);
 			value.y = modify_y(table[i][j].x, table[i][j].y,table[i][j].z, cnt, data);
 			if(i < cnt.ver_i - 1)
 			{
-				value.x1 = modify_x(table[i + 1][j].x, table[i + 1][j].y, data);
+				value.x1 = modify_x(table[i + 1][j].x, table[i + 1][j].y, data, cnt);
 				value.y1 = modify_y(table[i + 1][j].x, table[i + 1][j].y,table[i + 1][j].z, cnt, data);
 				bresenham(value, img, color);
 			}
 			if (j < cnt.hor_j - 1)
 			{
-				value.x1 = modify_x(table[i][j + 1].x, table[i][j + 1].y, data);
+				value.x1 = modify_x(table[i][j + 1].x, table[i][j + 1].y, data, cnt);
 				value.y1 = modify_y(table[i][j + 1].x, table[i][j + 1].y,table[i][j + 1].z, cnt, data);
 				bresenham(value, img, color);
 			}
