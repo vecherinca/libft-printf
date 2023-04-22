@@ -6,7 +6,7 @@
 /*   By: mklimina <mklimina@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/08 20:17:32 by maria             #+#    #+#             */
-/*   Updated: 2023/04/20 22:09:12 by mklimina         ###   ########.fr       */
+/*   Updated: 2023/04/22 22:38:30 by mklimina         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,7 +26,12 @@ int	input_key(int keysym, t_data *data)
 	if (keysym == 45 && data->dezoom > 0.01)
 		data->dezoom = data->dezoom - 0.01;
 	if (keysym == 61)
+	{
+		printf("dezoom avant ----> %f\n", data -> dezoom);
 		data->dezoom = data->dezoom + 0.01;
+		printf("dezoom apres ----> %f\n", data -> dezoom);
+		printf("wesh\n");
+	}
 	if (keysym == 65363)
 		data->move_x = data->move_x - 1;
 	if (keysym == 65361)
@@ -34,13 +39,18 @@ int	input_key(int keysym, t_data *data)
 	if (keysym == 65362)
 		data->move_y = data->move_y + 1;
 	if (keysym == 65364)
-		data->move_y = data->move_y - 1;
+		data->move_y = data->move_y + 1;
 	if (keysym == 32)
-		data ->beta = data->beta + 2;
+	{
+		printf("beta avant ----> %f\n", data -> beta);
+		data ->beta = data->beta - 3;
+		printf("beta apres ----> %f\n", data -> beta);
+		printf("wesh\n");
+	}
 	if (keysym == 117)
-		data ->alpha = data->alpha + 2;
+		data ->alpha = data->alpha + 3;
 	if (keysym == 100)
-		data -> theta = data->theta + 2;
+		data -> theta = data->theta + 0.5;
 	// if (keysym == 108)
 	// 	data->rot -= 0.1;
 	if (keysym == 49)
@@ -52,7 +62,7 @@ int	input_key(int keysym, t_data *data)
 
 float	mod(float num)
 {
-	if (num >= 0)
+	if (num >= 0) 
 		return (num);
 	else
 		return (-1 * num);
@@ -94,32 +104,37 @@ float modify_x(float x, float y, float z, t_data *data, t_lines cnt)
 	float res;
 	float new_x;
 	float new_y;
+	float alpha;
+	float beta;
+	float theta;
+	(void) z;
 	// float cos_rot = cos(data->rot * (PI/180)); // transorm radian
 	// float sin_rot = sin(data->rot * (PI/180)); // transorm radian
-	data -> alpha = data -> alpha * (PI/180);
-	data -> beta = data -> beta * (PI/180);
-	data -> theta = data -> theta * (PI/180);
+	alpha = data -> alpha * (PI/180);
+	beta = data -> beta * (PI/180);
+	theta = data -> theta * (PI/180);
+	// printf("beta ----> %f\n", data -> beta);
+	// printf("alpha ----> %f\n", alpha);
+	// printf("theta ----> %f\n", data -> theta);
 	
-	printf("beta ----> %f\n", data -> beta);
-	printf("alpha ----> %f\n", data -> alpha);
-	printf("theta ----> %f\n", data -> theta);
+	new_x = (x * cos(alpha) * cos(beta)) 
+	+ (y * ((cos(alpha) * sin(beta) * sin(theta)) 
+	- (sin(alpha) * cos( theta))));
+	// + (z * ((cos(alpha) * sin( beta) * cos(theta)) 
+	// + (sin(alpha) * sin( theta)))));
+
 	
-	new_x = (x * cos(data ->alpha) * cos(data ->beta)) 
-	+ (y * ((cos(data -> alpha) * sin(data ->beta) * sin(data -> theta)) 
-	- (sin(data ->alpha) * cos(data -> theta))) 
-	+ (z * ((cos(data -> alpha) * sin(data -> beta) * cos(data -> theta)) 
-	+ (sin(data -> alpha) * sin(data -> theta))))); 
-	printf("new_x ----> %f\n", new_x);
-	exit(1);
-	new_y = (x * sin(data ->alpha) * cos(data ->beta)) 
-	+ (y * ((sin(data -> alpha) * sin(data ->beta) * sin(data -> theta)) 
-	+ (cos(data ->alpha) * cos(data -> theta))) 
-	+ (z * ((sin(data -> alpha) * sin(data -> beta) * cos(data -> theta)) 
-	- (cos(data -> alpha) * sin(data -> theta)))));
-	printf("new_x ----> %f\n", new_x);
+	 
+	//printf("new_x ----> %f\n", new_x);
+	new_y = (x * sin(alpha) * cos(beta)) 
+	+ (y * ((sin(alpha) * sin(beta) * sin(theta)) 
+	+ (cos(alpha) * cos( theta))));
+	// + (z * ((sin(alpha) * sin(beta) * cos(theta)) 
+	// - (cos(alpha) * sin( theta)))));
+//	printf("new_y ----> %f\n", new_y);
 
 	res = (((new_x * data->point64 - new_y * data->point64) * data -> dezoom) + WINDOW_WIDTH / 2) -
-	 (((cnt.ver_i - cnt.hor_j) * 64) / 2) *data -> dezoom + data->move_x;
+	 (((cnt.ver_i * sin(alpha) * sin(beta) * sin(theta) - cnt.hor_j * cos(alpha) * cos(beta) * cos(theta)) * 64) / 2) *data -> dezoom + data->move_x;
 	return(res);
 // 	printf("beta ----> %f\n", data -> beta);
 // 	printf("alpha ----> %f\n", data -> alpha);
@@ -132,32 +147,37 @@ float modify_y(float x, float y, float z, t_lines cnt, t_data *data)
 	float new_x;
 	float new_y;
 	float new_z;
+	float alpha;
+	float beta;
+	float theta;
 	
-	data -> alpha = data -> alpha * (PI/180);
-	data -> beta = data -> beta * (PI/180);
-	data -> theta = data -> theta * (PI/180);
+	alpha = data -> alpha * (PI/180);
+	beta = data -> beta * (PI/180);
+	theta = data -> theta * (PI/180);
 	// printf("movez ----> %d\n", data -> movez);
-	
-	new_x = (x * cos(data ->alpha) * cos(data ->beta)) 
-	+ (y * ((cos(data -> alpha) * sin(data ->beta) * sin(data -> theta)) 
-	- (sin(data ->alpha) * cos(data -> theta))) 
-	+ (z * ((cos(data -> alpha) * sin(data -> beta) * cos(data -> theta)) 
-	+ (sin(data -> alpha) * sin(data -> theta))))); 
+	new_x = (x * cos(alpha) * cos(beta)) 
+	+ (y * ((cos( alpha) * sin(beta) * sin( theta)) 
+	- (sin(alpha) * cos( theta))));
+	// + (z * ((cos( alpha) * sin( beta) * cos( theta)) 
+	// + (sin( alpha) * sin( theta))))); 
+	//printf("new_x2_2 ----> %f\n", new_x);
 
-	new_y = (x * sin(data ->alpha) * cos(data ->beta)) 
-	+ (y * ((sin(data -> alpha) * sin(data ->beta) * sin(data -> theta)) 
-	+ (cos(data ->alpha) * cos(data -> theta))) 
-	+ (z * ((sin(data -> alpha) * sin(data -> beta) * cos(data -> theta)) 
-	- (cos(data -> alpha) * sin(data -> theta)))));
+	new_y = (x * sin(alpha) * cos(beta)) 
+	+ (y * ((sin( alpha) * sin(beta) * sin( theta)) 
+	+ (cos(alpha) * cos( theta))));
+	// + (z * ((sin( alpha) * sin( beta) * cos( theta)) 
+	// - (cos( alpha) * sin( theta)))));
+	//printf("new_y_2 ----> %f\n", new_y);
 
-	new_z = (x * (-1 * sin(data -> beta))) 
-	+ (y * (cos(data -> beta) * sin(data -> theta))) 
-	+ (z *(cos(data -> beta)) * cos(data -> theta));
+	new_z = (x * (-1 * sin( beta))) 
+	+ (y * (cos( beta) * sin( theta))) 
+	+ (z *(cos( beta)) * cos( theta));
 	// float cos_rot = cos(data->rot * (PI/180)); // transorm radian
 	// float sin_rot = sin(data->rot * (PI/180)); // transorm radian
 	
+	//exit(1);
 	res =  ((((new_x  * data->point32 + new_y  * data->point32) * data -> dezoom) + (WINDOW_HEIGHT / 2) 
-	- (((cnt.ver_i + cnt.hor_j) * 32) / 2) *data -> dezoom - (new_z * data->movez) * data -> dezoom)) + data->move_y;
+	- (((cnt.ver_i * cos(alpha) * cos(beta) * cos(theta) + cnt.hor_j * sin(alpha) * sin(beta) * sin(theta)) * 32) / 2) *data -> dezoom - (new_z * data->movez) * data -> dezoom)) + data->move_y;
 	return(res); 
 }
 
@@ -173,9 +193,6 @@ int	render_rect(t_img *img, t_tab **table, t_lines cnt, t_data *data)
 	value.y = 0;
 	value.x1 = 0;
 	value.y1 = 0;
-	data -> alpha = 45;
-	data -> beta = 1;
-	data -> theta = 0;
 	while (i < cnt.ver_i)
 	{
 		j = 0;
@@ -280,10 +297,12 @@ int	main(int argc, char **argv)
 	//what to connect
 	cnt.ver_i = 0;
 	cnt.hor_j = 0;
-	data.dezoom = 1;
+	data.dezoom = -0.5;
 	data.move_x = 1;
 	data.move_y = 1;
-	
+	data.alpha = 0;
+	data.beta = 0;
+	data.theta = 0;
 	data.point32 = 32;
 	data.movez = 1;
 	data.point64 = 64; // I transform to the radiam
