@@ -6,7 +6,7 @@
 /*   By: mklimina <mklimina@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/08 20:17:32 by maria             #+#    #+#             */
-/*   Updated: 2023/04/22 22:38:30 by mklimina         ###   ########.fr       */
+/*   Updated: 2023/05/06 23:52:31 by mklimina         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,35 +24,23 @@ int	input_key(int keysym, t_data *data)
 		data->win_ptr = NULL;
 	}
 	if (keysym == 45 && data->dezoom > 0.01)
-		data->dezoom = data->dezoom - 0.01;
+		data->zoom_factor= data->zoom_factor - 0.1;
 	if (keysym == 61)
-	{
-		printf("dezoom avant ----> %f\n", data -> dezoom);
-		data->dezoom = data->dezoom + 0.01;
-		printf("dezoom apres ----> %f\n", data -> dezoom);
-		printf("wesh\n");
-	}
+		data->zoom_factor= data->zoom_factor + 0.1;
 	if (keysym == 65363)
-		data->move_x = data->move_x - 1;
+		data->move_x = data->move_x + 5;
 	if (keysym == 65361)
-		data->move_x = data->move_x + 1;
+		data->move_x = data->move_x - 5;
 	if (keysym == 65362)
-		data->move_y = data->move_y + 1;
+		data->move_y = data->move_y - 5;
 	if (keysym == 65364)
-		data->move_y = data->move_y + 1;
+		data->move_y = data->move_y + 5;
 	if (keysym == 32)
-	{
-		printf("beta avant ----> %f\n", data -> beta);
-		data ->beta = data->beta - 3;
-		printf("beta apres ----> %f\n", data -> beta);
-		printf("wesh\n");
-	}
+		data ->beta = data->beta + 0.5;
 	if (keysym == 117)
 		data ->alpha = data->alpha + 3;
 	if (keysym == 100)
 		data -> theta = data->theta + 0.5;
-	// if (keysym == 108)
-	// 	data->rot -= 0.1;
 	if (keysym == 49)
 		data -> movez+= 1;
 	if (keysym == 50)
@@ -75,7 +63,7 @@ float	max(float x_step, float y_step)
 	else
 		return (y_step);
 }
-void	bresenham(t_cord value, t_img *img, int color)
+void	bresenham(t_cord point2, t_cord point1, t_img *img, int color)
 {
 	float	x_step;
 	float	y_step;
@@ -83,146 +71,111 @@ void	bresenham(t_cord value, t_img *img, int color)
 	float	max_step;
 
 	i = 0;
-	x_step = value.x1 - value.x;
-	y_step = value.y1 - value.y;
+	x_step = point2.x - point1.x;
+	y_step = point2.y - point1.y;
 	max_step = max(mod(x_step), mod(y_step));
 	x_step /= max_step;
 	y_step /= max_step;
-	//printf("max_step ----> %f\n", max_step);
 	while (i < max_step)
 	{
-		//printf(" max step ----> %f\n", max_step);
-		img_pix_put(img, value.x, value.y, color);
-		value.x += x_step;
-		value.y += y_step;
+		img_pix_put(img, point1.x, point1.y, color);
+		point1.x += x_step;
+		point1.y += y_step;
 		i++;
 	}
 }
 
-float modify_x(float x, float y, float z, t_data *data, t_lines cnt)
+/*
+t_point	new_point;
+
+first : zoom;
+
+new_point = zoom(data, table[i][j].x, table[i][j].y, table[i][j].z);
+new_point1 = zoom(data, table[i + stuff][j].x, table[i][j].y, table[i][j].z);
+
+new_point = rotation(data, new_point);
+new_point1 = rotation(data, new_point1);
+
+project to screen;
+translate here maybe ?;
+draw lines;
+*/
+t_cord zoom_and_rotate(float x, float y, float z, t_lines cnt, t_data *data)
 {
-	float res;
-	float new_x;
-	float new_y;
-	float alpha;
-	float beta;
-	float theta;
-	(void) z;
-	// float cos_rot = cos(data->rot * (PI/180)); // transorm radian
-	// float sin_rot = sin(data->rot * (PI/180)); // transorm radian
-	alpha = data -> alpha * (PI/180);
-	beta = data -> beta * (PI/180);
-	theta = data -> theta * (PI/180);
-	// printf("beta ----> %f\n", data -> beta);
-	// printf("alpha ----> %f\n", alpha);
-	// printf("theta ----> %f\n", data -> theta);
-	
-	new_x = (x * cos(alpha) * cos(beta)) 
-	+ (y * ((cos(alpha) * sin(beta) * sin(theta)) 
-	- (sin(alpha) * cos( theta))));
-	// + (z * ((cos(alpha) * sin( beta) * cos(theta)) 
-	// + (sin(alpha) * sin( theta)))));
-
-	
-	 
-	//printf("new_x ----> %f\n", new_x);
-	new_y = (x * sin(alpha) * cos(beta)) 
-	+ (y * ((sin(alpha) * sin(beta) * sin(theta)) 
-	+ (cos(alpha) * cos( theta))));
-	// + (z * ((sin(alpha) * sin(beta) * cos(theta)) 
-	// - (cos(alpha) * sin( theta)))));
-//	printf("new_y ----> %f\n", new_y);
-
-	res = (((new_x * data->point64 - new_y * data->point64) * data -> dezoom) + WINDOW_WIDTH / 2) -
-	 (((cnt.ver_i * sin(alpha) * sin(beta) * sin(theta) - cnt.hor_j * cos(alpha) * cos(beta) * cos(theta)) * 64) / 2) *data -> dezoom + data->move_x;
-	return(res);
-// 	printf("beta ----> %f\n", data -> beta);
-// 	printf("alpha ----> %f\n", data -> alpha);
-// 	printf("theta ----> %f\n", data -> theta);
-}
-
-float modify_y(float x, float y, float z, t_lines cnt, t_data *data)
-{
-	float res;
+	t_cord	res;
 	float new_x;
 	float new_y;
 	float new_z;
 	float alpha;
 	float beta;
 	float theta;
-	
+
+	(void) cnt;
 	alpha = data -> alpha * (PI/180);
 	beta = data -> beta * (PI/180);
 	theta = data -> theta * (PI/180);
-	// printf("movez ----> %d\n", data -> movez);
-	new_x = (x * cos(alpha) * cos(beta)) 
-	+ (y * ((cos( alpha) * sin(beta) * sin( theta)) 
-	- (sin(alpha) * cos( theta))));
-	// + (z * ((cos( alpha) * sin( beta) * cos( theta)) 
-	// + (sin( alpha) * sin( theta))))); 
-	//printf("new_x2_2 ----> %f\n", new_x);
-
-	new_y = (x * sin(alpha) * cos(beta)) 
-	+ (y * ((sin( alpha) * sin(beta) * sin( theta)) 
-	+ (cos(alpha) * cos( theta))));
-	// + (z * ((sin( alpha) * sin( beta) * cos( theta)) 
-	// - (cos( alpha) * sin( theta)))));
-	//printf("new_y_2 ----> %f\n", new_y);
-
-	new_z = (x * (-1 * sin( beta))) 
-	+ (y * (cos( beta) * sin( theta))) 
-	+ (z *(cos( beta)) * cos( theta));
-	// float cos_rot = cos(data->rot * (PI/180)); // transorm radian
-	// float sin_rot = sin(data->rot * (PI/180)); // transorm radian
 	
-	//exit(1);
-	res =  ((((new_x  * data->point32 + new_y  * data->point32) * data -> dezoom) + (WINDOW_HEIGHT / 2) 
-	- (((cnt.ver_i * cos(alpha) * cos(beta) * cos(theta) + cnt.hor_j * sin(alpha) * sin(beta) * sin(theta)) * 32) / 2) *data -> dezoom - (new_z * data->movez) * data -> dezoom)) + data->move_y;
-	return(res); 
+	// do offset here
+	//z = z - data->central_z;
+
+	x *= data->zoom_factor;
+	y *= data->zoom_factor;
+	z *= data->movez;
+	// x = x - data->central_x;
+	// y = y- data->central_y;
+
+	printf("x: %f\n", x);
+	printf("y: %f\n", y);
+	printf("z: %f\n", z);
+	// x += data->move_x;
+	// y += data->move_y;
+
+	new_x = x * cos(theta) - y * sin(theta);
+	new_y = x * sin(theta) + y * cos(theta);
+	new_z = z;
+	
+	z = new_x * sin(beta) + new_z * cos(beta);
+    x = new_x * cos(beta) - new_z * sin(beta);
+    y = new_y;
+
+    res.y = y * cos(alpha) - z * sin(alpha);
+    res.z = y * sin(alpha) + z * cos(alpha);
+    res.x = x;
+
+	// res.y -= res.z;
+	// res.x += data->move_x;
+	// res.y += data->move_y;
+	return (res);
 }
 
 int	render_rect(t_img *img, t_tab **table, t_lines cnt, t_data *data)
 {
 	int		i;
 	int		j;
-	t_cord	value;
+	t_cord	point2;
+	t_cord	point1;
 	int		color;
 
 	i = 0;
-	value.x = 0;
-	value.y = 0;
-	value.x1 = 0;
-	value.y1 = 0;
+
 	while (i < cnt.ver_i)
 	{
 		j = 0;
 		while (j < cnt.hor_j)
 		{
 			color = table[i][j].color;
-			value.x = modify_x(table[i][j].x, table[i][j].y, table[i][j].z, data, cnt);
-			value.y = modify_y(table[i][j].x, table[i][j].y,table[i][j].z, cnt, data);
+			point1 = zoom_and_rotate(table[i][j].x, table[i][j].y, table[i][j].z, cnt, data);
 			if(i < cnt.ver_i - 1)
 			{
-				value.x1 = modify_x(table[i + 1][j].x, table[i + 1][j].y, table[i][j].z, data, cnt);
-				value.y1 = modify_y(table[i + 1][j].x, table[i + 1][j].y,table[i + 1][j].z, cnt, data);
-				bresenham(value, img, color);
+				point2 = zoom_and_rotate(table[i + 1][j].x, table[i + 1][j].y, table[i + 1][j].z, cnt, data);
+				bresenham(point2, point1, img, color);
 			}
 			if (j < cnt.hor_j - 1)
 			{
-				value.x1 = modify_x(table[i][j + 1].x, table[i][j + 1].y, table[i][j].z, data, cnt);
-				value.y1 = modify_y(table[i][j + 1].x, table[i][j + 1].y,table[i][j + 1].z, cnt, data);
-				bresenham(value, img, color);
+				point2 = zoom_and_rotate(table[i][j + 1].x, table[i][j + 1].y, table[i][j + 1].z, cnt, data);
+				bresenham(point2, point1, img, color);
 			}
 			j++;
-			// printf("alpha ----> %f\n", data -> alpha);
-			// printf("movez ----> %d\n", data->movez);
-			// printf("beta ----> %f\n", data -> beta);
-			// printf("beta ----> %f\n", data -> beta);
-			// printf("alpha ----> %f\n", data -> alpha);
-			// printf("theta ----> %f\n", data -> theta);
-			// printf("movez ----> %f\n", data -> movez);
-			// printf("x ----> %f\n", value.x);
-			// printf("y ----> %f\n", value.y);
 		}
 		i++;
 	}
@@ -293,37 +246,39 @@ int	main(int argc, char **argv)
 	t_lines	cnt;
 	t_data	data;
 
-	//int ccnt;
+	data.central_x = 0;
+	data.central_y = 0;
+	data.central_z = 0;
 	//what to connect
+	// do the init function
 	cnt.ver_i = 0;
 	cnt.hor_j = 0;
-	data.dezoom = -0.5;
+	data.dezoom = 0.5;
+	data.zoom_factor = 1;
 	data.move_x = 1;
 	data.move_y = 1;
-	data.alpha = 0;
+	data.alpha = 45;
 	data.beta = 0;
-	data.theta = 0;
-	data.point32 = 32;
-	data.movez = 1;
-	data.point64 = 64; // I transform to the radiam
-	// printf("beta ----> %f\n", data.beta);
-	// printf("alpha ----> %f\n", data.alpha);
-	// printf("theta ----> %f\n", data.theta);
-	// printf("movez ----> %d\n", data.movez);
-	printf("***");
+	data.theta = 35;
+	data.movez = 5;
+ // I transform to the radiam
 	(void)argc;
 	name = argv[1];
-	//ccnt = count_lines(name);
+
 	cnt.ver_i = count_lines(name);
 	cnt.hor_j = count_columns(name);
 	table = create_ttable(name);
-	table = table;
-	//print(table, ccnt);
-	//printf("i -----> %d\n", cnt.ver_i);
-	//printf("j -----> %d\n", cnt.hor_j);
+
+
 	data.table = table;
 	data.cnt.hor_j = cnt.hor_j;
 	data.cnt.ver_i = cnt.ver_i;
+	printf("cnt : %f, %f\n", cnt.ver_i, cnt.hor_j);
+	data.central_x = (cnt.ver_i * data.zoom_factor) / 2;
+	data.central_y = (cnt.hor_j * data.zoom_factor) / 2;
+	data.central_z = find_z(table,cnt);
+	//printf("data x %f",data.central_x);
+	printf("data z %f",data.central_z);
 // 	/*************Part MLX ********************/
-	draw(data);
+	//draw(data);
 }

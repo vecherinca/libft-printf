@@ -51,8 +51,8 @@ typedef struct t_rect
 
 typedef struct t_lines
 {
-	int hor_j;
-	int ver_i;
+	float hor_j;
+	float ver_i;
 
 }	t_lines;
 
@@ -63,16 +63,21 @@ typedef struct t_data
 	t_img	img;
 	int		cur_img;
 	t_tab	**table;
-	t_lines cnt;
+	t_lines	cnt;
 	int		move_y;
 	int		move_x;
+	float	zoom_factor;
 	float	dezoom;
 	int 	point64;
 	int 	point32;
 	int 	movez;
-	float		alpha;
-	float		beta;
-	float		theta;
+	float	alpha;
+	float	beta;
+	float	theta;
+	float	central_x;
+	float	central_y;
+	float	central_z;
+
 
 } t_data;
 
@@ -80,13 +85,12 @@ typedef struct t_cord
 {
 	float	x;
 	float	y;
-	float	x1;
-	float	y1;
+	float	z;
 
 } t_cord;
 
 char	**ft_split(char *s, char c);
-void	print(t_tab **table, int cnt);
+void	print(t_tab **t, int cnt);
 int		ft_atoi(char *str);
 int		count_col(char **tab);
 int		count_lines(char *name);
@@ -101,5 +105,5 @@ void	render_background(t_img *img, int color);
 int		render(t_data *data);
 void	img_pix_put(t_img *img, int x, int y, int color);
 int		render_rect(t_img *img, t_tab **table, t_lines cnt, t_data *data);
-
+float	find_z(t_tab **t, t_lines cnt);
 #endif
