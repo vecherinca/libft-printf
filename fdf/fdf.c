@@ -6,7 +6,7 @@
 /*   By: mklimina <mklimina@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/08 20:17:32 by maria             #+#    #+#             */
-/*   Updated: 2023/05/06 23:52:31 by mklimina         ###   ########.fr       */
+/*   Updated: 2023/05/08 21:24:23 by mklimina         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -116,13 +116,13 @@ t_cord zoom_and_rotate(float x, float y, float z, t_lines cnt, t_data *data)
 	theta = data -> theta * (PI/180);
 	
 	// do offset here
-	//z = z - data->central_z;
 
 	x *= data->zoom_factor;
 	y *= data->zoom_factor;
 	z *= data->movez;
-	// x = x - data->central_x;
-	// y = y- data->central_y;
+	x = x - data->central_x;
+	y = y- data->central_y;
+	z = z - data->central_z;
 
 	printf("x: %f\n", x);
 	printf("y: %f\n", y);
@@ -143,8 +143,8 @@ t_cord zoom_and_rotate(float x, float y, float z, t_lines cnt, t_data *data)
     res.x = x;
 
 	// res.y -= res.z;
-	// res.x += data->move_x;
-	// res.y += data->move_y;
+	res.x += data->move_x;
+	res.y += data->move_y;
 	return (res);
 }
 
@@ -219,40 +219,42 @@ int	draw(t_data data)
 	return (0);
 }
 
-int	count_columns(char *name)
+t_lines	count_columns(char *name, t_lines cnt)
 {
-	int		ccnt;
+	//int		ccnt;
 	char	*line;
 	int		fd;
 	char	**the_line;
 	int		i;
-
+	
 	fd = open(name, O_RDONLY);
 	line = get_next_line(fd);
 	the_line = ft_split(line, 32);
-	ccnt = count_col(the_line);
+	cnt.ver_i = count_col(the_line);
 	i = -1;
 	while (the_line[++i + 1])
 		continue ;
 	if (the_line[i][0] == '\n')
-		ccnt--;
-	return (ccnt);
+		cnt.ver_i--;
+
+	while (line)
+	{
+		line = get_next_line(fd);
+		free(line);
+		cnt.hor_j++;
+	}
+	printf("lines  ---> %f\n", cnt.hor_j);
+	printf("ccnt ---> %f\n", cnt.ver_i);
+	
+	return (cnt);
 }
 
-int	main(int argc, char **argv)
+t_data init(t_data data)
 {
-	char	*name;
-	t_tab	**table;
-	t_lines	cnt;
-	t_data	data;
 
 	data.central_x = 0;
 	data.central_y = 0;
 	data.central_z = 0;
-	//what to connect
-	// do the init function
-	cnt.ver_i = 0;
-	cnt.hor_j = 0;
 	data.dezoom = 0.5;
 	data.zoom_factor = 1;
 	data.move_x = 1;
@@ -261,24 +263,36 @@ int	main(int argc, char **argv)
 	data.beta = 0;
 	data.theta = 35;
 	data.movez = 5;
- // I transform to the radiam
-	(void)argc;
+	return(data);
+}
+int	main(int argc, char **argv)
+{
+	char	*name;
+	t_tab	**table;
+	t_lines	cnt;
+	t_data	data;
+	cnt.ver_i = 0;
+	cnt.hor_j = 0;
 	name = argv[1];
+	data = init(data);
 
-	cnt.ver_i = count_lines(name);
-	cnt.hor_j = count_columns(name);
-	table = create_ttable(name);
+	(void)argc;
+	(void)data;
 
-
+	cnt = count_columns(name, cnt);
+	table = create_ttable(name, cnt);
+	print(table, cnt);
+	printf("ver_i ---> %f\n", cnt.ver_i);
+	printf("hor_j ---> %f\n", cnt.hor_j);
 	data.table = table;
-	data.cnt.hor_j = cnt.hor_j;
-	data.cnt.ver_i = cnt.ver_i;
-	printf("cnt : %f, %f\n", cnt.ver_i, cnt.hor_j);
-	data.central_x = (cnt.ver_i * data.zoom_factor) / 2;
-	data.central_y = (cnt.hor_j * data.zoom_factor) / 2;
+	data.cnt.hor_j =cnt.ver_i;
+	data.cnt.ver_i = cnt.hor_j;;
+	// //printf("cnt : %f, %f\n", cnt.ver_i, cnt.hor_j);
+	data.central_x = (data.cnt.ver_i * data.zoom_factor) / 2;
+	data.central_y = (data.cnt.hor_j * data.zoom_factor) / 2;
 	data.central_z = find_z(table,cnt);
-	//printf("data x %f",data.central_x);
+	printf("data x %f",data.central_x);
 	printf("data z %f",data.central_z);
 // 	/*************Part MLX ********************/
-	//draw(data);
+	draw(data);
 }

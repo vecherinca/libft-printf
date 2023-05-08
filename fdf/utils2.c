@@ -6,7 +6,7 @@
 /*   By: mklimina <mklimina@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/11 21:13:31 by mklimina          #+#    #+#             */
-/*   Updated: 2023/05/06 23:27:36 by mklimina         ###   ########.fr       */
+/*   Updated: 2023/05/08 21:22:16 by mklimina         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,7 +59,7 @@ float find_min(t_tab **t, t_lines cnt)
 	int i;
 	int j;
 	i = 0;
-	while (i < cnt.ver_i)
+	while (i < cnt.hor_j)
 	{
 		j = 0;
 		while (j < cnt.ver_i)
@@ -80,10 +80,10 @@ float find_max(t_tab **t, t_lines cnt)
 	int i;
 	int j;
 	i = 0;
-	while (i < cnt.ver_i)
+	while (i < cnt.hor_j)
 	{
 		j = 0;
-		while (j < cnt.hor_j)
+		while (j < cnt.ver_i)
 		{
 			if (t[i][j].z > max)
 				max = t[i][j].z;

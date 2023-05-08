@@ -6,31 +6,34 @@
 /*   By: mklimina <mklimina@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/11 19:46:21 by mklimina          #+#    #+#             */
-/*   Updated: 2023/03/31 21:15:41 by mklimina         ###   ########.fr       */
+/*   Updated: 2023/05/08 21:03:28 by mklimina         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "fdf.h"
 
-void	fillfill(char **data, t_tab **table)
+void	fillfill(char **data, t_tab **table, t_lines cnt)
 {
 	char	**tab;
 	int		ccnt;
 	int		j;
 	int		i;
-	
+	(void) cnt;
 	i = 0;
 	while (data[i] != NULL)
 	{
 		j = 0;
 		tab = ft_split(data[i], 32);
 		ccnt = count_col(tab);
-		table[i] = malloc(sizeof(t_tab) * ccnt + 1);
+		//printf("data[%d] ---> %s\n",i, data[i]);
+		table[i] = malloc(sizeof(t_tab) * (ccnt + 1));
 		while (tab[j] != NULL)
 		{
 			table[i][j].x = j;
 			table[i][j].y = i;
 			table[i][j].z = ft_atoi(tab[j]);
+			//printf("%s tab(j) %s\n", KGRN,  tab[j]);
+			
 			if (ft_strchr(tab[j], 44) == 0)
 				table[i][j].color = -1;
 			else
@@ -40,23 +43,25 @@ void	fillfill(char **data, t_tab **table)
 		}
 		free(tab);
 		i++;
+		printf("i ---> %d\n", i);
 	}
 }
 
-t_tab	**create_ttable(char *name)
+t_tab	**create_ttable(char *name, t_lines cnt)
 {
 	char	**data;
-	int		cnt;
+	int		ccnt;
 	t_tab	**table;
-
-	cnt = count_lines(name);
-	data = malloc(sizeof(char *) * (cnt + 1));
+	ccnt = cnt.hor_j;
+	//printf("number of lines --> %d", cnt);
+	data = malloc(sizeof(char *) * (ccnt + 1));
 	if (!data)
 		return (0);
-	data[cnt] = NULL;
+	data[ccnt] = NULL;
 	fill_tabtab(data, name);
-	table = malloc(sizeof(t_tab *) * (cnt + 1));
-	table[cnt] = NULL;
-	fillfill(data, table);
+	//printf("data[3] ----> %s\n", data[2]);
+	table = malloc(sizeof(t_tab *) * (ccnt + 1));
+	table[ccnt] = NULL;
+	fillfill(data, table, cnt);
 	return (table);
 }
