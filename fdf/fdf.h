@@ -70,7 +70,7 @@ typedef struct t_data
 	float	dezoom;
 	int 	point64;
 	int 	point32;
-	int 	movez;
+	float 	movez;
 	float	alpha;
 	float	beta;
 	float	theta;

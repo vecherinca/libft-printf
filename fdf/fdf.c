@@ -6,7 +6,7 @@
 /*   By: mklimina <mklimina@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/08 20:17:32 by maria             #+#    #+#             */
-/*   Updated: 2023/05/08 21:24:23 by mklimina         ###   ########.fr       */
+/*   Updated: 2023/05/11 23:32:14 by mklimina         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,14 +23,20 @@ int	input_key(int keysym, t_data *data)
 		mlx_destroy_window(data->mlx_ptr, data->win_ptr);
 		data->win_ptr = NULL;
 	}
-	if (keysym == 45 && data->dezoom > 0.01)
+	if (keysym == 45 && data->zoom_factor> 0.01)
+	{
 		data->zoom_factor= data->zoom_factor - 0.1;
+		printf("data->zoom_factor moins ---> %f\n", data->zoom_factor);
+	}
 	if (keysym == 61)
+	{
 		data->zoom_factor= data->zoom_factor + 0.1;
+		printf("data->zoom_factor plus ---> %f\n", data->zoom_factor);
+	}
 	if (keysym == 65363)
-		data->move_x = data->move_x + 5;
+		data->move_x = data->move_x * 1.5;
 	if (keysym == 65361)
-		data->move_x = data->move_x - 5;
+		data->move_x = data->move_x / 1.5;
 	if (keysym == 65362)
 		data->move_y = data->move_y - 5;
 	if (keysym == 65364)
@@ -42,9 +48,9 @@ int	input_key(int keysym, t_data *data)
 	if (keysym == 100)
 		data -> theta = data->theta + 0.5;
 	if (keysym == 49)
-		data -> movez+= 1;
+		data -> movez *= 1.1;
 	if (keysym == 50)
-		data -> movez-= 1;
+		data -> movez /= 1.1;
 	return (0);
 }
 
@@ -115,18 +121,16 @@ t_cord zoom_and_rotate(float x, float y, float z, t_lines cnt, t_data *data)
 	beta = data -> beta * (PI/180);
 	theta = data -> theta * (PI/180);
 	
-	// do offset here
-
-	x *= data->zoom_factor;
-	y *= data->zoom_factor;
 	z *= data->movez;
 	x = x - data->central_x;
-	y = y- data->central_y;
+	y = y -  data->central_y;
 	z = z - data->central_z;
+	x *= data->zoom_factor;
+	y *= data->zoom_factor;
 
-	printf("x: %f\n", x);
-	printf("y: %f\n", y);
-	printf("z: %f\n", z);
+	// printf("x: %f\n", x);
+	// printf("y: %f\n", y);
+	// printf("z: %f\n", z);
 	// x += data->move_x;
 	// y += data->move_y;
 
@@ -142,9 +146,11 @@ t_cord zoom_and_rotate(float x, float y, float z, t_lines cnt, t_data *data)
     res.z = y * sin(alpha) + z * cos(alpha);
     res.x = x;
 
-	// res.y -= res.z;
+	res.x += (WINDOW_WIDTH/2);
+	res.y +=(WINDOW_HEIGHT/2);
 	res.x += data->move_x;
 	res.y += data->move_y;
+
 	return (res);
 }
 
@@ -157,10 +163,11 @@ int	render_rect(t_img *img, t_tab **table, t_lines cnt, t_data *data)
 	int		color;
 
 	i = 0;
+	//i = data.width - 1;
 
 	while (i < cnt.ver_i)
 	{
-		j = 0;
+		j = 0; //same
 		while (j < cnt.hor_j)
 		{
 			color = table[i][j].color;
@@ -187,7 +194,11 @@ int	render(t_data *data)
 	if (data->win_ptr == NULL)
 		return (1);
 	render_background(&data->img, BLACK_PIXEL);
-	render_rect(&data->img, data->table, data->cnt, data);
+	// check if map is flipped :
+	// map flipped :
+		// render_rect reverse
+	// map not flipped
+		render_rect(&data->img, data->table, data->cnt, data);
 	mlx_put_image_to_window(data->mlx_ptr, data->win_ptr, data->img.mlx_img, 0,0);
 	return (0);
 }
@@ -255,14 +266,13 @@ t_data init(t_data data)
 	data.central_x = 0;
 	data.central_y = 0;
 	data.central_z = 0;
-	data.dezoom = 0.5;
-	data.zoom_factor = 1;
+	data.zoom_factor = 29;
 	data.move_x = 1;
 	data.move_y = 1;
-	data.alpha = 45;
+	data.alpha = 55;
 	data.beta = 0;
 	data.theta = 35;
-	data.movez = 5;
+	data.movez = 1;
 	return(data);
 }
 int	main(int argc, char **argv)
@@ -281,18 +291,19 @@ int	main(int argc, char **argv)
 
 	cnt = count_columns(name, cnt);
 	table = create_ttable(name, cnt);
-	print(table, cnt);
-	printf("ver_i ---> %f\n", cnt.ver_i);
-	printf("hor_j ---> %f\n", cnt.hor_j);
+	// print(table, cnt);
+	// printf("ver_i ---> %f\n", cnt.ver_i);
+	// printf("hor_j ---> %f\n", cnt.hor_j);
 	data.table = table;
 	data.cnt.hor_j =cnt.ver_i;
 	data.cnt.ver_i = cnt.hor_j;;
 	// //printf("cnt : %f, %f\n", cnt.ver_i, cnt.hor_j);
-	data.central_x = (data.cnt.ver_i * data.zoom_factor) / 2;
-	data.central_y = (data.cnt.hor_j * data.zoom_factor) / 2;
+	//this thing is in question
+	data.central_x = (data.cnt.hor_j) / 2;
+	data.central_y = (data.cnt.ver_i ) / 2;
 	data.central_z = find_z(table,cnt);
-	printf("data x %f",data.central_x);
-	printf("data z %f",data.central_z);
+	// printf("data x %f",data.central_x);
+	// printf("data z %f",data.central_z);
 // 	/*************Part MLX ********************/
 	draw(data);
 }

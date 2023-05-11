@@ -6,7 +6,7 @@
 /*   By: mklimina <mklimina@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/11 21:13:31 by mklimina          #+#    #+#             */
-/*   Updated: 2023/05/08 21:22:16 by mklimina         ###   ########.fr       */
+/*   Updated: 2023/05/11 23:38:50 by mklimina         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -70,7 +70,7 @@ float find_min(t_tab **t, t_lines cnt)
 		}
 		i++;
 	}
-	printf("min IN FUNCTION: %f\n", min);
+	//printf("min IN FUNCTION: %f\n", min);
 	return(min);
 }
 
@@ -91,7 +91,7 @@ float find_max(t_tab **t, t_lines cnt)
 		}
 		i++;
 	}
-	printf("max IN FUNCTION: %f\n", max);
+	//printf("max IN FUNCTION: %f\n", max);
 	return (max);	
 }
 
@@ -103,9 +103,10 @@ float	find_z(t_tab **t, t_lines cnt)
 
 	max = find_max(t, cnt);
 	min = find_min(t, cnt);
-	printf("max: %f\n", max);
-	printf("min: %f\n", min);
+	//printf("max: %f\n", max);
+	//printf("min: %f\n", min);
 	res = max - min;
+	//store it somewhere (res)
 	printf("res: %f\n", res);
-	return(res / 2);
+	return((res / 2) + min);
 }

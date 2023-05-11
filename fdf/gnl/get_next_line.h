@@ -6,7 +6,7 @@
 /*   By: mklimina <mklimina@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/04 17:50:09 by mklimina          #+#    #+#             */
-/*   Updated: 2023/05/08 20:04:18 by mklimina         ###   ########.fr       */
+/*   Updated: 2023/05/11 23:04:26 by mklimina         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,6 +28,6 @@ void	ft_bzero(void *s, size_t n);
 int		ft_do_ze_line(char **line, char *buffer, char **stash);
 
 # ifndef BUFFER_SIZE
-#  define BUFFER_SIZE 1
+#  define BUFFER_SIZE 100
 # endif
 #endif
