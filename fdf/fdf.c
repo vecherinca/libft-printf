@@ -6,7 +6,7 @@
 /*   By: mklimina <mklimina@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/08 20:17:32 by maria             #+#    #+#             */
-/*   Updated: 2023/05/11 23:32:14 by mklimina         ###   ########.fr       */
+/*   Updated: 2023/05/12 20:39:36 by mklimina         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,11 +42,20 @@ int	input_key(int keysym, t_data *data)
 	if (keysym == 65364)
 		data->move_y = data->move_y + 5;
 	if (keysym == 32)
-		data ->beta = data->beta + 0.5;
+	{
+		data ->beta = data->beta + 1;
+		printf("beta---> %f\n", data ->beta);
+	}
 	if (keysym == 117)
-		data ->alpha = data->alpha + 3;
+	{
+		data ->alpha = data->alpha + 1;
+		printf("alpha---> %f\n", data ->alpha);
+	}
 	if (keysym == 100)
-		data -> theta = data->theta + 0.5;
+	{
+		data -> theta = data->theta + 1;
+		printf("theta---> %f\n", data ->theta);
+	}
 	if (keysym == 49)
 		data -> movez *= 1.1;
 	if (keysym == 50)
@@ -127,7 +136,7 @@ t_cord zoom_and_rotate(float x, float y, float z, t_lines cnt, t_data *data)
 	z = z - data->central_z;
 	x *= data->zoom_factor;
 	y *= data->zoom_factor;
-
+	z *= data -> zoom_factor/2;
 	// printf("x: %f\n", x);
 	// printf("y: %f\n", y);
 	// printf("z: %f\n", z);
@@ -163,11 +172,9 @@ int	render_rect(t_img *img, t_tab **table, t_lines cnt, t_data *data)
 	int		color;
 
 	i = 0;
-	//i = data.width - 1;
-
 	while (i < cnt.ver_i)
 	{
-		j = 0; //same
+		j = 0; 
 		while (j < cnt.hor_j)
 		{
 			color = table[i][j].color;
@@ -189,16 +196,64 @@ int	render_rect(t_img *img, t_tab **table, t_lines cnt, t_data *data)
 	return (0);
 }
 
+int	render_reverse(t_img *img, t_tab **table, t_lines cnt, t_data *data)
+{
+	int		i;
+	int		j;
+	t_cord	point2;
+	t_cord	point1;
+	int		color;
+
+	i = cnt.ver_i - 1;
+
+	while (i > 0)
+	{
+		j = cnt.hor_j - 1; //same
+		while (j > 0)
+		{
+			color = table[i][j].color;
+			point1 = zoom_and_rotate(table[i][j].x, table[i][j].y, table[i][j].z, cnt, data);
+			if(i < cnt.ver_i - 1)
+			{
+				point2 = zoom_and_rotate(table[i + 1][j].x, table[i + 1][j].y, table[i + 1][j].z, cnt, data);
+				bresenham(point2, point1, img, color);
+			}
+			if (j < cnt.hor_j - 1)
+			{
+				point2 = zoom_and_rotate(table[i][j + 1].x, table[i][j + 1].y, table[i][j + 1].z, cnt, data);
+				bresenham(point2, point1, img, color);
+			}
+			j--;
+		}
+		i--;
+	}
+	return (0);
+}
+
+int map_is_flipped(t_data *data)
+{
+	int value;
+	
+	if (data -> theta > 90 && data -> theta < 272)
+		value = 1;
+	else
+		value = -1;
+	
+	return(value);
+	
+}
+
 int	render(t_data *data)
 {
+	int flip;
 	if (data->win_ptr == NULL)
 		return (1);
 	render_background(&data->img, BLACK_PIXEL);
-	// check if map is flipped :
-	// map flipped :
-		// render_rect reverse
-	// map not flipped
+	flip = map_is_flipped(data);
+	if (flip == -1)
 		render_rect(&data->img, data->table, data->cnt, data);
+	else
+		render_reverse(&data->img, data->table, data->cnt, data); 
 	mlx_put_image_to_window(data->mlx_ptr, data->win_ptr, data->img.mlx_img, 0,0);
 	return (0);
 }
@@ -219,7 +274,6 @@ int	draw(t_data data)
 	data.img.mlx_img = mlx_new_image(data.mlx_ptr, WINDOW_WIDTH, WINDOW_HEIGHT);
 	data.img.addr = mlx_get_data_addr(data.img.mlx_img, &data.img.bpp,
 			&data.img.line_len, &data.img.endian);
-	//printf("beforeeeeeeeeeeeeeeeeee alpha----> %f\n", data.alpha);
 	mlx_loop_hook(data.mlx_ptr, &render, &data);
 	mlx_hook(data.win_ptr, KeyPress, KeyPressMask, &input_key, &data);
 	mlx_key_hook(data.win_ptr, &input_key, &data);
@@ -266,10 +320,10 @@ t_data init(t_data data)
 	data.central_x = 0;
 	data.central_y = 0;
 	data.central_z = 0;
-	data.zoom_factor = 29;
+	data.zoom_factor = 23;
 	data.move_x = 1;
 	data.move_y = 1;
-	data.alpha = 55;
+	data.alpha = 61;
 	data.beta = 0;
 	data.theta = 35;
 	data.movez = 1;
