@@ -6,7 +6,7 @@
 /*   By: mklimina <mklimina@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/08 20:17:32 by maria             #+#    #+#             */
-/*   Updated: 2023/05/12 20:39:36 by mklimina         ###   ########.fr       */
+/*   Updated: 2023/05/12 22:58:32 by mklimina         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,12 +25,15 @@ int	input_key(int keysym, t_data *data)
 	}
 	if (keysym == 45 && data->zoom_factor> 0.01)
 	{
-		data->zoom_factor= data->zoom_factor - 0.1;
+		data->zoom_factor *= 0.9;
+		data->movez *= 0.9;
 		printf("data->zoom_factor moins ---> %f\n", data->zoom_factor);
 	}
 	if (keysym == 61)
 	{
-		data->zoom_factor= data->zoom_factor + 0.1;
+		// data->zoom_factor = data->zoom_factor + 0.1;
+		data->zoom_factor *= 1.1;
+		data->movez *= 1.1;
 		printf("data->zoom_factor plus ---> %f\n", data->zoom_factor);
 	}
 	if (keysym == 65363)
@@ -51,15 +54,25 @@ int	input_key(int keysym, t_data *data)
 		data ->alpha = data->alpha + 1;
 		printf("alpha---> %f\n", data ->alpha);
 	}
-	if (keysym == 100)
+	if (keysym == 102)
 	{
 		data -> theta = data->theta + 1;
+		printf("theta---> %f\n", data ->theta);
+	}
+	if (keysym == 100)
+	{
+		data -> theta = data->theta - 1;
 		printf("theta---> %f\n", data ->theta);
 	}
 	if (keysym == 49)
 		data -> movez *= 1.1;
 	if (keysym == 50)
-		data -> movez /= 1.1;
+		data -> movez *= 0.9;
+	// reset angle;
+	// if (angle < 0)
+	//	angle += 360;
+	// if angle > 360
+	// blabla
 	return (0);
 }
 
@@ -136,7 +149,7 @@ t_cord zoom_and_rotate(float x, float y, float z, t_lines cnt, t_data *data)
 	z = z - data->central_z;
 	x *= data->zoom_factor;
 	y *= data->zoom_factor;
-	z *= data -> zoom_factor/2;
+	//z *= data -> zoom_factor/10;
 	// printf("x: %f\n", x);
 	// printf("y: %f\n", y);
 	// printf("z: %f\n", z);
@@ -206,21 +219,21 @@ int	render_reverse(t_img *img, t_tab **table, t_lines cnt, t_data *data)
 
 	i = cnt.ver_i - 1;
 
-	while (i > 0)
+	while (i >= 0)
 	{
-		j = cnt.hor_j - 1; //same
-		while (j > 0)
+		j = cnt.hor_j - 1;
+		while (j >= 0)
 		{
 			color = table[i][j].color;
 			point1 = zoom_and_rotate(table[i][j].x, table[i][j].y, table[i][j].z, cnt, data);
-			if(i < cnt.ver_i - 1)
+			if(i > 0)
 			{
-				point2 = zoom_and_rotate(table[i + 1][j].x, table[i + 1][j].y, table[i + 1][j].z, cnt, data);
+				point2 = zoom_and_rotate(table[i - 1][j].x, table[i - 1][j].y, table[i - 1][j].z, cnt, data);
 				bresenham(point2, point1, img, color);
 			}
-			if (j < cnt.hor_j - 1)
+			if (j > 0)
 			{
-				point2 = zoom_and_rotate(table[i][j + 1].x, table[i][j + 1].y, table[i][j + 1].z, cnt, data);
+				point2 = zoom_and_rotate(table[i][j - 1].x, table[i][j - 1].y, table[i][j - 1].z, cnt, data);
 				bresenham(point2, point1, img, color);
 			}
 			j--;
@@ -301,16 +314,12 @@ t_lines	count_columns(char *name, t_lines cnt)
 		continue ;
 	if (the_line[i][0] == '\n')
 		cnt.ver_i--;
-
 	while (line)
 	{
 		line = get_next_line(fd);
 		free(line);
 		cnt.hor_j++;
-	}
-	printf("lines  ---> %f\n", cnt.hor_j);
-	printf("ccnt ---> %f\n", cnt.ver_i);
-	
+	}	
 	return (cnt);
 }
 
@@ -320,7 +329,7 @@ t_data init(t_data data)
 	data.central_x = 0;
 	data.central_y = 0;
 	data.central_z = 0;
-	data.zoom_factor = 23;
+	data.zoom_factor = 36;
 	data.move_x = 1;
 	data.move_y = 1;
 	data.alpha = 61;
@@ -329,6 +338,7 @@ t_data init(t_data data)
 	data.movez = 1;
 	return(data);
 }
+
 int	main(int argc, char **argv)
 {
 	char	*name;
@@ -339,25 +349,14 @@ int	main(int argc, char **argv)
 	cnt.hor_j = 0;
 	name = argv[1];
 	data = init(data);
-
 	(void)argc;
-	(void)data;
-
 	cnt = count_columns(name, cnt);
 	table = create_ttable(name, cnt);
-	// print(table, cnt);
-	// printf("ver_i ---> %f\n", cnt.ver_i);
-	// printf("hor_j ---> %f\n", cnt.hor_j);
 	data.table = table;
 	data.cnt.hor_j =cnt.ver_i;
 	data.cnt.ver_i = cnt.hor_j;;
-	// //printf("cnt : %f, %f\n", cnt.ver_i, cnt.hor_j);
-	//this thing is in question
 	data.central_x = (data.cnt.hor_j) / 2;
 	data.central_y = (data.cnt.ver_i ) / 2;
 	data.central_z = find_z(table,cnt);
-	// printf("data x %f",data.central_x);
-	// printf("data z %f",data.central_z);
-// 	/*************Part MLX ********************/
 	draw(data);
 }
