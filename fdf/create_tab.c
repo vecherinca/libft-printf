@@ -6,7 +6,7 @@
 /*   By: mklimina <mklimina@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/11 19:46:21 by mklimina          #+#    #+#             */
-/*   Updated: 2023/05/08 21:03:28 by mklimina         ###   ########.fr       */
+/*   Updated: 2023/05/13 23:53:01 by mklimina         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,22 +18,20 @@ void	fillfill(char **data, t_tab **table, t_lines cnt)
 	int		ccnt;
 	int		j;
 	int		i;
-	(void) cnt;
+
+	(void)cnt;
 	i = 0;
 	while (data[i] != NULL)
 	{
 		j = 0;
 		tab = ft_split(data[i], 32);
 		ccnt = count_col(tab);
-		//printf("data[%d] ---> %s\n",i, data[i]);
 		table[i] = malloc(sizeof(t_tab) * (ccnt + 1));
 		while (tab[j] != NULL)
 		{
 			table[i][j].x = j;
 			table[i][j].y = i;
 			table[i][j].z = ft_atoi(tab[j]);
-			//printf("%s tab(j) %s\n", KGRN,  tab[j]);
-			
 			if (ft_strchr(tab[j], 44) == 0)
 				table[i][j].color = -1;
 			else
@@ -43,8 +41,19 @@ void	fillfill(char **data, t_tab **table, t_lines cnt)
 		}
 		free(tab);
 		i++;
-		printf("i ---> %d\n", i);
 	}
+}
+void	freee_tab_char_2(char **tab, t_lines cnt)
+{
+	int	index;
+
+	index = cnt.hor_j;
+	while (index >= 0)
+	{
+		free(tab[index]);
+		index--;
+	}
+	free(tab);
 }
 
 t_tab	**create_ttable(char *name, t_lines cnt)
@@ -52,16 +61,16 @@ t_tab	**create_ttable(char *name, t_lines cnt)
 	char	**data;
 	int		ccnt;
 	t_tab	**table;
+
 	ccnt = cnt.hor_j;
-	//printf("number of lines --> %d", cnt);
 	data = malloc(sizeof(char *) * (ccnt + 1));
 	if (!data)
 		return (0);
 	data[ccnt] = NULL;
 	fill_tabtab(data, name);
-	//printf("data[3] ----> %s\n", data[2]);
 	table = malloc(sizeof(t_tab *) * (ccnt + 1));
 	table[ccnt] = NULL;
 	fillfill(data, table, cnt);
+	freee_tab_char_2(data, cnt);
 	return (table);
 }

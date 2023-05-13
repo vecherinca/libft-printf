@@ -6,7 +6,7 @@
 /*   By: mklimina <mklimina@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/11 21:13:31 by mklimina          #+#    #+#             */
-/*   Updated: 2023/05/11 23:38:50 by mklimina         ###   ########.fr       */
+/*   Updated: 2023/05/14 01:19:03 by mklimina         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,12 +53,14 @@ char	*ft_strstr(char *str, char *to_find)
 	return (0);
 }
 
-float find_min(t_tab **t, t_lines cnt)
+float	find_min(t_tab **t, t_lines cnt)
 {
-	float min;
-	int i;
-	int j;
+	float	min;
+	int		i;
+	int		j;
+
 	i = 0;
+	min = 0;
 	while (i < cnt.hor_j)
 	{
 		j = 0;
@@ -70,16 +72,17 @@ float find_min(t_tab **t, t_lines cnt)
 		}
 		i++;
 	}
-	//printf("min IN FUNCTION: %f\n", min);
-	return(min);
+	return (min);
 }
 
-float find_max(t_tab **t, t_lines cnt)
+float	find_max(t_tab **t, t_lines cnt)
 {
-	float max;
-	int i;
-	int j;
+	float	max;
+	int		i;
+	int		j;
+
 	i = 0;
+	max = 0;
 	while (i < cnt.hor_j)
 	{
 		j = 0;
@@ -91,22 +94,34 @@ float find_max(t_tab **t, t_lines cnt)
 		}
 		i++;
 	}
-	//printf("max IN FUNCTION: %f\n", max);
-	return (max);	
+	return (max);
 }
 
 float	find_z(t_tab **t, t_lines cnt)
 {
-	float max;
-	float min;
-	float res;
+	float	max;
+	float	min;
+	float	res;
 
 	max = find_max(t, cnt);
 	min = find_min(t, cnt);
-	//printf("max: %f\n", max);
-	//printf("min: %f\n", min);
+	cnt.max = max;
+	cnt.min = min;
+	
 	res = max - min;
-	//store it somewhere (res)
-	printf("res: %f\n", res);
-	return((res / 2) + min);
+	return ((res / 2) + min);
 }
+
+/*
+gradient : 
+
+for each point :
+
+point_alt = point.z - min; 
+alt_range = max - min;
+color_range = 1530;
+
+point out of 1530 = 1530 * point_alt / alt_range;
+
+send result to r(), g(), and b(), and encode the color;
+*/

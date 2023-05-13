@@ -6,33 +6,11 @@
 /*   By: mklimina <mklimina@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/08 22:44:03 by maria             #+#    #+#             */
-/*   Updated: 2023/05/08 21:15:26 by mklimina         ###   ########.fr       */
+/*   Updated: 2023/05/13 23:57:39 by mklimina         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "fdf.h"
-
-void	print(t_tab **t, t_lines cnt)
-{
-	int	i;
-	int	j;
-
-	i = 0;
-	printf("ver_i ---> %f\n", cnt.ver_i);
-	printf("hor_j ---> %f\n", cnt.hor_j);
-	while (i < cnt.hor_j)
-	{
-		j = 0;
-		while (j < cnt.ver_i)
-		{
-			printf("%s %d", KGRN,  t[i][j].z);
-			//printf("***");
-			j++;
-		}
-		printf("\n");
-		i++;
-	}
-}
 
 int	ft_atoi(char *str)
 {
@@ -89,7 +67,6 @@ int	count_lines(char *name)
 			cnt++;
 	}
 	close(fd);
-	//printf("lines in a function ***: %d\n", cnt);
 	return (cnt);
 }
 
@@ -100,12 +77,9 @@ void	fill_tabtab(char **data, char *name)
 
 	i = 0;
 	fd = open(name, O_RDONLY);
-	//printf("name ---> %s", name);
 	while (1)
 	{
 		data[i] = get_next_line(fd);
-		//printf("i value ---> %d\n", i);
-		//printf("what we parse de gnl ----> %s\n", data[i]);
 		if (data[i] == NULL)
 			break ;
 		i++;

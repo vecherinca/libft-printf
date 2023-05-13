@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   change_base.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: maria <maria@student.42.fr>                +#+  +:+       +#+        */
+/*   By: mklimina <mklimina@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/11 20:09:37 by mklimina          #+#    #+#             */
-/*   Updated: 2023/03/12 00:51:15 by maria            ###   ########.fr       */
+/*   Updated: 2023/05/13 23:56:25 by mklimina         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,7 +31,7 @@ int	len(char *str)
 	int	i;
 
 	i = 0;
-	while (str[i] != '\0' && str[i]!= '\n')
+	while (str[i] != '\0' && str[i] != '\n')
 		i++;
 	return (i);
 }
@@ -44,7 +44,7 @@ int	powerof(int nb, int power)
 		return (1);
 	return (nb * (powerof(nb, power - 1)));
 }
-//the problem here is that the last node goes with the "\n"
+
 int hextoint(char *hex)
 {
 	int	i;
@@ -55,8 +55,6 @@ int hextoint(char *hex)
 	y = 0;
 	i = len(hex) - 1;
 	hex = to_up(hex);
-	// printf("i(len) ---->%d\n", i);
-	// printf("hex ---> %s\n", hex);
 	while (i >= 0)
 	{
 		if (hex[i] >= '0' && hex[i] <= '9')
@@ -64,17 +62,8 @@ int hextoint(char *hex)
 		else
 			x = hex[i] - 'A' + 10;
 		number = number + x * powerof(16, y);
-		//printf("number middle ---> %d\n", number);
 		i--;
 		y++;
 	}
-	// printf("number ---> %d\n", number);
-	// printf("******************\n");
 	return (number);
 } 
-
-// int main()
-// {	
-// 	char hex[] = "810202";
-// 	printf("NUMBER ----> %d", hextoint(hex));
-// }

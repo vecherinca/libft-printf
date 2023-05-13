@@ -9,8 +9,13 @@ SRC =  \
 	 ./utils.c \
 	  ./utils2.c \
 	 ./create_tab.c \
+	 ./inputkey.c \
 	 ./change_base.c \
 	 ./renderandprint.c\
+	 ./utils3.c \
+	 ./render.c \
+	 ./math.c \
+	 ./init.c \
 	gnl/get_next_line.c \
 	gnl/get_next_line_utils.c \
 
