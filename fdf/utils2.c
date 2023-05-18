@@ -6,7 +6,7 @@
 /*   By: mklimina <mklimina@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/11 21:13:31 by mklimina          #+#    #+#             */
-/*   Updated: 2023/05/14 01:19:03 by mklimina         ###   ########.fr       */
+/*   Updated: 2023/05/18 17:17:37 by mklimina         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -107,21 +107,6 @@ float	find_z(t_tab **t, t_lines cnt)
 	min = find_min(t, cnt);
 	cnt.max = max;
 	cnt.min = min;
-	
 	res = max - min;
 	return ((res / 2) + min);
 }
-
-/*
-gradient : 
-
-for each point :
-
-point_alt = point.z - min; 
-alt_range = max - min;
-color_range = 1530;
-
-point out of 1530 = 1530 * point_alt / alt_range;
-
-send result to r(), g(), and b(), and encode the color;
-*/

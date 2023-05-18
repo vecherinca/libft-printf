@@ -6,31 +6,30 @@
 /*   By: mklimina <mklimina@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/13 23:43:34 by mklimina          #+#    #+#             */
-/*   Updated: 2023/05/14 01:03:00 by mklimina         ###   ########.fr       */
+/*   Updated: 2023/05/18 20:22:17 by mklimina         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "fdf.h"
 
-float transform_z(t_lines cnt)
+float	transform_z(t_lines cnt)
 {
-	float factor;
+	float	factor;
+
 	if (mod(cnt.max) > mod(cnt.min))
 		factor = WINDOW_HEIGHT / (12 * mod(cnt.max));
 	else
 		factor = WINDOW_HEIGHT / (12 * mod(cnt.min));
-	//printf("factor ---> %f", factor);
-	return(factor);
+	return (factor);
 }
 
 t_data	init(t_data data, t_lines cnt)
 {
-	float zoom_zoom;
-	float z_z;
-
+	float	zoom_zoom;
+	float	z_z;
 
 	zoom_zoom = returnzoom(cnt);
-	z_z = transform_z(cnt);	
+	z_z = transform_z(cnt);
 	data.central_x = 0;
 	data.central_y = 0;
 	data.central_z = 0;

@@ -6,7 +6,7 @@
 /*   By: mklimina <mklimina@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/13 23:39:42 by mklimina          #+#    #+#             */
-/*   Updated: 2023/05/13 23:54:57 by mklimina         ###   ########.fr       */
+/*   Updated: 2023/05/18 20:23:21 by mklimina         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,6 +27,7 @@ float	max(float x_step, float y_step)
 	else
 		return (y_step);
 }
+
 void	bresenham(t_cord point2, t_cord point1, t_img *img, int color)
 {
 	float	x_step;

@@ -6,20 +6,35 @@
 /*   By: mklimina <mklimina@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/11 19:46:21 by mklimina          #+#    #+#             */
-/*   Updated: 2023/05/13 23:53:01 by mklimina         ###   ########.fr       */
+/*   Updated: 2023/05/18 20:31:50 by mklimina         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "fdf.h"
 
-void	fillfill(char **data, t_tab **table, t_lines cnt)
+void	init_table(t_tab **table, int i, int j, char **tab)
+{
+	while (tab[j] != NULL)
+	{
+		table[i][j].x = j;
+		table[i][j].y = i;
+		table[i][j].z = ft_atoi(tab[j]);
+		if (ft_strchr(tab[j], 44) == 0)
+			table[i][j].color = -1;
+		else
+			table[i][j].color = hextoint(ft_strstr(tab[j], "0x"));
+		free(tab[j]);
+		j++;
+	}
+}
+
+void	fillfill(char **data, t_tab **table)
 {
 	char	**tab;
 	int		ccnt;
 	int		j;
 	int		i;
 
-	(void)cnt;
 	i = 0;
 	while (data[i] != NULL)
 	{
@@ -27,22 +42,12 @@ void	fillfill(char **data, t_tab **table, t_lines cnt)
 		tab = ft_split(data[i], 32);
 		ccnt = count_col(tab);
 		table[i] = malloc(sizeof(t_tab) * (ccnt + 1));
-		while (tab[j] != NULL)
-		{
-			table[i][j].x = j;
-			table[i][j].y = i;
-			table[i][j].z = ft_atoi(tab[j]);
-			if (ft_strchr(tab[j], 44) == 0)
-				table[i][j].color = -1;
-			else
-				table[i][j].color = hextoint(ft_strstr(tab[j], "0x"));
-			free(tab[j]);
-			j++;
-		}
+		init_table(table, i, j, tab);
 		free(tab);
 		i++;
 	}
 }
+
 void	freee_tab_char_2(char **tab, t_lines cnt)
 {
 	int	index;
@@ -70,7 +75,7 @@ t_tab	**create_ttable(char *name, t_lines cnt)
 	fill_tabtab(data, name);
 	table = malloc(sizeof(t_tab *) * (ccnt + 1));
 	table[ccnt] = NULL;
-	fillfill(data, table, cnt);
+	fillfill(data, table);
 	freee_tab_char_2(data, cnt);
 	return (table);
 }

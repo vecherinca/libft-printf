@@ -13,6 +13,7 @@ SRC =  \
 	 ./change_base.c \
 	 ./renderandprint.c\
 	 ./utils3.c \
+	 ./utils4.c \
 	 ./render.c \
 	 ./math.c \
 	 ./init.c \

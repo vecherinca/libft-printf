@@ -6,7 +6,7 @@
 /*   By: mklimina <mklimina@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/11 20:09:37 by mklimina          #+#    #+#             */
-/*   Updated: 2023/05/13 23:56:25 by mklimina         ###   ########.fr       */
+/*   Updated: 2023/05/18 20:33:57 by mklimina         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,12 +45,13 @@ int	powerof(int nb, int power)
 	return (nb * (powerof(nb, power - 1)));
 }
 
-int hextoint(char *hex)
+int	hextoint(char *hex)
 {
 	int	i;
 	int	x;
-	int y;
-	int number;
+	int	y;
+	int	number;
+
 	number = 0;
 	y = 0;
 	i = len(hex) - 1;
@@ -66,4 +67,4 @@ int hextoint(char *hex)
 		y++;
 	}
 	return (number);
-} 
+}
