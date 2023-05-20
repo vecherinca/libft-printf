@@ -6,13 +6,13 @@
 /*   By: mklimina <mklimina@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/18 20:23:09 by mklimina          #+#    #+#             */
-/*   Updated: 2023/05/18 20:26:23 by mklimina         ###   ########.fr       */
+/*   Updated: 2023/05/21 00:01:55 by mklimina         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef FDF_H
 # define FDF_H
-
+# include <unistd.h>
 # define KNRM "\x1B[0m"
 # define KRED "\x1B[31m"
 # define KGRN "\x1B[32m"
@@ -114,6 +114,7 @@ char		**ft_split(char *s, char c);
 void		print(t_tab **t, t_lines cnt);
 int			ft_atoi(char *str);
 int			count_col(char **tab);
+int			ft_strcmp(char *s1, char *s2);
 t_lines		count_columns(char *name, t_lines cnt);
 int			count_lines(char *name);
 void		fill_tabtab(char **data, char *name);
@@ -151,5 +152,9 @@ t_data		init(t_data data, t_lines cnt);
 float		find_max(t_tab **t, t_lines cnt);
 float		find_min(t_tab **t, t_lines cnt);
 t_ang		return_angles(t_ang angle, t_data *data);
+void		render_instructiontext(t_data *data);
 t_cord		move_things(t_cord res, t_data *data);
+int			ft_isdigit(int c);
+char		*ft_strstr_v2(char *str, char *to_find);
+char		*to_up(char *str);
 #endif

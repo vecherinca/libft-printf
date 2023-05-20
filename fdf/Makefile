@@ -14,6 +14,7 @@ SRC =  \
 	 ./renderandprint.c\
 	 ./utils3.c \
 	 ./utils4.c \
+	 ./utils5.c \
 	 ./render.c \
 	 ./math.c \
 	 ./init.c \

@@ -6,7 +6,7 @@
 /*   By: mklimina <mklimina@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/13 23:31:48 by mklimina          #+#    #+#             */
-/*   Updated: 2023/05/18 20:19:18 by mklimina         ###   ########.fr       */
+/*   Updated: 2023/05/21 01:12:06 by mklimina         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,10 +47,10 @@ int	render_rect(t_img *img, t_tab **t, t_lines cnt, t_data *d)
 	t_cord	p2;
 	t_cord	p1;
 
-	i = 0;
+	i = -1;
 	while (++i < cnt.ver_i)
 	{
-		j = 0;
+		j = -1;
 		while (++j < cnt.hor_j)
 		{
 			p1 = zoom_n_rot(t[i][j].x, t[i][j].y, t[i][j].z, d);
@@ -112,6 +112,8 @@ int	render(t_data *data)
 		render_reverse(&data->img, data->table, data->cnt, data);
 	mlx_put_image_to_window(data->mlx_ptr, data->win_ptr,
 		data->img.mlx_img, 0, 0);
+	render_instructiontext(data);
+	
 	return (0);
 }
 

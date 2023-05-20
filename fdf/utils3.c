@@ -6,7 +6,7 @@
 /*   By: mklimina <mklimina@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/13 22:41:08 by mklimina          #+#    #+#             */
-/*   Updated: 2023/05/13 23:59:29 by mklimina         ###   ########.fr       */
+/*   Updated: 2023/05/21 01:11:15 by mklimina         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,6 +46,8 @@ t_lines	count_columns(char *name, t_lines cnt)
 	int		i;
 
 	fd = open(name, O_RDONLY);
+	if (fd == -1)
+		exit(0);
 	line = get_next_line(fd);
 	the_line = ft_split(line, 32);
 	cnt.ver_i = count_col(the_line);
@@ -82,7 +84,7 @@ int	map_is_flipped(t_data *data)
 {
 	int	value;
 
-	if (data->theta > 90 && data->theta < 272)
+	if (data->theta > 90 && data->theta < 270)
 		value = 1;
 	else
 		value = -1;

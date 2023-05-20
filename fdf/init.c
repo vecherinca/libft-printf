@@ -6,7 +6,7 @@
 /*   By: mklimina <mklimina@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/13 23:43:34 by mklimina          #+#    #+#             */
-/*   Updated: 2023/05/18 20:22:17 by mklimina         ###   ########.fr       */
+/*   Updated: 2023/05/20 22:32:26 by mklimina         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,9 +17,9 @@ float	transform_z(t_lines cnt)
 	float	factor;
 
 	if (mod(cnt.max) > mod(cnt.min))
-		factor = WINDOW_HEIGHT / (12 * mod(cnt.max));
+		factor = WINDOW_HEIGHT / (14 * mod(cnt.max));
 	else
-		factor = WINDOW_HEIGHT / (12 * mod(cnt.min));
+		factor = WINDOW_HEIGHT / (14 * mod(cnt.min));
 	return (factor);
 }
 
