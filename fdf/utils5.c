@@ -6,7 +6,7 @@
 /*   By: mklimina <mklimina@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/20 20:41:32 by mklimina          #+#    #+#             */
-/*   Updated: 2023/05/21 00:02:04 by mklimina         ###   ########.fr       */
+/*   Updated: 2023/05/25 22:48:03 by mklimina         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,13 +20,6 @@ int	ft_isdigit(int c)
 		return (0);
 }
 
-// int define_hexa(char *color)
-// {
-// 	int i;
-
-// 	i = 0;
-	
-// }
 int	ft_strcmp(char *s1, char *s2)
 {
 	int	i;

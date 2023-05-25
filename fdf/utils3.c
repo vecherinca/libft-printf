@@ -6,7 +6,7 @@
 /*   By: mklimina <mklimina@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/13 22:41:08 by mklimina          #+#    #+#             */
-/*   Updated: 2023/05/21 01:11:15 by mklimina         ###   ########.fr       */
+/*   Updated: 2023/05/25 23:29:42 by mklimina         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,10 +45,10 @@ t_lines	count_columns(char *name, t_lines cnt)
 	char	**the_line;
 	int		i;
 
-	fd = open(name, O_RDONLY);
-	if (fd == -1)
-		exit(0);
+	fd = open_fd(name);
 	line = get_next_line(fd);
+	if (!line)
+		exit(56);
 	the_line = ft_split(line, 32);
 	cnt.ver_i = count_col(the_line);
 	i = -1;

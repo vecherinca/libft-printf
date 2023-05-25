@@ -6,7 +6,7 @@
 /*   By: mklimina <mklimina@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/08 20:17:32 by maria             #+#    #+#             */
-/*   Updated: 2023/05/21 01:25:03 by mklimina         ###   ########.fr       */
+/*   Updated: 2023/05/25 23:04:03 by mklimina         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,9 +33,9 @@ int	main(int argc, char **argv)
 		data.central_x = (data.cnt.hor_j) / 2;
 		data.central_y = (data.cnt.ver_i) / 2;
 		data.central_z = find_z(data.table, cnt);
-		//draw(data);
-		//freee_tab(data.table, cnt);
+		draw(data);
+		freee_tab(data.table, cnt);
 	}
 	else
-		write(1,"Wrong number of arguments", 26);
+		write(1, "Wrong number of arguments", 26);
 }

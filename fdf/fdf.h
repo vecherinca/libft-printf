@@ -6,7 +6,7 @@
 /*   By: mklimina <mklimina@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/18 20:23:09 by mklimina          #+#    #+#             */
-/*   Updated: 2023/05/21 00:01:55 by mklimina         ###   ########.fr       */
+/*   Updated: 2023/05/25 23:25:07 by mklimina         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -111,7 +111,6 @@ typedef struct t_ang
 }			t_ang;
 
 char		**ft_split(char *s, char c);
-void		print(t_tab **t, t_lines cnt);
 int			ft_atoi(char *str);
 int			count_col(char **tab);
 int			ft_strcmp(char *s1, char *s2);
@@ -157,4 +156,7 @@ t_cord		move_things(t_cord res, t_data *data);
 int			ft_isdigit(int c);
 char		*ft_strstr_v2(char *str, char *to_find);
 char		*to_up(char *str);
+int			check_value(char *hexa, char c);
+int			color_test(char *color);
+int			open_fd(char *name);
 #endif

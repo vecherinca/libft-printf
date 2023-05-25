@@ -18,6 +18,7 @@ SRC =  \
 	 ./render.c \
 	 ./math.c \
 	 ./init.c \
+	 ./parsing.c \
 	gnl/get_next_line.c \
 	gnl/get_next_line_utils.c \
 
