@@ -6,7 +6,7 @@
 /*   By: mklimina <mklimina@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/08 22:44:03 by maria             #+#    #+#             */
-/*   Updated: 2023/05/13 23:57:39 by mklimina         ###   ########.fr       */
+/*   Updated: 2023/05/29 22:12:57 by mklimina         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -72,8 +72,8 @@ int	count_lines(char *name)
 
 void	fill_tabtab(char **data, char *name)
 {
-	int	fd;
-	int	i;
+	int		fd;
+	int		i;
 
 	i = 0;
 	fd = open(name, O_RDONLY);

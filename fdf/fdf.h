@@ -6,7 +6,7 @@
 /*   By: mklimina <mklimina@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/18 20:23:09 by mklimina          #+#    #+#             */
-/*   Updated: 2023/05/25 23:25:07 by mklimina         ###   ########.fr       */
+/*   Updated: 2023/05/29 22:04:17 by mklimina         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -117,7 +117,7 @@ int			ft_strcmp(char *s1, char *s2);
 t_lines		count_columns(char *name, t_lines cnt);
 int			count_lines(char *name);
 void		fill_tabtab(char **data, char *name);
-void		fillfill(char **data, t_tab **table);
+void		fillfill(char **data, t_tab **table, t_lines cnt);
 t_tab		**create_ttable(char *name, t_lines cnt);
 int			powerof(int nb, int power);
 char		*ft_strstr(char *str, char *to_find);
@@ -159,4 +159,7 @@ char		*to_up(char *str);
 int			check_value(char *hexa, char c);
 int			color_test(char *color);
 int			open_fd(char *name);
+void		freee_tab_char_3(char **tab, int cnt);
+void		freee_tab_char_2(char **tab, t_lines cnt);
+void		freee_tab_(t_tab **tab, int cnt);
 #endif

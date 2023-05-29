@@ -6,7 +6,7 @@
 /*   By: mklimina <mklimina@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/11 19:46:21 by mklimina          #+#    #+#             */
-/*   Updated: 2023/05/25 23:41:38 by mklimina         ###   ########.fr       */
+/*   Updated: 2023/05/29 22:04:42 by mklimina         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,14 +34,27 @@ int	check_tab(char *tab)
 	return (0);
 }
 
-void	init_table(t_tab **table, int i, int j, char **tab)
+void	freee_tab_char_3(char **tab, int cnt)
+{
+	int	index;
+
+	index = cnt;
+	while (index >= 0)
+	{
+		free(tab[index]);
+		index--;
+	}
+	free(tab);
+}
+
+int	init_table(t_tab **table, int i, int j, char **tab)
 {
 	char	*color;
 
 	while (tab[j] != NULL)
 	{
 		if (check_tab(tab[j]) == 0)
-			exit(98);
+			return (1);
 		table[i][j].x = j;
 		table[i][j].y = i;
 		table[i][j].z = ft_atoi(tab[j]);
@@ -51,15 +64,15 @@ void	init_table(t_tab **table, int i, int j, char **tab)
 		{
 			color = ft_strstr_v2(tab[j], "0x");
 			if (!color_test(color))
-				exit(27);
+				return (printf("test\n"), 1);
 			table[i][j].color = hextoint(ft_strstr(tab[j], "0x"));
 		}
-		free(tab[j]);
 		j++;
 	}
+	return (0);
 }
 
-void	fillfill(char **data, t_tab **table)
+void	fillfill(char **data, t_tab **table, t_lines cnt)
 {
 	char	**tab;
 	int		ccnt;
@@ -73,23 +86,16 @@ void	fillfill(char **data, t_tab **table)
 		tab = ft_split(data[i], 32);
 		ccnt = count_col(tab);
 		table[i] = malloc(sizeof(t_tab) * (ccnt + 1));
-		init_table(table, i, j, tab);
-		free(tab);
+		if (init_table(table, i, j, tab))
+		{
+			freee_tab_(table, i);
+			freee_tab_char_3(tab, cnt.hor_j);
+			freee_tab_char_3(data, cnt.hor_j);
+			exit(27);
+		}
+		freee_tab_char_3(tab, ccnt);
 		i++;
 	}
-}
-
-void	freee_tab_char_2(char **tab, t_lines cnt)
-{
-	int	index;
-
-	index = cnt.hor_j;
-	while (index >= 0)
-	{
-		free(tab[index]);
-		index--;
-	}
-	free(tab);
 }
 
 t_tab	**create_ttable(char *name, t_lines cnt)
@@ -101,12 +107,12 @@ t_tab	**create_ttable(char *name, t_lines cnt)
 	ccnt = cnt.hor_j;
 	data = malloc(sizeof(char *) * (ccnt + 1));
 	if (!data)
-		return (free(data));
+		return (0);
 	data[ccnt] = NULL;
 	fill_tabtab(data, name);
 	table = malloc(sizeof(t_tab *) * (ccnt + 1));
 	table[ccnt] = NULL;
-	fillfill(data, table);
+	fillfill(data, table, cnt);
 	freee_tab_char_2(data, cnt);
 	return (table);
 }

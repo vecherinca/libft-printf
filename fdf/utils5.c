@@ -6,7 +6,7 @@
 /*   By: mklimina <mklimina@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/20 20:41:32 by mklimina          #+#    #+#             */
-/*   Updated: 2023/05/25 22:48:03 by mklimina         ###   ########.fr       */
+/*   Updated: 2023/05/29 22:11:18 by mklimina         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,4 +53,43 @@ char	*ft_strstr_v2(char *str, char *to_find)
 		i++;
 	}
 	return (0);
+}
+
+void	freee_tab_char_2(char **tab, t_lines cnt)
+{
+	int	index;
+
+	index = cnt.hor_j;
+	while (index >= 0)
+	{
+		free(tab[index]);
+		index--;
+	}
+	free(tab);
+}
+
+// void	freee_tab_char_3(char **tab, int cnt)
+// {
+// 	int	index;
+
+// 	index = cnt;
+// 	while (index >= 0)
+// 	{
+// 		free(tab[index]);
+// 		index--;
+// 	}
+// 	free(tab);
+// }
+
+void	freee_tab_(t_tab **tab, int cnt)
+{
+	int	index;
+
+	index = cnt;
+	while (index >= 0)
+	{
+		free(tab[index]);
+		index--;
+	}
+	free(tab);
 }
