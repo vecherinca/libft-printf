@@ -6,7 +6,7 @@
 /*   By: mklimina <mklimina@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/16 20:36:15 by mklimina          #+#    #+#             */
-/*   Updated: 2023/07/04 22:42:03 by mklimina         ###   ########.fr       */
+/*   Updated: 2023/07/30 19:48:17 by mklimina         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,50 +15,6 @@
 #include <unistd.h>
 #include <stdlib.h>
 #include "pipex.h"
-int	ft_strlen(const char *s)
-{
-	int	i;
-
-	i = 0;
-	while (s[i])
-		i++;
-	return (i);
-}
-
-char	*ft_strdup(const char *src)
-{
-	int		i;
-	char	*output;
-	int		len;
-
-	len = ft_strlen(src);
-	i = 0;
-	output = malloc(sizeof(char) * len + 1);
-	if (!output)
-		return (0);
-	while (src[i])
-	{
-		output[i] = src[i];
-		i++;
-	}
-	output[i] = '\0';
-	return (output);
-}
-
-void	free_list(t_a_list *head, t_head_a *main)
-{
-	t_a_list	*current;
-	t_a_list	*next;
-
-	current = head;
-	while (current != NULL)
-	{
-		next = current->next;
-		free(current);
-		current = next;
-	}
-	free(main);
-}
 
 void	ft_lstadd_back(t_a_list **lst, t_a_list *new)
 {
@@ -74,15 +30,16 @@ void	ft_lstadd_back(t_a_list **lst, t_a_list *new)
 		tmp = tmp->next;
 	tmp->next = new;
 }
+
 t_a_list	*create_list(int argc, char **argv, t_head_a *point)
 {
 	t_a_list	*temp;
 	t_a_list	*head;
 	int			i;
-
+	(void) point; 
 	head = NULL;
-	i = 1;
-	while (i < argc)
+	i = 2;
+	while (i < argc - 1)
 	{
 		// if (checkthearg(argv[i]) == 0)
 		// {
@@ -90,11 +47,13 @@ t_a_list	*create_list(int argc, char **argv, t_head_a *point)
 		// 	free_list(head, point);
 		// 	exit(0);
 		// }
-		point = point;
 		temp = malloc(sizeof(t_a_list));
 		if (!temp)
 			return (NULL);
-		temp->content = ft_strdup(argv[i]);
+		temp->all = argv[i];
+		//printf("all -> %s\n", temp-> all);
+		//ft_split(argv[i], ' ');
+		temp->cmd = ft_split(argv[i], ' ');
 		temp->next = NULL;
 		ft_lstadd_back(&head, temp);
 		i++;
@@ -102,7 +61,7 @@ t_a_list	*create_list(int argc, char **argv, t_head_a *point)
 	return (head);
 }
 
-t_head_a	*define_list_a(int argc, char **argv)
+t_head_a	*define_list(int argc, char **argv)
 {
 	t_head_a	*point;
 
@@ -113,24 +72,76 @@ t_head_a	*define_list_a(int argc, char **argv)
 	return (point);
 }
 
-void printLinkedList(t_a_list* start) {
-    t_a_list* current = start;
+t_pipex init(char **argv, t_pipex pipex, int argc)
+{
+	pipex.file1 = open(argv[1], O_RDONLY); // question opening files
+	pipex.file2 = open(argv[argc - 1], O_RDONLY);
+	pipex.cmd_count = argc - 3; // so you need -1 pipes
+	pipex.cmd = define_list(argc, argv);
+	t_a_list *current_node = pipex.cmd->first;
+	int j = 0;
+	while (current_node != NULL)
+	{
+		// Get the array of strings from the current node
+		char **cmd_array = current_node->cmd;
 
-    while (current != NULL) {
-        printf("arg ---> %s\n", current->content);
-        current = current->next;
-    }
+		// Iterate over the array of strings
+		int i = 0;
+		while (cmd_array[i] != NULL)
+		{
+			printf("cmd [%d]> %s\n", j, cmd_array[i]);
+			i++;
+		}
+		j++;
+
+    // Move to the next node in the linked list
+    current_node = current_node->next;
 }
+	return(pipex);
+}
+void parse(int argc, char **argv)
+{
+	// we need a structure here 
+
+	// in terms of 1,2,3
+	// first I guess we create a pipe
+	// then once command executed we 
+	// I think you need to take it directly tho
+	int i;
+
+	t_pipex pipex;
+	pipex = init(argv, pipex, argc);
+	//printf("argc %d", argc);
+	//printf("");
+	//printf("number cmd -> %d", pipex.cmd_count);
+	// int pipefd[2];
+	// pipe(pipefd);
+	i = 2;
+	while (i < argc-1)
+	{
+		//printf("iterate -> %s\n", argv[i]);
+		i++;
+	}
+}
+
 int	main(int argc, char **argv)
 {
-		// printf("number of the argc %d\n", argc);
-		// printf("argv %s", argv[1]);
-		
-		t_head_a *list;
-		list = define_list_a(argc, argv);
-		list = list;
-		t_a_list	*start;
-		start = list -> first;
-		printLinkedList(start);
-		
+	parse(argc, argv);
+	// char **str;
+	// str = ft_split(argv[0], ' ');
+	// str = str;
+	//printf("Hehheh envp -> %s", envp[0]);
+	// int fd;
+	//  char str1[20] = {0}; 
+	// (void) argc;
+	// (void) argv;
+	// fd = open("/mnt/nfs/homes/mklimina/Desktop/42cursus/pipex/file1.txt", O_RDONLY);
+	 printf("well argc -> %d\n", argc);
+	// dup2(fd, 0);
+	// close(fd);
+	// printf("Entered Name: %s\n", str1);
+	// scanf("%19s", str1);
+	// printf("Entered Name: %s\n", str1);
+	// printf("This is printed in example.txt!\n");
+				
 }
