@@ -6,7 +6,7 @@
 /*   By: mklimina <mklimina@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/16 20:36:15 by mklimina          #+#    #+#             */
-/*   Updated: 2023/07/30 19:48:17 by mklimina         ###   ########.fr       */
+/*   Updated: 2023/07/31 20:33:39 by mklimina         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -72,20 +72,13 @@ t_head_a	*define_list(int argc, char **argv)
 	return (point);
 }
 
-t_pipex init(char **argv, t_pipex pipex, int argc)
+void print(t_pipex pipex)
 {
-	pipex.file1 = open(argv[1], O_RDONLY); // question opening files
-	pipex.file2 = open(argv[argc - 1], O_RDONLY);
-	pipex.cmd_count = argc - 3; // so you need -1 pipes
-	pipex.cmd = define_list(argc, argv);
-	t_a_list *current_node = pipex.cmd->first;
 	int j = 0;
+	t_a_list *current_node = pipex.cmd->first;
 	while (current_node != NULL)
 	{
-		// Get the array of strings from the current node
 		char **cmd_array = current_node->cmd;
-
-		// Iterate over the array of strings
 		int i = 0;
 		while (cmd_array[i] != NULL)
 		{
@@ -93,13 +86,39 @@ t_pipex init(char **argv, t_pipex pipex, int argc)
 			i++;
 		}
 		j++;
-
-    // Move to the next node in the linked list
     current_node = current_node->next;
+	} 
 }
+
+char **parse_env(char **env)
+{
+	int i;
+	char *prefix = "PATH=";
+	char *path;
+	i = 0;
+	while(env[i] != NULL)
+	{
+		if (ft_strncmp(env[i], prefix, ft_strlen(prefix)) == 0)
+		{
+			path = ft_strstr(env[i], "PATH=");
+			return(ft_split(path, ':'));
+		}
+		i++;
+			
+	}
+	return(0);
+}
+t_pipex init(char **argv, t_pipex pipex, int argc, char **env)
+{
+	pipex.paths = parse_env(env);
+	pipex.file1 = open(argv[1], O_RDONLY); // question opening files
+	pipex.file2 = open(argv[argc - 1], O_RDONLY);
+	pipex.cmd_count = argc - 3; // so you need -1 pipes
+	pipex.cmd = define_list(argc, argv);
+	
 	return(pipex);
 }
-void parse(int argc, char **argv)
+void parse(int argc, char **argv, char **env)
 {
 	// we need a structure here 
 
@@ -110,7 +129,7 @@ void parse(int argc, char **argv)
 	int i;
 
 	t_pipex pipex;
-	pipex = init(argv, pipex, argc);
+	pipex = init(argv, pipex, argc, env);
 	//printf("argc %d", argc);
 	//printf("");
 	//printf("number cmd -> %d", pipex.cmd_count);
@@ -124,9 +143,9 @@ void parse(int argc, char **argv)
 	}
 }
 
-int	main(int argc, char **argv)
+int	main(int argc, char **argv, char **env)
 {
-	parse(argc, argv);
+	parse(argc, argv,env);
 	// char **str;
 	// str = ft_split(argv[0], ' ');
 	// str = str;
@@ -136,7 +155,7 @@ int	main(int argc, char **argv)
 	// (void) argc;
 	// (void) argv;
 	// fd = open("/mnt/nfs/homes/mklimina/Desktop/42cursus/pipex/file1.txt", O_RDONLY);
-	 printf("well argc -> %d\n", argc);
+	// printf("well argc -> %d\n", argc);
 	// dup2(fd, 0);
 	// close(fd);
 	// printf("Entered Name: %s\n", str1);
