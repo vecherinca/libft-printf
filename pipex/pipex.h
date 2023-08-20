@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   pipex.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mklimina <mklimina@student.42.fr>          +#+  +:+       +#+        */
+/*   By: maria <maria@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/16 20:36:37 by mklimina          #+#    #+#             */
-/*   Updated: 2023/07/31 20:26:04 by mklimina         ###   ########.fr       */
+/*   Updated: 2023/08/13 23:01:15 by maria            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,9 +23,7 @@
 typedef struct t_a_list
 {
 	char *path;
-	
 	char *all;
-	
 	char **cmd;
 	struct t_a_list	*next;
 }					t_a_list;
@@ -52,5 +50,6 @@ void	*ft_calloc(size_t nmemb, size_t size);
 char	*ft_strstr(char *str, char *to_find);
 int		ft_strncmp(const char *s1, const char *s2, size_t n);
 int		ft_strlen(const char *s);
+char	*ft_strjoin(char const *s1, char const *s2);
 
 #endif
