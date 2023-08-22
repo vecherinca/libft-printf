@@ -6,7 +6,7 @@
 /*   By: maria <maria@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/16 20:36:15 by mklimina          #+#    #+#             */
-/*   Updated: 2023/08/22 23:53:24 by maria            ###   ########.fr       */
+/*   Updated: 2023/08/23 00:03:02 by maria            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -143,7 +143,10 @@ void init_child(int count, t_pipex pipex, char **env, t_a_list *cmd)
 	if (pid == 0)
 	{
 		if (count == 0)
+		{
 			dup2(pipex.file1, STDIN_FILENO);
+			dup2(fd[1], STDOUT_FILENO);
+		}
 		if (count == pipex.cmd_count - 1)
 			dup2(pipex.file2, STDOUT_FILENO);
 		else
@@ -177,10 +180,9 @@ void execute(t_pipex pipex, char **env)
 void parse(int argc, char **argv, char **env)
 {
 	int i;
-
 	t_pipex pipex;
 	pipex = init(argv, pipex, argc, env);
-	print(pipex);
+	//print(pipex);
 	execute(pipex, env);	
 }
 int	main(int argc, char **argv, char **env)
