@@ -12,13 +12,23 @@ void init_child(int count, t_pipex pipex, char **env, t_a_list *cmd)
 		{
 			dup2(pipex.file1, STDIN_FILENO);
 			dup2(fd[1], STDOUT_FILENO);
+            close(pipex.file1);
+            close(fd[0]);
+            close(fd[1]);
 		}
 		if (count == pipex.cmd_count - 1)
+        {
 			dup2(pipex.file2, STDOUT_FILENO);
+            close(pipex.file2);
+            close(pipex.file1);
+        }
 		else
+        {
 			dup2(fd[1], STDOUT_FILENO);
+            close(pipex.file2);
+            close(fd[0]);
+        }
 		execve(cmd -> path, cmd ->cmd, env);
-		close(fd[0]);
 	}
 	else
 	{
